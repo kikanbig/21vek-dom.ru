@@ -1,73 +1,141 @@
-# React + TypeScript + Vite
+# 21vek-dom.ru - Мульти-репозиторий конструктор сайта 🏗️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![GitHub](https://img.shields.io/badge/GitHub-21vek--dom.ru-blue)](https://github.com/kikanbig/21vek-dom.ru)
+[![React](https://img.shields.io/badge/React-18.3.1-blue)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-blue)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-5.4.19-yellow)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.17-38B2AC)](https://tailwindcss.com/)
 
-Currently, two official plugins are available:
+## 🎯 О проекте
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**21vek-dom.ru** - это инновационный мульти-репозиторий конструктор сайта, где каждый GitHub репозиторий становится отдельной страницей или разделом. Главная страница построена на базе [hoff-divan-insights](https://github.com/kikanbig/hoff-divan-insights) - полнофункционального мебельного интернет-магазина.
 
-## React Compiler
+## 🏛️ Архитектура
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Основной принцип
+- **Главная страница (`/`)**: hoff-divan-insights (мебельный интернет-магазин)
+- **Будущие страницы**: каждый новый репозиторий = новая страница
+- **Централизованный репозиторий**: все интегрированные репозитории в одном месте
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Текущая структура
+```
+21vek-dom.ru/
+├── src/
+│   ├── components/     # Компоненты из интегрированных репозиториев
+│   ├── pages/         # Страницы (Index, NotFound, будущие)
+│   ├── hooks/         # Переиспользуемые хуки
+│   ├── lib/           # Утилиты
+│   └── assets/        # Ресурсы из всех репозиториев
+├── repos/            # Клонированные репозитории (для разработки)
+└── PROJECT_RULES.md  # Правила интеграции новых репозиториев
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Быстрый старт
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Установка зависимостей
+```bash
+npm install
 ```
+
+### Запуск в режиме разработки
+```bash
+npm run dev
+```
+Сервер запустится на `http://localhost:8080`
+
+### Сборка для продакшена
+```bash
+npm run build
+npm run preview
+```
+
+## 🛠️ Технологии
+
+- **Frontend**: React 18 + TypeScript
+- **Сборка**: Vite + SWC
+- **Стилизация**: Tailwind CSS + shadcn/ui
+- **Маршрутизация**: React Router v6
+- **Управление состоянием**: React Query (TanStack Query)
+- **UI компоненты**: Radix UI + Lucide Icons
+- **Развертывание**: Railway CLI
+
+## 📋 Правила проекта
+
+Подробные правила интеграции новых репозиториев описаны в [`PROJECT_RULES.md`](./PROJECT_RULES.md).
+
+### Краткий чек-лист для добавления нового репозитория:
+
+1. **Клонировать** репозиторий в папку `repos/`
+2. **Проанализировать** структуру и зависимости
+3. **Интегрировать** код в основной проект
+4. **Настроить** маршрутизацию
+5. **Протестировать** и **обновить** документацию
+
+## 📦 Интегрированные репозитории
+
+| Репозиторий | Статус | Маршрут | Описание |
+|-------------|--------|---------|----------|
+| [hoff-divan-insights](https://github.com/kikanbig/hoff-divan-insights) | ✅ Интегрирован | `/` | Главная страница - мебельный интернет-магазин |
+| *Следующие репозитории...* | 🔄 Ожидают | `/*` | Будущие страницы сайта |
+
+## 🎨 Особенности главной страницы
+
+Главная страница включает:
+- **Hero секцию** с баннером и призывом к действию
+- **Категории товаров** (диваны, кровати, шкафы, кухни, офис)
+- **Секцию товаров** с карточками продукции
+- **Адаптивный дизайн** для всех устройств
+- **Современный UI** с shadcn/ui компонентами
+
+## 🔧 Разработка
+
+### Добавление новых компонентов
+```bash
+# Используйте shadcn/ui CLI для новых компонентов
+npx shadcn-ui@latest add button
+```
+
+### Структура компонентов
+- `src/components/ui/` - shadcn/ui компоненты
+- `src/components/` - бизнес-компоненты
+- `src/pages/` - страницы приложения
+
+### Стилизация
+- Используйте **Tailwind CSS** классы
+- Кастомные CSS переменные в `src/index.css`
+- Темная тема поддерживается
+
+## 🚀 Деплой
+
+Проект настроен для развертывания на **Railway**:
+
+```bash
+# Установка Railway CLI
+npm install -g @railway/cli
+
+# Авторизация
+railway login
+
+# Деплой
+railway deploy
+```
+
+## 📝 Лицензия
+
+Этот проект создан для демонстрации концепции мульти-репозиторий конструктора.
+
+## 🤝 Вклад в развитие
+
+1. Форкните репозиторий
+2. Создайте feature branch (`git checkout -b feature/amazing-feature`)
+3. Зафиксируйте изменения (`git commit -m 'Add amazing feature'`)
+4. Запушьте branch (`git push origin feature/amazing-feature`)
+5. Создайте Pull Request
+
+## 📞 Контакты
+
+**Автор**: [@kikanbig](https://github.com/kikanbig)
+
+---
+
+*Этот проект демонстрирует современный подход к разработке веб-приложений с использованием модульной архитектуры и интеграции нескольких репозиториев.*
