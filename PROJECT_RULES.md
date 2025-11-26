@@ -193,38 +193,457 @@ npm run preview  # Предпросмотр сборки
 - Список используемых технологий
 - Инструкция по локальному запуску
 
+## Резервное копирование и восстановление
+
+### Автоматическое резервное копирование
+- **Git**: Все изменения автоматически сохраняются в Git
+- **GitHub**: Резервная копия на GitHub servers
+- **Локальные копии**: Регулярно создавать локальные бэкапы
+
+### Восстановление после сбоев
+```bash
+# Восстановить из Git
+git checkout <commit-hash>
+git reset --hard <commit-hash>
+
+# Пересоздать node_modules
+rm -rf node_modules package-lock.json
+npm install
+
+# Восстановить из бэкапа
+cp -r backup/* ./
+```
+
 ## Мониторинг и поддержка
 
 ### Логирование
-- Использовать console для разработки
-- Для продакшена настроить централизованное логирование
+```typescript
+// Для разработки
+console.log('Debug info:', data);
+
+// Для продакшена
+import { logger } from '@/lib/logger';
+logger.info('User action', { userId, action });
+
+// Уровни логирования:
+// - ERROR: Критические ошибки
+// - WARN: Предупреждения
+// - INFO: Общая информация
+// - DEBUG: Отладочная информация
+```
 
 ### Обработка ошибок
-- Graceful error handling
-- Fallback компоненты для критических ошибок
+```typescript
+// Error Boundary компонент
+class ErrorBoundary extends React.Component {
+  componentDidCatch(error, errorInfo) {
+    logger.error('React Error Boundary', { error, errorInfo });
+  }
+
+  render() {
+    return this.props.children;
+  }
+}
+
+// Graceful degradation
+const FallbackComponent = () => (
+  <div className="error-fallback">
+    <h2>Что-то пошло не так</h2>
+    <button onClick={() => window.location.reload()}>
+      Перезагрузить страницу
+    </button>
+  </div>
+);
+```
+
+### Мониторинг производительности
+```typescript
+// Web Vitals
+import { getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals';
+
+getCLS(console.log);
+getFID(console.log);
+getFCP(console.log);
+getLCP(console.log);
+getTTFB(console.log);
+
+// React DevTools Profiler
+<Profiler id="Component" onRender={onRenderCallback}>
+  <Component />
+</Profiler>
+```
+
+### Аналитика и метрики
+```typescript
+// Google Analytics
+import ReactGA from 'react-ga4';
+ReactGA.initialize('GA_MEASUREMENT_ID');
+ReactGA.send('pageview');
+
+// Custom events
+ReactGA.event({
+  category: 'User',
+  action: 'Click',
+  label: 'Button'
+});
+```
+
+## SEO оптимизация
+
+### Мета-теги
+```typescript
+// В каждой странице
+import { Helmet } from 'react-helmet-async';
+
+const Page = () => (
+  <>
+    <Helmet>
+      <title>Название страницы | 21vek-dom.ru</title>
+      <meta name="description" content="Описание страницы" />
+      <meta name="keywords" content="ключевые, слова" />
+      <meta property="og:title" content="Open Graph заголовок" />
+      <meta property="og:description" content="Open Graph описание" />
+      <meta property="og:image" content="/og-image.jpg" />
+      <link rel="canonical" href="https://21vek-dom.ru/page" />
+    </Helmet>
+    {/* Контент страницы */}
+  </>
+);
+```
+
+### Структурированные данные
+```typescript
+// JSON-LD для поисковиков
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "21vek-dom.ru",
+  "url": "https://21vek-dom.ru"
+};
+
+<Helmet>
+  <script type="application/ld+json">
+    {JSON.stringify(structuredData)}
+  </script>
+</Helmet>
+```
+
+### Технический SEO
+- **URL структура**: Человеко-понятные URL (`/sets` вместо `/page?id=123`)
+- **Sitemap**: Автоматическая генерация `sitemap.xml`
+- **Robots.txt**: Настройка для поисковых ботов
+- **Page Speed**: Оптимизация загрузки (< 3 сек)
+
+## Локализация и интернационализация
+
+### Структура переводов
+```
+src/
+├── locales/
+│   ├── ru.json
+│   ├── en.json
+│   └── be.json
+└── i18n/
+    └── config.ts
+```
+
+### Настройка i18n
+```typescript
+// i18n/config.ts
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+
+i18n
+  .use(initReactI18next)
+  .init({
+    lng: 'ru',
+    fallbackLng: 'ru',
+    resources: {
+      ru: { translation: ruTranslations },
+      en: { translation: enTranslations }
+    }
+  });
+```
+
+### Использование в компонентах
+```typescript
+import { useTranslation } from 'react-i18next';
+
+const Component = () => {
+  const { t } = useTranslation();
+
+  return (
+    <h1>{t('welcome.title')}</h1>
+    <p>{t('welcome.description')}</p>
+  );
+};
+```
+
+### Динамический контент
+```typescript
+// С параметрами
+t('items.count', { count: items.length })
+
+// С плюрализацией
+t('items', { count: 1 }) // "1 товар"
+t('items', { count: 5 }) // "5 товаров"
+```
+
+## Производственная поддержка
+
+### CI/CD Pipeline
+```yaml
+# .github/workflows/deploy.yml
+name: Deploy to Production
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+      - run: npm run test
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Deploy to Railway
+        run: railway up
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+```
+
+### Мониторинг здоровья
+```typescript
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    memory: process.memoryUsage()
+  });
+});
+```
+
+### Обновление зависимостей
+```bash
+# Проверка устаревших пакетов
+npm outdated
+
+# Обновление с проверкой совместимости
+npm update --save
+
+# Аудит безопасности
+npm audit
+npm audit fix
+
+# Тестирование после обновления
+npm run build
+npm run test
+```
 
 ## Безопасность
 
 ### Проверки
-- ESLint для кода
-- TypeScript strict mode
-- Проверка зависимостей на уязвимости
+```bash
+# ESLint правила безопасности
+npm install --save-dev eslint-plugin-security
+
+# В package.json
+{
+  "scripts": {
+    "security": "npm audit && npx eslint --ext .ts,.tsx src/ --plugin security"
+  }
+}
+```
+
+### Защита от уязвимостей
+- **Content Security Policy (CSP)**
+- **XSS защита**: Экранирование пользовательского ввода
+- **CSRF токены**: Для форм и API запросов
+- **Rate limiting**: Ограничение количества запросов
+- **HTTPS only**: Принудительное шифрование
+
+### Валидация данных
+```typescript
+import { z } from 'zod';
+
+// Схема валидации
+const userSchema = z.object({
+  email: z.string().email(),
+  name: z.string().min(2).max(50),
+  age: z.number().min(18).max(120)
+});
+
+// Использование
+const validateUser = (data: unknown) => {
+  return userSchema.parse(data);
+};
+```
+
+### Управление секретами
+```bash
+# .env.example
+API_KEY=your_api_key_here
+DATABASE_URL=your_database_url_here
+
+# Никогда не коммитить .env файлы!
+echo '.env*' >> .gitignore
+```
 
 ### Данные
-- Валидация всех входных данных
-- Безопасное хранение секретов
-- HTTPS обязательна для продакшена
+- **Валидация**: Все входные данные проходят валидацию
+- **Санитизация**: Очистка от вредоносного кода
+- **Шифрование**: Чувствительные данные шифруются
+- **HTTPS**: Обязательно для всех подключений
 
 ## Процесс добавления нового репозитория
 
+### Детальное руководство по интеграции
+
+#### Подготовка репозитория
+```bash
+# 1. Клонировать репозиторий в папку repos/
+git clone https://github.com/username/repo-name.git repos/repo-name
+
+# 2. Изучить структуру проекта
+ls -la repos/repo-name/src/
+cat repos/repo-name/package.json | head -30
+
+# 3. Проверить работоспособность оригинального репозитория
+cd repos/repo-name && npm install && npm run dev
+```
+
+#### Анализ зависимостей
+```bash
+# Проверить версии пакетов
+npm ls --depth=0
+
+# Проверить конфликты с основным проектом
+npm ls react react-dom  # Должны быть совместимые версии
+
+# Если есть конфликты версий:
+# - Обновить основной проект до совместимой версии
+# - Или зафиксировать версии в package.json
+```
+
+#### Интеграция компонентов
+```bash
+# Создать папку для компонентов репозитория
+mkdir -p src/components/repo-name
+
+# Скопировать основные компоненты
+cp repos/repo-name/src/components/MainComponent.tsx src/components/repo-name/
+cp repos/repo-name/src/components/* src/components/repo-name/
+
+# Скопировать данные и ассеты
+cp -r repos/repo-name/src/data/* src/data/
+cp -r repos/repo-name/src/assets/* src/assets/
+```
+
+#### Настройка маршрутизации
+```typescript
+// В src/App.tsx добавить:
+import RepoPage from "./pages/RepoPage";
+
+// Добавить маршрут:
+<Route path="/repo-name" element={<RepoPage />} />
+```
+
+#### Создание страницы-обертки
+```typescript
+// src/pages/RepoPage.tsx
+import { MainComponent } from "@/components/repo-name/MainComponent";
+
+const RepoPage = () => {
+  return (
+    <div className="min-h-screen">
+      {/* Общий Header если нужен */}
+      {/* <Header /> */}
+
+      <main>
+        <MainComponent />
+      </main>
+
+      {/* Общий Footer если нужен */}
+      {/* <Footer /> */}
+    </div>
+  );
+};
+
+export default RepoPage;
+```
+
+#### Тестирование интеграции
+```bash
+# 1. Проверить сборку
+npm run build
+
+# 2. Запустить dev сервер
+npm run dev
+
+# 3. Перейти на новую страницу
+# http://localhost:8080/repo-name
+
+# 4. Проверить работу всех функций
+# - Навигация
+# - Взаимодействие с компонентами
+# - Отзывчивость дизайна
+```
+
+### Устранение конфликтов
+
+#### Конфликты зависимостей
+```bash
+# Проверить конфликты
+npm ls --depth=0 | grep -i warning
+
+# Решения:
+# 1. Обновить зависимость до совместимой версии
+npm update package-name
+
+# 2. Зафиксировать версию
+"package-name": "1.2.3"  # Вместо ^1.2.3
+
+# 3. Использовать резолюции в package.json
+"resolutions": {
+  "package-name": "1.2.3"
+}
+```
+
+#### Конфликты стилей
+- Использовать CSS модули или scoped стили
+- Проверить переопределения Tailwind классов
+- Изолировать стили компонентов
+
+#### Конфликты имен
+- Использовать префиксы для компонентов: `RepoNameComponent`
+- Проверять уникальность имен файлов и функций
+
 ### Чек-лист
 - [ ] Репозиторий клонирован в `repos/`
-- [ ] Зависимости добавлены в `package.json`
+- [ ] Структура проекта изучена
+- [ ] Зависимости проанализированы и разрешены конфликты
 - [ ] Код скопирован в соответствующие папки
+- [ ] Компоненты адаптированы под общий дизайн
 - [ ] Маршрутизация настроена
-- [ ] Тестирование проведено
+- [ ] Сборка и dev сервер работают
+- [ ] Функциональность протестирована
 - [ ] Документация обновлена
-- [ ] Коммит создан с описанием изменений
+- [ ] Коммит создан с подробным описанием
 
 ---
 
@@ -243,6 +662,129 @@ npm run preview  # Предпросмотр сборки
 4. **Интегрировать систему управления контентом**
 5. **Настроить мультиязычность**
 
+## Практические советы
+
+### Оптимизация производительности
+
+#### Code Splitting
+```typescript
+// Ленивая загрузка страниц
+const SetsPage = lazy(() => import('./pages/Sets'));
+
+// В маршрутизации
+<Route
+  path="/sets"
+  element={
+    <Suspense fallback={<div>Загрузка...</div>}>
+      <SetsPage />
+    </Suspense>
+  }
+/>
+```
+
+#### Image Optimization
+```typescript
+// Автоматическая оптимизация изображений
+import image from '@/assets/hero.jpg?webp&w=800&h=600';
+
+// Или с помощью компонента
+<img
+  src={image}
+  loading="lazy"
+  alt="Описание"
+  width="800"
+  height="600"
+/>
+```
+
+#### Bundle Analysis
+```bash
+# Анализ размера бандла
+npm install --save-dev webpack-bundle-analyzer
+npm run build -- --analyze
+```
+
+### Работа с командами
+
+#### Code Reviews
+- Все изменения проходят code review
+- Использовать pull requests для всех изменений
+- Автоматические проверки: ESLint, TypeScript, tests
+
+#### Git Workflow
+```bash
+# Создание feature branch
+git checkout -b feature/add-new-page
+
+# Регулярные коммиты
+git add .
+git commit -m "feat: add new page functionality"
+
+# Обновление из main
+git fetch origin
+git rebase origin/main
+
+# Создание PR
+git push origin feature/add-new-page
+```
+
+### Масштабирование
+
+#### Добавление новых страниц
+1. Создать новый репозиторий с компонентами
+2. Интегрировать через систему синхронизации
+3. Добавить маршрут и навигацию
+4. Протестировать и задеплоить
+
+#### Модульная архитектура
+- Каждый репозиторий = независимый модуль
+- Общие компоненты в `src/components/ui/`
+- Переиспользуемые хуки в `src/hooks/`
+- Утилиты в `src/lib/`
+
+## FAQ
+
+### ❓ Как добавить новый репозиторий?
+**Ответ**: Следуйте чек-листу в разделе "Процесс добавления нового репозитория". Используйте команду `npm run sync:all` для автоматической интеграции.
+
+### ❓ Что делать при конфликте зависимостей?
+**Ответ**: Проверьте версии пакетов командой `npm ls package-name`. Обновите до совместимой версии или используйте `resolutions` в package.json.
+
+### ❓ Как откатить изменения?
+**Ответ**: Используйте `git log` для просмотра истории, затем `git reset --hard <commit-hash>` для отката.
+
+### ❓ Как оптимизировать производительность?
+**Ответ**: Используйте code splitting, lazy loading, оптимизацию изображений. Регулярно анализируйте bundle size.
+
+### ❓ Как добавить новую страницу?
+**Ответ**:
+1. Создать компонент в `src/pages/`
+2. Добавить маршрут в `src/App.tsx`
+3. Обновить навигацию если нужно
+4. Добавить в документацию
+
+### ❓ Как работает синхронизация?
+**Ответ**: Система автоматически копирует изменения из оригинальных репозиториев в основной проект, сохраняя совместимость и функциональность.
+
 ---
 
-*Этот документ должен обновляться при каждом добавлении нового репозитория или изменении архитектуры проекта.*
+## Контакты и поддержка
+
+- **Техническая поддержка**: Создавайте issues в GitHub
+- **Документация**: Этот файл `PROJECT_RULES.md`
+- **CI/CD**: GitHub Actions workflows
+- **Деплой**: Railway platform
+
+## Версии и изменения
+
+### v1.0.0 - Первая версия
+- ✅ Мульти-репозиторий архитектура
+- ✅ Интеграция hoff-divan-insights (главная страница)
+- ✅ Интеграция sets репозитория (/sets)
+- ✅ Система синхронизации репозиториев
+- ✅ CI/CD pipeline
+- ✅ Полная документация
+
+---
+
+*Этот документ должен обновляться при каждом добавлении нового репозитория или изменении архитектуры проекта. Последнее обновление: $(date)*
