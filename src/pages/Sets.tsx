@@ -2,12 +2,41 @@ import { SetCard } from "@/components/SetCard";
 import { sets } from "@/data/sets";
 import cardLP from "@/assets/card-lp.png";
 import logo from "@/assets/logo.png";
+import { useState, useEffect } from "react";
 
 const Index = () => {
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const isMobile = window.innerWidth < 768;
+      
+      if (!isMobile) {
+        setIsHeaderVisible(true);
+        return;
+      }
+
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsHeaderVisible(false);
+      } else {
+        setIsHeaderVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b border-border bg-card sticky top-0 z-50 backdrop-blur-sm bg-card/80">
+      <header className={`border-b border-border bg-card sticky top-0 z-50 backdrop-blur-sm bg-card/80 transition-transform duration-300 ${
+        isHeaderVisible ? "translate-y-0" : "-translate-y-full"
+      }`}>
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col items-center text-center gap-6">
             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
