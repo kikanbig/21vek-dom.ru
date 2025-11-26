@@ -14,6 +14,7 @@
     "sync:all": "npm run sync:hoff && npm run sync:sets",
     "sync:hoff-diff": "./scripts/sync-with-diff.sh hoff-divan-insights",
     "sync:sets-diff": "./scripts/sync-with-diff.sh sets-repo",
+    "apply-mods": "./scripts/apply-modifications.sh",
     "sync:list": "./scripts/sync-repo.sh --list",
     "sync:status": "./scripts/sync-repo.sh --status"
   },
