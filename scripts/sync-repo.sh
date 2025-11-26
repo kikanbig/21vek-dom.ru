@@ -6,11 +6,56 @@
 set -e
 
 if [ $# -lt 1 ]; then
-    echo "Использование: $0 <repo-name> [component-name]"
+    echo "Использование: $0 <repo-name> [component-name] | --list | --status"
+    echo ""
+    echo "Команды:"
+    echo "  --list           Показать список всех репозиториев"
+    echo "  --status         Показать статус всех репозиториев"
+    echo ""
     echo "Примеры:"
     echo "  $0 hoff-divan-insights"
     echo "  $0 sets SetCard"
+    echo "  $0 --list"
     exit 1
+fi
+
+# Обработка специальных команд
+if [ "$1" = "--list" ]; then
+    echo "📋 Список репозиториев для синхронизации:"
+    echo ""
+    if [ -f "config/repos.json" ]; then
+        cat config/repos.json | grep -A 2 '"name"' | grep -E '("name"|"description")' | sed 's/.*"name": "\([^"]*\)".*/📦 \1/' | sed 's/.*"description": "\([^"]*\)".*/   └─ \1/'
+    else
+        echo "❌ Конфигурационный файл config/repos.json не найден"
+    fi
+    exit 0
+elif [ "$1" = "--status" ]; then
+    echo "📊 Статус репозиториев:"
+    echo ""
+
+    # Проверяем hoff-divan-insights
+    if [ -d "../hoff-divan-insights" ]; then
+        cd "../hoff-divan-insights"
+        last_commit=$(git log --oneline -1 2>/dev/null | head -1)
+        cd - > /dev/null
+        echo "✅ hoff-divan-insights: $last_commit"
+    else
+        echo "❌ hoff-divan-insights: Репозиторий не найден локально"
+    fi
+
+    # Проверяем sets-repo
+    if [ -d "../repos/sets-repo" ]; then
+        cd "../repos/sets-repo"
+        last_commit=$(git log --oneline -1 2>/dev/null | head -1)
+        cd - > /dev/null
+        echo "✅ sets-repo: $last_commit"
+    else
+        echo "❌ sets-repo: Репозиторий не найден локально"
+    fi
+
+    echo ""
+    echo "📋 Всего репозиториев для синхронизации: 2"
+    exit 0
 fi
 
 REPO_NAME=$1
@@ -18,21 +63,33 @@ COMPONENT_NAME=${2:-""}
 
 echo "🔄 Синхронизация репозитория: $REPO_NAME"
 
-# Определяем правильный путь к репозиторию
+# Определяем правильный путь к репозиторию из конфигурации
 REPO_PATH=""
-case $REPO_NAME in
-    "hoff-divan-insights")
-        REPO_PATH="../hoff-divan-insights"
-        ;;
-    "sets-repo")
-        REPO_PATH="../repos/sets-repo"
-        ;;
-    *)
-        echo "❌ Неизвестный репозиторий: $REPO_NAME"
-        echo "Доступные: hoff-divan-insights, sets-repo"
+if [ -f "config/repos.json" ]; then
+    REPO_PATH=$(cat config/repos.json | grep -A 10 "\"name\": \"$REPO_NAME\"" | grep "localPath" | sed 's/.*"localPath": "\([^"]*\)".*/\1/')
+
+    if [ -z "$REPO_PATH" ]; then
+        echo "❌ Репозиторий '$REPO_NAME' не найден в config/repos.json"
+        echo "Доступные репозитории:"
+        cat config/repos.json | grep '"name"' | sed 's/.*"name": "\([^"]*\)".*/  - \1/'
         exit 1
-        ;;
-esac
+    fi
+else
+    # Fallback для обратной совместимости
+    case $REPO_NAME in
+        "hoff-divan-insights")
+            REPO_PATH="../hoff-divan-insights"
+            ;;
+        "sets-repo")
+            REPO_PATH="../repos/sets-repo"
+            ;;
+        *)
+            echo "❌ Неизвестный репозиторий: $REPO_NAME"
+            echo "Доступные: hoff-divan-insights, sets-repo"
+            exit 1
+            ;;
+    esac
+fi
 
 # Проверяем, что репозиторий существует
 if [ ! -d "$REPO_PATH" ]; then
@@ -82,35 +139,77 @@ if [ -n "$COMPONENT_NAME" ]; then
 else
     echo "🔄 Полная синхронизация репозитория: $REPO_NAME"
 
-    case $REPO_NAME in
-        "hoff-divan-insights")
-            # Синхронизируем hoff-divan-insights (главная страница)
-            echo "📋 Синхронизация главной страницы..."
+    # Используем конфигурацию из repos.json
+    if [ -f "config/repos.json" ]; then
+        # Получаем конфигурацию репозитория
+        REPO_CONFIG=$(cat config/repos.json | grep -A 50 "\"name\": \"$REPO_NAME\"" | head -50)
 
-            # Копируем компоненты
-            cp "$REPO_PATH/src/components/Header.tsx" src/components/
-            cp "$REPO_PATH/src/components/HeroSection.tsx" src/components/
-            cp "$REPO_PATH/src/components/CategoryGrid.tsx" src/components/
-            cp "$REPO_PATH/src/components/ProductsSection.tsx" src/components/
-            cp "$REPO_PATH/src/components/Footer.tsx" src/components/
+        echo "📋 Синхронизация на основе конфигурации..."
 
-            # Копируем ассеты (если они изменились)
+        # Синхронизация компонентов
+        if echo "$REPO_CONFIG" | grep -q "components"; then
+            echo "🔧 Синхронизация компонентов..."
+            for component in $(echo "$REPO_CONFIG" | grep -A 20 '"components"' | grep -E '\.tsx' | sed 's/.*"\([^"]*\.tsx\)".*/\1/'); do
+                if [ -f "$REPO_PATH/src/components/$component" ]; then
+                    cp "$REPO_PATH/src/components/$component" "src/components/"
+                    echo "  ✅ $component"
+                fi
+            done
+        fi
+
+        # Синхронизация страниц
+        if echo "$REPO_CONFIG" | grep -q "pages"; then
+            echo "📄 Синхронизация страниц..."
+            # Для sets-repo: копируем Index.tsx как Sets.tsx
+            if [ "$REPO_NAME" = "sets-repo" ] && [ -f "$REPO_PATH/src/pages/Index.tsx" ]; then
+                cp "$REPO_PATH/src/pages/Index.tsx" "src/pages/Sets.tsx"
+                echo "  ✅ Index.tsx → Sets.tsx"
+            fi
+        fi
+
+        # Синхронизация данных
+        if echo "$REPO_CONFIG" | grep -q "data"; then
+            echo "📊 Синхронизация данных..."
+            for data_file in $(echo "$REPO_CONFIG" | grep -A 10 '"data"' | grep -E '\.ts' | sed 's/.*"\([^"]*\.ts\)".*/\1/'); do
+                if [ -f "$REPO_PATH/src/data/$data_file" ]; then
+                    cp "$REPO_PATH/src/data/$data_file" "src/data/"
+                    echo "  ✅ $data_file"
+                fi
+            done
+        fi
+
+        # Синхронизация ассетов
+        if echo "$REPO_CONFIG" | grep -q '"assets": true'; then
+            echo "🖼️ Синхронизация ассетов..."
             cp -r "$REPO_PATH/src/assets/*" src/assets/ 2>/dev/null || true
+            echo "  ✅ Ассеты обновлены"
+        fi
 
-            echo "✅ Главная страница синхронизирована"
-            ;;
+    else
+        echo "⚠️ Конфигурационный файл config/repos.json не найден, использую старый метод..."
 
-        "sets-repo")
-            # Синхронизируем sets репозиторий
-            echo "📋 Синхронизация страницы сетов..."
+        # Старый метод синхронизации (для обратной совместимости)
+        case $REPO_NAME in
+            "hoff-divan-insights")
+                echo "📋 Синхронизация главной страницы..."
+                cp "$REPO_PATH/src/components/Header.tsx" src/components/
+                cp "$REPO_PATH/src/components/HeroSection.tsx" src/components/
+                cp "$REPO_PATH/src/components/CategoryGrid.tsx" src/components/
+                cp "$REPO_PATH/src/components/ProductsSection.tsx" src/components/
+                cp "$REPO_PATH/src/components/Footer.tsx" src/components/
+                cp -r "$REPO_PATH/src/assets/*" src/assets/ 2>/dev/null || true
+                echo "✅ Главная страница синхронизирована"
+                ;;
 
-            cp "$REPO_PATH/src/components/SetCard.tsx" src/components/
-            cp "$REPO_PATH/src/data/sets.ts" src/data/
-            cp -r "$REPO_PATH/src/assets/*" src/assets/ 2>/dev/null || true
-
-            echo "✅ Страница сетов синхронизирована"
-            ;;
-    esac
+            "sets-repo")
+                echo "📋 Синхронизация страницы сетов..."
+                cp "$REPO_PATH/src/components/SetCard.tsx" src/components/
+                cp "$REPO_PATH/src/data/sets.ts" src/data/
+                cp -r "$REPO_PATH/src/assets/*" src/assets/ 2>/dev/null || true
+                echo "✅ Страница сетов синхронизирована"
+                ;;
+        esac
+    fi
 fi
 
 echo ""

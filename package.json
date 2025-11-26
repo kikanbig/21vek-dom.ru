@@ -13,7 +13,9 @@
     "sync:sets-card": "./scripts/sync-repo.sh sets-repo SetCard",
     "sync:all": "npm run sync:hoff && npm run sync:sets",
     "sync:hoff-diff": "./scripts/sync-with-diff.sh hoff-divan-insights",
-    "sync:sets-diff": "./scripts/sync-with-diff.sh sets-repo"
+    "sync:sets-diff": "./scripts/sync-with-diff.sh sets-repo",
+    "sync:list": "./scripts/sync-repo.sh --list",
+    "sync:status": "./scripts/sync-repo.sh --status"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

@@ -10,16 +10,16 @@ const Index = () => {
       <header className="border-b border-border bg-card sticky top-0 z-50 backdrop-blur-sm bg-card/80">
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col items-center text-center gap-6">
-            <div className="flex items-center gap-6">
+            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
               <img 
                 src={cardLP} 
                 alt="Карта Любимый покупатель" 
-                className="h-40 w-auto object-contain shadow-lg"
+                className="h-32 md:h-40 w-auto object-contain shadow-lg"
               />
               <img 
                 src={logo} 
                 alt="21vek.by" 
-                className="h-16 w-auto object-contain"
+                className="h-12 md:h-16 w-auto object-contain"
               />
             </div>
             <div>
@@ -30,7 +30,7 @@ const Index = () => {
                 Выгодные наборы товаров со скидками до 20%
               </p>
               <div className="text-sm text-muted-foreground">
-                <span className="font-semibold text-primary text-xl">{sets.length}</span> уникальных наборов
+                <span className="font-semibold text-primary text-xl">{sets.length}</span> уникальных набора
               </div>
             </div>
           </div>
