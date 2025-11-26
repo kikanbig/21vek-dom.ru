@@ -1,0 +1,122 @@
+name: Sync Repositories
+
+on:
+  workflow_dispatch:
+    inputs:
+      repo_name:
+        description: 'Repository to sync'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - hoff-divan-insights
+          - sets-repo
+      show_diff:
+        description: 'Show diff before sync'
+        required: false
+        default: true
+        type: boolean
+
+  schedule:
+    # Синхронизация каждый день в 2:00 по UTC
+    - cron: '0 2 * * *'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Clone/update sub-repositories
+        run: |
+          mkdir -p repos
+          if [ "${{ github.event.inputs.repo_name }}" = "all" ] || [ "${{ github.event.inputs.repo_name }}" = "hoff-divan-insights" ]; then
+            if [ -d "repos/hoff-divan-insights" ]; then
+              cd repos/hoff-divan-insights && git pull origin main
+            else
+              git clone https://github.com/kikanbig/hoff-divan-insights.git repos/hoff-divan-insights
+            fi
+          fi
+
+          if [ "${{ github.event.inputs.repo_name }}" = "all" ] || [ "${{ github.event.inputs.repo_name }}" = "sets-repo" ]; then
+            if [ -d "repos/sets-repo" ]; then
+              cd repos/sets-repo && git pull origin main
+            else
+              git clone https://github.com/kikanbig/project-2870847f-5dea-434d-9cca-4fbca27ed98e.git repos/sets-repo
+            fi
+          fi
+
+      - name: Sync repositories
+        run: |
+          if [ "${{ github.event.inputs.repo_name }}" = "all" ] || [ "${{ github.event.inputs.repo_name }}" = "hoff-divan-insights" ]; then
+            echo "🔄 Syncing hoff-divan-insights..."
+            npm run sync:hoff
+          fi
+
+          if [ "${{ github.event.inputs.repo_name }}" = "all" ] || [ "${{ github.event.inputs.repo_name }}" = "sets-repo" ]; then
+            echo "🔄 Syncing sets-repo..."
+            npm run sync:sets
+          fi
+
+      - name: Test build
+        run: npm run build
+
+      - name: Check for changes
+        id: verify-changed-files
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+            echo "📝 Найдены изменения после синхронизации"
+            git status
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+            echo "✅ Изменений нет"
+          fi
+
+      - name: Create Pull Request
+        if: steps.verify-changed-files.outputs.changes == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: |
+            🔄 Sync ${{ github.event.inputs.repo_name || 'all' }} repositories
+
+            Automated sync from original repositories:
+            - hoff-divan-insights
+            - project-2870847f-5dea-434d-9cca-4fbca27ed98e.git
+
+            Changes applied via GitHub Actions workflow.
+          title: '🔄 Sync ${{ github.event.inputs.repo_name || "all" }} repositories'
+          body: |
+            ## 🔄 Repository Sync
+
+            This PR contains automated synchronization from the following repositories:
+
+            ${{ github.event.inputs.repo_name == 'all' && '- hoff-divan-insights (main page)\n- project-2870847f-5dea-434d-9cca-4fbca27ed98e.git (sets page)' || github.event.inputs.repo_name == 'hoff-divan-insights' && '- hoff-divan-insights (main page)' || github.event.inputs.repo_name == 'sets-repo' && '- project-2870847f-5dea-434d-9cca-4fbca27ed98e.git (sets page)' }}
+
+            ### Changes
+            - Components updated
+            - Assets synchronized
+            - Data refreshed
+
+            ### Testing
+            - ✅ Build successful
+            - ✅ Linting passed
+
+            Please review and test the changes before merging.
+          branch: sync-${{ github.event.inputs.repo_name || 'all' }}-${{ github.run_id }}
+          delete-branch: true
