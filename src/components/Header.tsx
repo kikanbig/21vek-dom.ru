@@ -3,6 +3,12 @@ import { Search, Heart, ShoppingCart, User, Menu, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui/sheet';
 import logo from '@/assets/logo.png';
 
 export const Header = () => {
@@ -101,6 +107,31 @@ export const Header = () => {
           />
         </div>
       </div>
+
+      {/* Mobile menu */}
+      <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+        <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+          <SheetHeader>
+            <SheetTitle>Меню</SheetTitle>
+          </SheetHeader>
+          <nav className="flex flex-col gap-2 mt-6">
+            <Button variant="ghost" className="justify-start">Диваны</Button>
+            <Button variant="ghost" className="justify-start">Кровати</Button>
+            <Button variant="ghost" className="justify-start">Столы</Button>
+            <Button variant="ghost" className="justify-start">Стулья</Button>
+            <Button variant="ghost" className="justify-start">Шкафы</Button>
+            <Button variant="ghost" className="justify-start">Кухни</Button>
+            <Button variant="ghost" className="justify-start">Гардеробные</Button>
+            <Button variant="ghost" className="justify-start">Детская мебель</Button>
+            <Button variant="ghost" className="justify-start">Офисная мебель</Button>
+            <Button variant="ghost" className="justify-start text-primary">Акции</Button>
+            <Link to="/sets">
+              <Button variant="ghost" className="justify-start font-semibold">Сеты</Button>
+            </Link>
+            <Button variant="ghost" className="justify-start font-semibold">Лоты</Button>
+          </nav>
+        </SheetContent>
+      </Sheet>
     </header>
   );
 };
