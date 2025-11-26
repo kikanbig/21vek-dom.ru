@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Search, Heart, ShoppingCart, User, Menu, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -89,7 +90,9 @@ export const Header = () => {
           <Button variant="ghost" className="text-sm whitespace-nowrap">Детская мебель</Button>
           <Button variant="ghost" className="text-sm whitespace-nowrap">Офисная мебель</Button>
           <Button variant="ghost" className="text-sm whitespace-nowrap text-primary">Акции</Button>
-          <Button variant="ghost" className="text-sm whitespace-nowrap font-semibold">Сеты</Button>
+          <Link to="/sets">
+            <Button variant="ghost" className="text-sm whitespace-nowrap font-semibold">Сеты</Button>
+          </Link>
           <Button variant="ghost" className="text-sm whitespace-nowrap font-semibold">Лоты</Button>
         </nav>
       </div>
@@ -122,7 +125,9 @@ export const Header = () => {
             <Button variant="ghost" className="justify-start">Детская мебель</Button>
             <Button variant="ghost" className="justify-start">Офисная мебель</Button>
             <Button variant="ghost" className="justify-start text-primary">Акции</Button>
-            <Button variant="ghost" className="justify-start font-semibold">Сеты</Button>
+            <Link to="/sets">
+              <Button variant="ghost" className="justify-start font-semibold">Сеты</Button>
+            </Link>
             <Button variant="ghost" className="justify-start font-semibold">Лоты</Button>
           </nav>
         </SheetContent>
