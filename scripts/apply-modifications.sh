@@ -31,14 +31,14 @@ while IFS= read -r modification; do
         "sets-navigation")
             # Добавляем импорт Link, если его нет
             if ! grep -q "import { Link } from 'react-router-dom';" "$file"; then
-                sed -i '' '1a\
-import { Link } from '\''react-router-dom'\'';
-' "$file"
+                # Вставляем импорт после импорта useState
+                sed -i '' '/import { useState } from '\''react'\'';/a\
+import { Link } from '\''react-router-dom'\'';' "$file"
                 echo "  ✅ Добавлен импорт Link"
             fi
 
             # Оборачиваем кнопку Сеты в Link (десктоп)
-            if ! grep -A1 -B1 "Сеты</Button>" "$file" | grep -q "Link to=\"/sets\""; then
+            if ! grep -A3 -B1 "font-semibold\">Сеты</Button>" "$file" | grep -q "Link to=\"/sets\""; then
                 # Находим строку с кнопкой Сеты и оборачиваем её
                 sed -i '' 's|<Button variant="ghost" className="text-sm whitespace-nowrap font-semibold">Сеты</Button>|<Link to="/sets">\
             <Button variant="ghost" className="text-sm whitespace-nowrap font-semibold">Сеты</Button>\
@@ -49,7 +49,7 @@ import { Link } from '\''react-router-dom'\'';
 
         "mobile-sets-navigation")
             # Оборачиваем кнопку Сеты в Link (мобильная версия)
-            if ! grep -A1 -B1 "justify-start font-semibold\">Сеты</Button>" "$file" | grep -q "Link to=\"/sets\""; then
+            if ! grep -A3 -B1 "justify-start font-semibold\">Сеты</Button>" "$file" | grep -q "Link to=\"/sets\""; then
                 sed -i '' 's|<Button variant="ghost" className="justify-start font-semibold">Сеты</Button>|<Link to="/sets">\
               <Button variant="ghost" className="justify-start font-semibold">Сеты</Button>\
             </Link>|g' "$file"
