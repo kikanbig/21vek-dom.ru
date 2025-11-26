@@ -1,0 +1,47 @@
+{
+  "repositories": [
+    {
+      "name": "hoff-divan-insights",
+      "url": "https://github.com/kikanbig/hoff-divan-insights.git",
+      "description": "Главная страница - мебельный интернет-магазин",
+      "route": "/",
+      "localPath": "../hoff-divan-insights"
+      "components": [
+        "Header.tsx",
+        "HeroSection.tsx",
+        "CategoryGrid.tsx",
+        "ProductsSection.tsx",
+        "Footer.tsx"
+      ],
+      "pages": [],
+      "data": [],
+      "assets": true
+    },
+    {
+      "name": "sets-repo",
+      "url": "https://github.com/kikanbig/project-2870847f-5dea-434d-9cca-4fbca27ed98e.git",
+      "description": "Страница сетов для держателей карт «Любимый покупатель»",
+      "route": "/sets",
+      "localPath": "../repos/sets-repo",
+      "components": [
+        "SetCard.tsx"
+      ],
+      "pages": [
+        {
+          "source": "Index.tsx",
+          "target": "Sets.tsx"
+        }
+      ],
+      "data": [
+        "sets.ts"
+      ],
+      "assets": true
+    }
+  ],
+  "sync": {
+    "autoSync": true,
+    "schedule": "0 2 * * *",
+    "createPR": true,
+    "backupBeforeSync": true
+  }
+}
