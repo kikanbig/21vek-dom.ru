@@ -3,7 +3,7 @@ import { sets } from "@/data/sets";
 import cardLP from "@/assets/card-lp.png";
 import logo from "@/assets/logo.png";
 
-const Sets = () => {
+const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -11,14 +11,14 @@ const Sets = () => {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col items-center text-center gap-6">
             <div className="flex items-center gap-6">
-              <img
-                src={cardLP}
-                alt="Карта Любимый покупатель"
+              <img 
+                src={cardLP} 
+                alt="Карта Любимый покупатель" 
                 className="h-40 w-auto object-contain shadow-lg"
               />
-              <img
-                src={logo}
-                alt="21vek.by"
+              <img 
+                src={logo} 
+                alt="21vek.by" 
                 className="h-16 w-auto object-contain"
               />
             </div>
@@ -47,16 +47,8 @@ const Sets = () => {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-border bg-card mt-12">
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center text-muted-foreground text-sm">
-            <p>© 2024 «Любимый покупатель». Все права защищены.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };
 
-export default Sets;
+export default Index;
