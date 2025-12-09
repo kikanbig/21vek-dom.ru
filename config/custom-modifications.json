@@ -29,22 +29,6 @@
           "wrapper": "<Link to=\"/sets\">"
         }
       ]
-    },
-    {
-      "id": "sets-page-components",
-      "description": "Add new banner carousel and top header components to sets page",
-      "file": "src/pages/Sets.tsx",
-      "type": "components",
-      "changes": [
-        {
-          "action": "add_import",
-          "import": "import { BannerCarousel } from \"@/components/BannerCarousel\";"
-        },
-        {
-          "action": "add_import",
-          "import": "import { TopHeader } from \"@/components/TopHeader\";"
-        }
-      ]
     }
   ],
   "postSyncActions": [

@@ -125,11 +125,11 @@ scripts/
 └── sync-with-diff.sh     # Синхронизация с предварительным просмотром
 ```
 
-### Автоматическая синхронизация
+### Ручная синхронизация
 
-- **Ежедневная**: Автоматическая синхронизация в 2:00 UTC через GitHub Actions
-- **Ручная**: Через GitHub Actions workflow с выбором репозитория
-- **PR создание**: Автоматическое создание Pull Request с изменениями
+- **По требованию**: Синхронизация при необходимости через npm скрипты
+- **Проверка статуса**: `npm run sync:status` для проверки актуальности репозиториев
+- **Полная синхронизация**: `npm run sync:all` для обновления всех репозиториев
 
 ### Процесс синхронизации
 
@@ -289,7 +289,8 @@ npm run preview  # Предпросмотр сборки
 
 ### Деплой на Railway
 - Используется Railway CLI
-- Автоматический деплой при пуше в main
+- **Ручной деплой** через команду `npm run deploy`
+- Прямое управление из проекта через Railway CLI
 
 ## Документация
 
@@ -500,38 +501,15 @@ t('items', { count: 5 }) // "5 товаров"
 
 ## Производственная поддержка
 
-### CI/CD Pipeline
-```yaml
-# .github/workflows/deploy.yml
-name: Deploy to Production
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+### Ручной деплой
+```bash
+# Полная команда деплоя
+npm run deploy
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run build
-      - run: npm run test
-
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    steps:
-      - name: Deploy to Railway
-        run: railway up
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+# Что происходит:
+# 1. Сборка проекта: npm run build
+# 2. Деплой на Railway: railway up
+# 3. Проект доступен по домену Railway
 ```
 
 ### Мониторинг здоровья

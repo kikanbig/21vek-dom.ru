@@ -6,13 +6,7 @@
       "description": "Главная страница - мебельный интернет-магазин",
       "route": "/",
       "localPath": "../hoff-divan-insights",
-      "components": [
-        "Header.tsx",
-        "HeroSection.tsx",
-        "CategoryGrid.tsx",
-        "ProductsSection.tsx",
-        "Footer.tsx"
-      ],
+      "components": ["Header.tsx", "HeroSection.tsx", "CategoryGrid.tsx", "ProductsSection.tsx", "Footer.tsx"],
       "pages": [],
       "data": [],
       "assets": true
@@ -23,27 +17,10 @@
       "description": "Страница сетов для держателей карт «Любимый покупатель»",
       "route": "/sets",
       "localPath": "../repos/sets-repo",
-      "components": [
-        "SetCard.tsx",
-        "BannerCarousel.tsx",
-        "TopHeader.tsx"
-      ],
-      "pages": [
-        {
-          "source": "Index.tsx",
-          "target": "Sets.tsx"
-        }
-      ],
-      "data": [
-        "sets.ts"
-      ],
+      "components": ["SetCard.tsx"],
+      "pages": [{"source": "Index.tsx", "target": "Sets.tsx"}],
+      "data": ["sets.ts"],
       "assets": true
     }
-  ],
-  "sync": {
-    "autoSync": true,
-    "schedule": "0 2 * * *",
-    "createPR": true,
-    "backupBeforeSync": true
-  }
+  ]
 }
