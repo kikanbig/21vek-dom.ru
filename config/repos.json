@@ -6,7 +6,7 @@
       "description": "Главная страница - мебельный интернет-магазин",
       "route": "/",
       "localPath": "../hoff-divan-insights",
-      "components": ["Header.tsx", "HeroSection.tsx", "CategoryGrid.tsx", "ProductsSection.tsx", "Footer.tsx"],
+      "components": ["Header.tsx", "HeroSection.tsx", "CategoryGrid.tsx", "ProductsSection.tsx", "Footer.tsx", "NavLink.tsx", "ProductCard.tsx"],
       "pages": [],
       "data": [],
       "assets": true
