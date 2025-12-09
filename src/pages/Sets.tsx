@@ -3,8 +3,6 @@ import { sets } from "@/data/sets";
 import cardLP from "@/assets/card-lp.png";
 import logo from "@/assets/logo.png";
 import { useState, useEffect } from "react";
-import TopHeader from "@/components/TopHeader";
-import BannerCarousel from "@/components/BannerCarousel";
 
 const Index = () => {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
@@ -35,9 +33,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Top Header - 21vek style */}
-      <TopHeader />
-
       {/* Header */}
       <header className={`border-b border-border bg-card sticky top-0 z-50 backdrop-blur-sm bg-card/80 transition-transform duration-300 ${
         isHeaderVisible ? "translate-y-0" : "-translate-y-full"
@@ -70,11 +65,6 @@ const Index = () => {
           </div>
         </div>
       </header>
-
-      {/* Banner Carousel */}
-      <section className="container mx-auto px-4 py-6">
-        <BannerCarousel />
-      </section>
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-12">
