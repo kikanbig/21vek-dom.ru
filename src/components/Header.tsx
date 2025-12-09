@@ -9,7 +9,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet';
-import logo from '@/assets/logo.png';
+import logo from '@/assets/logo-21vek.png';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
