@@ -5,7 +5,7 @@
       "url": "https://github.com/kikanbig/hoff-divan-insights.git",
       "description": "Главная страница - мебельный интернет-магазин",
       "route": "/",
-      "localPath": "../hoff-divan-insights"
+      "localPath": "../hoff-divan-insights",
       "components": [
         "Header.tsx",
         "HeroSection.tsx",
@@ -24,7 +24,9 @@
       "route": "/sets",
       "localPath": "../repos/sets-repo",
       "components": [
-        "SetCard.tsx"
+        "SetCard.tsx",
+        "BannerCarousel.tsx",
+        "TopHeader.tsx"
       ],
       "pages": [
         {
