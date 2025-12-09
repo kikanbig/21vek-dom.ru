@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Скрипт синхронизации изменений из оригинального репозитория
+# Скрипт ПОЛНОЙ синхронизации изменений из оригинального репозитория
 # Использование: ./scripts/sync-repo.sh <repo-name> [component-name]
 
 set -e
@@ -108,109 +108,53 @@ cd - > /dev/null
 
 echo "✅ Репозиторий обновлен"
 
-# Если указан конкретный компонент, копируем только его
-if [ -n "$COMPONENT_NAME" ]; then
-    echo "🔄 Синхронизация компонента: $COMPONENT_NAME"
+# ПОЛНАЯ СИНХРОНИЗАЦИЯ - копируем ВСЁ
+echo "🔄 ПОЛНАЯ синхронизация репозитория: $REPO_NAME"
 
-    case $REPO_NAME in
-        "hoff-divan-insights")
-            # Копируем компоненты из hoff-divan-insights
-            if [ -f "$REPO_PATH/src/components/$COMPONENT_NAME.tsx" ]; then
-                cp "$REPO_PATH/src/components/$COMPONENT_NAME.tsx" "src/components/"
-                echo "✅ Компонент $COMPONENT_NAME обновлен"
-            else
-                echo "❌ Компонент $COMPONENT_NAME не найден в репозитории"
-                exit 1
-            fi
-            ;;
+case $REPO_NAME in
+    "hoff-divan-insights")
+        echo "📋 Копирование ВСЕХ файлов из hoff-divan-insights..."
+        # Копируем ВСЕ компоненты
+        echo "🔧 Копирование компонентов..."
+        cp -r "$REPO_PATH/src/components/"* src/components/ 2>/dev/null || true
+        echo "  ✅ Все компоненты скопированы"
+        
+        # Копируем главную страницу
+        echo "📄 Копирование главной страницы..."
+        cp "$REPO_PATH/src/pages/Index.tsx" src/pages/ 2>/dev/null || true
+        echo "  ✅ Index.tsx скопирован"
+        
+        # Копируем ассеты
+        echo "🖼️ Копирование ассетов..."
+        cp -r "$REPO_PATH/src/assets/"* src/assets/ 2>/dev/null || true
+        echo "  ✅ Ассеты скопированы"
+        ;;
 
-        "sets-repo")
-            # Копируем компоненты из sets репозитория
-            if [ "$COMPONENT_NAME" = "SetCard" ]; then
-                cp "$REPO_PATH/src/components/SetCard.tsx" "src/components/"
-                cp "$REPO_PATH/src/data/sets.ts" "src/data/"
-                echo "✅ Компонент SetCard и данные обновлены"
-            else
-                echo "❌ Неизвестный компонент: $COMPONENT_NAME"
-                exit 1
-            fi
-            ;;
-    esac
-else
-    echo "🔄 Полная синхронизация репозитория: $REPO_NAME"
-
-    # Используем конфигурацию из repos.json
-    if [ -f "config/repos.json" ]; then
-        # Получаем конфигурацию репозитория
-        REPO_CONFIG=$(cat config/repos.json | grep -A 50 "\"name\": \"$REPO_NAME\"" | head -50)
-
-        echo "📋 Синхронизация на основе конфигурации..."
-
-        # Синхронизация компонентов
-        if echo "$REPO_CONFIG" | grep -q "components"; then
-            echo "🔧 Синхронизация компонентов..."
-            for component in $(echo "$REPO_CONFIG" | grep -A 20 '"components"' | grep -E '\.tsx' | sed 's/.*"\([^"]*\.tsx\)".*/\1/'); do
-                if [ -f "$REPO_PATH/src/components/$component" ]; then
-                    cp "$REPO_PATH/src/components/$component" "src/components/"
-                    echo "  ✅ $component"
-                fi
-            done
-        fi
-
-        # Синхронизация страниц
-        if echo "$REPO_CONFIG" | grep -q "pages"; then
-            echo "📄 Синхронизация страниц..."
-            # Для sets-repo: копируем Index.tsx как Sets.tsx
-            if [ "$REPO_NAME" = "sets-repo" ] && [ -f "$REPO_PATH/src/pages/Index.tsx" ]; then
-                cp "$REPO_PATH/src/pages/Index.tsx" "src/pages/Sets.tsx"
-                echo "  ✅ Index.tsx → Sets.tsx"
-            fi
-        fi
-
-        # Синхронизация данных
-        if echo "$REPO_CONFIG" | grep -q "data"; then
-            echo "📊 Синхронизация данных..."
-            for data_file in $(echo "$REPO_CONFIG" | grep -A 10 '"data"' | grep -E '\.ts' | sed 's/.*"\([^"]*\.ts\)".*/\1/'); do
-                if [ -f "$REPO_PATH/src/data/$data_file" ]; then
-                    cp "$REPO_PATH/src/data/$data_file" "src/data/"
-                    echo "  ✅ $data_file"
-                fi
-            done
-        fi
-
-        # Синхронизация ассетов
-        if echo "$REPO_CONFIG" | grep -q '"assets": true'; then
-            echo "🖼️ Синхронизация ассетов..."
-            cp -r "$REPO_PATH/src/assets/*" src/assets/ 2>/dev/null || true
-            echo "  ✅ Ассеты обновлены"
-        fi
-
-    else
-        echo "⚠️ Конфигурационный файл config/repos.json не найден, использую старый метод..."
-
-        # Старый метод синхронизации (для обратной совместимости)
-        case $REPO_NAME in
-            "hoff-divan-insights")
-                echo "📋 Синхронизация главной страницы..."
-                cp "$REPO_PATH/src/components/Header.tsx" src/components/
-                cp "$REPO_PATH/src/components/HeroSection.tsx" src/components/
-                cp "$REPO_PATH/src/components/CategoryGrid.tsx" src/components/
-                cp "$REPO_PATH/src/components/ProductsSection.tsx" src/components/
-                cp "$REPO_PATH/src/components/Footer.tsx" src/components/
-                cp -r "$REPO_PATH/src/assets/*" src/assets/ 2>/dev/null || true
-                echo "✅ Главная страница синхронизирована"
-                ;;
-
-            "sets-repo")
-                echo "📋 Синхронизация страницы сетов..."
-                cp "$REPO_PATH/src/components/SetCard.tsx" src/components/
-                cp "$REPO_PATH/src/data/sets.ts" src/data/
-                cp -r "$REPO_PATH/src/assets/*" src/assets/ 2>/dev/null || true
-                echo "✅ Страница сетов синхронизирована"
-                ;;
-        esac
-    fi
-fi
+    "sets-repo")
+        echo "📋 Копирование файлов из sets-repo..."
+        # Копируем компоненты
+        echo "🔧 Копирование компонентов..."
+        cp "$REPO_PATH/src/components/SetCard.tsx" src/components/ 2>/dev/null || true
+        cp "$REPO_PATH/src/components/TopHeader.tsx" src/components/ 2>/dev/null || true
+        cp "$REPO_PATH/src/components/BannerCarousel.tsx" src/components/ 2>/dev/null || true
+        echo "  ✅ Компоненты скопированы"
+        
+        # Копируем страницу
+        echo "📄 Копирование страницы..."
+        cp "$REPO_PATH/src/pages/Index.tsx" src/pages/Sets.tsx 2>/dev/null || true
+        echo "  ✅ Index.tsx → Sets.tsx"
+        
+        # Копируем данные
+        echo "📊 Копирование данных..."
+        cp "$REPO_PATH/src/data/sets.ts" src/data/ 2>/dev/null || true
+        echo "  ✅ sets.ts скопирован"
+        
+        # Копируем ассеты
+        echo "🖼️ Копирование ассетов..."
+        cp -r "$REPO_PATH/src/assets/"* src/assets/ 2>/dev/null || true
+        echo "  ✅ Ассеты скопированы"
+        ;;
+esac
 
 # Применяем кастомные модификации после синхронизации
 if [ -f "scripts/apply-modifications.sh" ]; then
