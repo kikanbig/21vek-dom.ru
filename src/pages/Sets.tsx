@@ -3,7 +3,8 @@ import { sets } from "@/data/sets";
 import cardLP from "@/assets/card-lp.png";
 import logo from "@/assets/logo.png";
 import { useState, useEffect } from "react";
-
+import TopHeader from "@/components/TopHeader";
+import BannerCarousel from "@/components/BannerCarousel";
 const Index = () => {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -33,7 +34,10 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
+      {/* Top Header - 21vek style */}
+      <TopHeader />
+      
+      {/* Main Header */}
       <header className={`border-b border-border bg-card sticky top-0 z-50 backdrop-blur-sm bg-card/80 transition-transform duration-300 ${
         isHeaderVisible ? "translate-y-0" : "-translate-y-full"
       }`}>
@@ -66,8 +70,13 @@ const Index = () => {
         </div>
       </header>
 
+      {/* Banner Carousel */}
+      <section className="container mx-auto px-4 py-6">
+        <BannerCarousel />
+      </section>
+
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-12">
+      <main className="container mx-auto px-4 py-8">
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {sets.map((set) => (
@@ -81,4 +90,3 @@ const Index = () => {
 };
 
 export default Index;
-
