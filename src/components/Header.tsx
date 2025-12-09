@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Menu, MapPin, Phone, Clock } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -53,9 +54,11 @@ export const Header = () => {
               <Button variant="ghost" size="sm" className="text-sm whitespace-nowrap font-medium">
                 Мебель
               </Button>
-              <Button variant="ghost" size="sm" className="text-sm whitespace-nowrap font-medium">
-                Сеты
-              </Button>
+              <Link to="/sets">
+                <Button variant="ghost" size="sm" className="text-sm whitespace-nowrap font-medium">
+                  Сеты
+                </Button>
+              </Link>
               <Button variant="ghost" size="sm" className="text-sm whitespace-nowrap font-medium">
                 Лоты
               </Button>
@@ -75,7 +78,9 @@ export const Header = () => {
           </SheetHeader>
           <nav className="flex flex-col gap-1 mt-6">
             <Button variant="ghost" className="justify-start font-medium">Мебель</Button>
-            <Button variant="ghost" className="justify-start font-medium">Сеты</Button>
+            <Link to="/sets">
+              <Button variant="ghost" className="justify-start font-medium">Сеты</Button>
+            </Link>
             <Button variant="ghost" className="justify-start font-medium">Лоты</Button>
             <Button variant="ghost" className="justify-start text-primary font-medium">Акции</Button>
           </nav>
