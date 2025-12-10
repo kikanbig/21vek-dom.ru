@@ -4,27 +4,26 @@ export const VideoSection = () => {
       <div className="flex flex-col lg:flex-row gap-8 items-start">
         {/* Video */}
         <div className="w-full lg:w-1/2">
-          <video 
-            className="w-full rounded-lg shadow-lg"
-            controls
-            autoPlay
-            muted
-            loop
-            playsInline
-          >
-            <source src="/videos/opening.mp4" type="video/mp4" />
-            Ваш браузер не поддерживает видео.
-          </video>
+          <div className="relative w-full aspect-[9/16] max-w-[400px] mx-auto rounded-lg shadow-lg overflow-hidden">
+            <iframe
+              src="https://www.youtube.com/embed/Usp6rBdE3xs"
+              title="21vek.by ДОМ - открытие магазина"
+              className="absolute inset-0 w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
         </div>
         
         {/* Text area */}
         <div className="w-full lg:w-1/2 space-y-6">
           <h2 className="text-2xl lg:text-3xl font-bold text-foreground leading-tight">
-            Новое открытие: магазин <span className="text-primary">21Vek.by ДОМ</span> в ТЦ "ЧЕРВЕНСКИЙ"
+            Новое открытие: магазин <span className="text-primary">21vek.by ДОМ</span> в ТЦ «ЧЕРВЕНСКИЙ»
           </h2>
           
           <p className="text-muted-foreground leading-relaxed">
-            6 декабря состоялось долгожданное событие для всех ценителей комфорта и стиля — открытие нового магазина <span className="text-primary">21Vek.by ДОМ</span> в торговом центре "ЧЕРВЕНСКИЙ".
+            6 декабря состоялось долгожданное событие для всех ценителей комфорта и стиля — открытие нового магазина <span className="text-primary">21vek.by ДОМ</span> в торговом центре «ЧЕРВЕНСКИЙ».
           </p>
 
           <div className="space-y-4">

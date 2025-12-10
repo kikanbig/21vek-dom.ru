@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import photo1 from '@/assets/gallery/photo-1.jpg';
 import photo2 from '@/assets/gallery/photo-2.jpg';
 import photo3 from '@/assets/gallery/photo-3.jpg';
@@ -95,7 +95,21 @@ const galleryImages = [
 ];
 
 export const PhotoGallery = () => {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (selectedIndex !== null) {
+      setSelectedIndex(selectedIndex === 0 ? galleryImages.length - 1 : selectedIndex - 1);
+    }
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (selectedIndex !== null) {
+      setSelectedIndex(selectedIndex === galleryImages.length - 1 ? 0 : selectedIndex + 1);
+    }
+  };
 
   return (
     <section className="container mx-auto px-4 py-12">
@@ -105,11 +119,11 @@ export const PhotoGallery = () => {
       
       {/* Gallery grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {galleryImages.map((image) => (
+        {galleryImages.map((image, index) => (
           <div 
             key={image.id}
             className="aspect-square overflow-hidden rounded-lg cursor-pointer group"
-            onClick={() => setSelectedImage(image.src)}
+            onClick={() => setSelectedIndex(index)}
           >
             <img 
               src={image.src} 
@@ -121,23 +135,40 @@ export const PhotoGallery = () => {
       </div>
 
       {/* Lightbox */}
-      {selectedImage && (
+      {selectedIndex !== null && (
         <div 
           className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-          onClick={() => setSelectedImage(null)}
+          onClick={() => setSelectedIndex(null)}
         >
           <button 
-            className="absolute top-4 right-4 text-white hover:text-muted-foreground transition-colors"
-            onClick={() => setSelectedImage(null)}
+            className="absolute top-4 right-4 text-white hover:text-muted-foreground transition-colors z-10"
+            onClick={() => setSelectedIndex(null)}
           >
             <X className="h-8 w-8" />
           </button>
+          
+          {/* Previous button */}
+          <button 
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-muted-foreground transition-colors bg-black/50 rounded-full p-2"
+            onClick={handlePrev}
+          >
+            <ChevronLeft className="h-8 w-8" />
+          </button>
+          
           <img 
-            src={selectedImage} 
-            alt="Увеличенное фото"
+            src={galleryImages[selectedIndex].src} 
+            alt={galleryImages[selectedIndex].alt}
             className="max-w-full max-h-[90vh] object-contain rounded-lg"
             onClick={(e) => e.stopPropagation()}
           />
+          
+          {/* Next button */}
+          <button 
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-muted-foreground transition-colors bg-black/50 rounded-full p-2"
+            onClick={handleNext}
+          >
+            <ChevronRight className="h-8 w-8" />
+          </button>
         </div>
       )}
     </section>
