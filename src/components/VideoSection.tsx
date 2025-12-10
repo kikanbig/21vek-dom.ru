@@ -18,38 +18,75 @@ export const VideoSection = () => {
         </div>
         
         {/* Text area */}
-        <div className="w-full lg:w-1/2 space-y-4">
+        <div className="w-full lg:w-1/2 space-y-6">
           <h2 className="text-2xl lg:text-3xl font-bold text-foreground leading-tight">
-            21vek.by ДОМ: новый формат покупки мебели с реальным пользовательским опытом
+            Новое открытие: магазин <span className="text-primary">21Vek.by ДОМ</span> в ТЦ "ЧЕРВЕНСКИЙ"
           </h2>
           
-          <div className="space-y-4 text-muted-foreground leading-relaxed">
-            <p>
-              Крупнейший в Беларуси онлайн-гипермаркет 21vek.by запускает первый офлайн-проект — большой интерьерный магазин 21vek.by ДОМ в ТРЦ «ЧЕРВЕНСКИЙ». Это пространство создано для тех, кто выбирает мебель осознанно и хочет увидеть будущий интерьер «вживую», а не только на экране.
+          <p className="text-muted-foreground leading-relaxed">
+            6 декабря состоялось долгожданное событие для всех ценителей комфорта и стиля — открытие нового магазина <span className="text-primary">21Vek.by ДОМ</span> в торговом центре "ЧЕРВЕНСКИЙ".
+          </p>
+
+          <div className="space-y-4">
+            <h3 className="inline-block bg-primary text-primary-foreground px-2 py-1 text-xl font-bold">
+              Пространство для вдохновения
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Новый магазин — это не просто торговая точка, а настоящий шоурум современных интерьерных решений. Здесь представлены:
             </p>
-            <p>
-              Магазин площадью около 2700 кв. м построен в формате готовых интерьерных решений. Здесь представлены гостиные, спальни, кухни, рабочие и детские зоны. Покупатель становится главным участником выбора: можно проверить, насколько удобен диван, подходит ли высота стола, как открываются фасады и сочетаются материалы в реальной жизни.
-            </p>
-            <blockquote className="border-l-4 border-primary pl-4 italic">
-              «Когда вы выбираете мебель, то принимаете решение, основанное на ощущении комфорта. Офлайн-формат позволяет сделать этот выбор максимально уверенным. В 21vek.by ДОМ покупатель получает полноценный опыт использования ещё до оформления заказа», — отмечает управляющая магазином Татьяна Кирик.
-            </blockquote>
-            <p>
-              В магазине представлен широкий ассортимент: мягкая и корпусная мебель, предметы декора, текстиль, посуда и бытовая техника. 21vek.by ДОМ объединяет преимущества онлайн- и офлайн-подхода. Консультанты готовы помочь, но не мешают изучению ассортимента:
-            </p>
-            <ul className="list-disc list-inside space-y-1">
-              <li>Как в онлайн-магазине — можно спокойно сравнивать варианты без давления.</li>
-              <li>Как в офлайне — всегда под рукой экспертная консультация по материалам, характеристикам и подбору решений для вашего интерьера.</li>
+            <ul className="space-y-2 text-muted-foreground">
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5">•</span>
+                <span><strong className="text-primary">Современная мебель</strong> для создания уютной атмосферы</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5">•</span>
+                <span><strong className="text-primary">Стильная бытовая техника</strong>, которая станет украшением любой кухни</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5">•</span>
+                <span><strong className="text-primary">Декоративное освещение</strong> для создания идеального настроения</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5">•</span>
+                <span><strong className="text-primary">Системы умного дома</strong> для современного образа жизни</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5">•</span>
+                <span><strong className="text-primary">Текстиль и аксессуары</strong> для завершения интерьерного образа</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5">•</span>
+                <span><strong className="text-primary">Готовые интерьерные решения</strong> для разных стилей и бюджетов</span>
+              </li>
             </ul>
-            <p><strong>Дополнительные услуги:</strong></p>
-            <ul className="list-disc list-inside space-y-1">
-              <li>разработка проекта меблировки;</li>
-              <li>профессиональная сборка.</li>
-            </ul>
-            <p>
-              Если в зале нет нужного варианта, консультанты помогут заказать его из полного ассортимента 21vek.by с доставкой в магазин или на дом.
+          </div>
+
+          <div className="space-y-4">
+            <h3 className="inline-block bg-primary text-primary-foreground px-2 py-1 text-xl font-bold">
+              Консультанты, которым можно доверять
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Наши специалисты всегда рады помочь с выбором, ответить на вопросы и поделиться полезными советами. Мы ценим комфорт каждого покупателя — никакого навязывания, только профессиональная поддержка тогда, когда она вам нужна.
             </p>
-            <p className="font-medium">
-              Открытие 21vek.by ДОМ — первый шаг в развитии нового направления.
+          </div>
+
+          <div className="space-y-4">
+            <h3 className="inline-block bg-primary text-primary-foreground px-2 py-1 text-xl font-bold">
+              Увидеть. Прикоснуться. Влюбиться.
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Посетите экспозицию готовых интерьерных решений, где каждый предмет можно увидеть в действии и в контексте реального интерьера.
+            </p>
+          </div>
+
+          <div className="pt-4 border-t border-border">
+            <p className="text-muted-foreground">
+              <strong className="text-foreground">Адрес:</strong> г. Минск, ул. Маяковского, 6<br />
+              ТЦ "ЧЕРВЕНСКИЙ"
+            </p>
+            <p className="mt-4 text-foreground font-medium">
+              Приходите за вдохновением и воплощайте дом своей мечты вместе с <span className="text-primary">21Vek.by ДОМ</span>!
             </p>
           </div>
         </div>
