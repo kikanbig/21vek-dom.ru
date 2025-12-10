@@ -11,14 +11,14 @@ import bookshelfImage from '@/assets/products/bookshelf.jpg';
 import tvStandImage from '@/assets/products/tv-stand.jpg';
 
 const products = [
-  { title: 'Диван угловой "Комфорт" с оттоманкой', price: 1333, oldPrice: 1833, discount: 27, image: sofaImage },
-  { title: 'Кровать двуспальная "Уют" 160x200', price: 1000, oldPrice: 1433, discount: 30, image: bedImage },
-  { title: 'Стол обеденный раздвижной "Классик"', price: 666, oldPrice: 933, discount: 29, image: tableImage },
-  { title: 'Шкаф-купе "Модерн" 3-х дверный', price: 1666, oldPrice: 2333, discount: 29, image: wardrobeImage },
-  { title: 'Кресло офисное эргономичное "Профи"', price: 500, oldPrice: 666, discount: 25, image: chairImage },
-  { title: 'Комод "Элегант" с 5 ящиками', price: 433, oldPrice: 600, discount: 28, image: dresserImage },
-  { title: 'Стеллаж открытый "Лофт" из массива', price: 833, oldPrice: 1166, discount: 29, image: bookshelfImage },
-  { title: 'Тумба ТВ "Минимал" с выдвижными ящиками', price: 566, oldPrice: 766, discount: 26, image: tvStandImage },
+  { title: 'Диван угловой "Комфорт" с оттоманкой', image: sofaImage },
+  { title: 'Кровать двуспальная "Уют" 160x200', image: bedImage },
+  { title: 'Стол обеденный раздвижной "Классик"', image: tableImage },
+  { title: 'Шкаф-купе "Модерн" 3-х дверный', image: wardrobeImage },
+  { title: 'Кресло офисное эргономичное "Профи"', image: chairImage },
+  { title: 'Комод "Элегант" с 5 ящиками', image: dresserImage },
+  { title: 'Стеллаж открытый "Лофт" из массива', image: bookshelfImage },
+  { title: 'Тумба ТВ "Минимал" с выдвижными ящиками', image: tvStandImage },
 ];
 
 export const ProductsSection = () => {
