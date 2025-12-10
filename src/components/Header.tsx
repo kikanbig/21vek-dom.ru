@@ -15,7 +15,7 @@ export const Header = () => {
   return (
     <header className="sticky top-0 z-50 w-full">
       {/* Top bar */}
-      <div className="bg-[hsl(318,100%,18%)] text-white/90">
+      <div className="bg-primary text-primary-foreground/90">
         <div className="container mx-auto px-4 py-2">
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center gap-4">
