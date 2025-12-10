@@ -1,4 +1,4 @@
-import { Header } from '@/components/Header';
+import { Header as OpeningHeader } from '@/components/OpeningHeader';
 import { VideoSection } from '@/components/VideoSection';
 import { PhotoGallery } from '@/components/PhotoGallery';
 import { Footer } from '@/components/Footer';
@@ -6,7 +6,7 @@ import { Footer } from '@/components/Footer';
 const Index = () => {
   return (
     <div className="min-h-screen">
-      <Header />
+      <OpeningHeader />
       <main>
         <VideoSection />
         <PhotoGallery />
