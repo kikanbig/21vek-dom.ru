@@ -21,6 +21,17 @@
       "pages": [{"source": "Index.tsx", "target": "Sets.tsx"}],
       "data": ["sets.ts"],
       "assets": true
+    },
+    {
+      "name": "opening",
+      "url": "https://github.com/kikanbig/opening.git",
+      "description": "Страница открытия магазина с видео и фотогалереей",
+      "route": "/opening",
+      "localPath": "../opening",
+      "components": ["PhotoGallery.tsx", "VideoSection.tsx"],
+      "pages": [{"source": "Index.tsx", "target": "Opening.tsx"}],
+      "data": [],
+      "assets": true
     }
   ]
 }
