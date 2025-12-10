@@ -83,10 +83,12 @@ export const VideoSection = () => {
           <div className="pt-4 border-t border-border">
             <p className="text-muted-foreground">
               <strong className="text-foreground">Адрес:</strong> г. Минск, ул. Маяковского, 6<br />
-              ТЦ "ЧЕРВЕНСКИЙ"
+              ТЦ «ЧЕРВЕНСКИЙ»<br />
+              <strong className="text-foreground">График работы:</strong><br />
+              10:00–22:00 Без выходных
             </p>
             <p className="mt-4 text-foreground font-medium">
-              Приходите за вдохновением и воплощайте дом своей мечты вместе с <span className="text-primary">21Vek.by ДОМ</span>!
+              Приходите за вдохновением и воплощайте дом своей мечты вместе с <span className="text-primary">21vek.by ДОМ</span>!
             </p>
           </div>
         </div>

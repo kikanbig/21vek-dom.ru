@@ -83,9 +83,12 @@ else
         "sets-repo")
             REPO_PATH="../repos/sets-repo"
             ;;
+        "opening")
+            REPO_PATH="../opening"
+            ;;
         *)
             echo "❌ Неизвестный репозиторий: $REPO_NAME"
-            echo "Доступные: hoff-divan-insights, sets-repo"
+            echo "Доступные: hoff-divan-insights, sets-repo, opening"
             exit 1
             ;;
     esac
@@ -152,6 +155,26 @@ case $REPO_NAME in
         # Копируем ассеты
         echo "🖼️ Копирование ассетов..."
         cp -r "$REPO_PATH/src/assets/"* src/assets/ 2>/dev/null || true
+        echo "  ✅ Ассеты скопированы"
+        ;;
+    "opening")
+        echo "📋 Копирование файлов из opening..."
+        # Копируем компоненты
+        echo "🔧 Копирование компонентов..."
+        cp "$REPO_PATH/src/components/VideoSection.tsx" src/components/ 2>/dev/null || true
+        cp "$REPO_PATH/src/components/PhotoGallery.tsx" src/components/ 2>/dev/null || true
+        cp "$REPO_PATH/src/components/Header.tsx" src/components/OpeningHeader.tsx 2>/dev/null || true
+        echo "  ✅ Компоненты скопированы"
+        
+        # Копируем страницу
+        echo "📄 Копирование страницы..."
+        cp "$REPO_PATH/src/pages/Index.tsx" src/pages/Opening.tsx 2>/dev/null || true
+        echo "  ✅ Index.tsx → Opening.tsx"
+        
+        # Копируем ассеты
+        echo "🖼️ Копирование ассетов..."
+        cp -r "$REPO_PATH/src/assets/"* src/assets/ 2>/dev/null || true
+        cp -r "$REPO_PATH/public/"* public/ 2>/dev/null || true
         echo "  ✅ Ассеты скопированы"
         ;;
 esac
