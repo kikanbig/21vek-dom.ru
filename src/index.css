@@ -14,19 +14,19 @@ All colors MUST be HSL.
     --card-foreground: 0 0% 10%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 10%;
-    --primary: 318 100% 25%;
+    --primary: 317 96% 29%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 318 30% 95%;
-    --secondary-foreground: 318 100% 25%;
+    --secondary: 317 30% 95%;
+    --secondary-foreground: 317 96% 29%;
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 45%;
-    --accent: 318 100% 30%;
+    --accent: 317 96% 29%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 90%;
     --input: 0 0% 90%;
-    --ring: 318 100% 25%;
+    --ring: 317 96% 29%;
     --radius: 0.5rem;
     
     --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -34,12 +34,12 @@ All colors MUST be HSL.
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 318 100% 25%;
+    --sidebar-primary: 317 96% 29%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 318 30% 95%;
-    --sidebar-accent-foreground: 318 100% 25%;
+    --sidebar-accent: 317 30% 95%;
+    --sidebar-accent-foreground: 317 96% 29%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 318 100% 25%;
+    --sidebar-ring: 317 96% 29%;
   }
 
   .dark {
