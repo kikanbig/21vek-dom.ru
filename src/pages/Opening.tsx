@@ -1,12 +1,12 @@
-import { OpeningHeader } from '@/components/OpeningHeader';
+import { Header } from '@/components/Header';
 import { VideoSection } from '@/components/VideoSection';
 import { PhotoGallery } from '@/components/PhotoGallery';
 import { Footer } from '@/components/Footer';
 
-const Opening = () => {
+const Index = () => {
   return (
     <div className="min-h-screen">
-      <OpeningHeader />
+      <Header />
       <main>
         <VideoSection />
         <PhotoGallery />
@@ -16,4 +16,4 @@ const Opening = () => {
   );
 };
 
-export default Opening;
+export default Index;

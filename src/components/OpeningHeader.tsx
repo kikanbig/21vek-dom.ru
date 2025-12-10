@@ -8,13 +8,13 @@ import {
 } from '@/components/ui/sheet';
 import logo from '@/assets/logo-21vek.png';
 
-export const OpeningHeader = () => {
+export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 w-full">
       {/* Top bar */}
-      <div className="bg-[hsl(318,100%,18%)] text-white/90">
+      <div className="bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center gap-4">
@@ -31,7 +31,7 @@ export const OpeningHeader = () => {
               </a>
               <div className="flex items-center gap-1 text-white/70">
                 <Clock className="h-4 w-4" />
-                <span>с 8:00 до 22:00</span>
+                <span>10:00–22:00 Без выходных</span>
               </div>
             </div>
             <button 
@@ -58,7 +58,7 @@ export const OpeningHeader = () => {
               </a>
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4" />
-                с 8:00 до 22:00
+                10:00–22:00 Без выходных
               </div>
             </div>
           </div>
