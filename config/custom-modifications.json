@@ -1,6 +1,37 @@
 {
   "modifications": [
     {
+      "id": "regions-header-rename",
+      "description": "Rename Header export to RegionsHeader in RegionsHeader.tsx",
+      "file": "src/components/RegionsHeader.tsx",
+      "type": "rename",
+      "changes": [
+        {
+          "action": "rename_export",
+          "from": "export const Header",
+          "to": "export const RegionsHeader"
+        }
+      ]
+    },
+    {
+      "id": "regions-page-import",
+      "description": "Update Regions.tsx to use RegionsHeader instead of Header",
+      "file": "src/pages/Regions.tsx",
+      "type": "import",
+      "changes": [
+        {
+          "action": "update_import",
+          "from": "import { Header } from '@/components/Header';",
+          "to": "import { RegionsHeader } from '@/components/RegionsHeader';"
+        },
+        {
+          "action": "update_usage",
+          "from": "<Header />",
+          "to": "<RegionsHeader />"
+        }
+      ]
+    },
+    {
       "id": "sets-navigation",
       "description": "Add navigation to /sets page for 'Сеты' tab",
       "file": "src/components/Header.tsx",

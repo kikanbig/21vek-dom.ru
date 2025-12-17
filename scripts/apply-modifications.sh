@@ -28,6 +28,27 @@ while IFS= read -r modification; do
 
     # Применяем изменения
     case $id in
+        "regions-header-rename")
+            # Переименовываем export const Header на export const RegionsHeader
+            if grep -q "export const Header = () => {" "$file"; then
+                sed -i '' 's/export const Header = () => {/export const RegionsHeader = () => {/g' "$file"
+                echo "  ✅ Переименован export Header → RegionsHeader"
+            fi
+            ;;
+
+        "regions-page-import")
+            # Меняем импорт Header на RegionsHeader в Regions.tsx
+            if grep -q "import { Header } from '@/components/Header';" "$file"; then
+                sed -i '' "s|import { Header } from '@/components/Header';|import { RegionsHeader } from '@/components/RegionsHeader';|g" "$file"
+                echo "  ✅ Изменен импорт: Header → RegionsHeader"
+            fi
+            # Меняем использование <Header /> на <RegionsHeader />
+            if grep -q "<Header />" "$file"; then
+                sed -i '' 's|<Header />|<RegionsHeader />|g' "$file"
+                echo "  ✅ Изменено использование: <Header /> → <RegionsHeader />"
+            fi
+            ;;
+
         "sets-navigation")
             # Добавляем импорт Link, если его нет
             if ! grep -q "import { Link } from 'react-router-dom';" "$file"; then

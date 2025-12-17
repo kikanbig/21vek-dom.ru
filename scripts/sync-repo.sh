@@ -190,6 +190,11 @@ case $REPO_NAME in
         cp "$REPO_PATH/src/components/landing/FinalCTA.tsx" src/components/landing/ 2>/dev/null || true
         echo "  ✅ Компоненты landing скопированы"
         
+        # Копируем Header из regions как RegionsHeader (без навигации)
+        echo "🔧 Копирование RegionsHeader..."
+        cp "$REPO_PATH/src/components/Header.tsx" src/components/RegionsHeader.tsx 2>/dev/null || true
+        echo "  ✅ Header.tsx → RegionsHeader.tsx"
+        
         # Копируем страницу
         echo "📄 Копирование страницы..."
         cp "$REPO_PATH/src/pages/Landing.tsx" src/pages/Regions.tsx 2>/dev/null || true
