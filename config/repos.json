@@ -32,6 +32,17 @@
       "pages": [{"source": "Index.tsx", "target": "Opening.tsx"}],
       "data": [],
       "assets": true
+    },
+    {
+      "name": "regions",
+      "url": "https://github.com/kikanbig/regions.git",
+      "description": "Лендинг региональных магазинов с каруселью, галереей и локацией",
+      "route": "/regions",
+      "localPath": "../regions",
+      "components": ["HeroCarousel.tsx", "StoreCategories.tsx", "StoreTour.tsx", "StoreGallery.tsx", "StoreLocation.tsx", "FinalCTA.tsx"],
+      "pages": [{"source": "Landing.tsx", "target": "Regions.tsx"}],
+      "data": [],
+      "assets": true
     }
   ]
 }

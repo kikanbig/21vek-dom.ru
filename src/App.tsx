@@ -6,6 +6,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import Index from "./pages/Index";
 import Sets from "./pages/Sets";
 import Opening from "./pages/Opening";
+import Regions from "./pages/Regions";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/sets" element={<Sets />} />
           <Route path="/opening" element={<Opening />} />
+          <Route path="/regions" element={<Regions />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

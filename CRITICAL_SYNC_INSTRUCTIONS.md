@@ -64,7 +64,12 @@
 ### 4. Обновить `sync:all` в `package.json`
 Добавить новый репозиторий в цепочку:
 ```json
-"sync:all": "npm run sync:hoff && npm run sync:sets && npm run sync:название-репо && npm run build && railway up"
+"sync:all": "npm run sync:hoff && npm run sync:sets && npm run sync:opening && npm run sync:название-репо && npm run build && railway up"
+```
+
+**⚠️ ВАЖНО**: Не забудь добавить репозиторий в список доступных в `scripts/sync-repo.sh` (строка ~91):
+```bash
+echo "Доступные: hoff-divan-insights, sets-repo, opening, regions, название-репо"
 ```
 
 ### 5. Добавить роут в `src/App.tsx`
