@@ -153,6 +153,13 @@ export const HeroCarousel = () => {
               <Play className="w-5 h-5" />
               Посмотреть залы
             </Button>
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white/20 text-lg px-8 py-6 h-auto gap-2"
+            >
+              Посмотреть мебель
+            </Button>
           </div>
         </div>
       </div>
