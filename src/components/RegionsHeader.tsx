@@ -26,9 +26,9 @@ export const RegionsHeader = () => {
               </div>
             </div>
             <div className="hidden md:flex items-center gap-6">
-              <a href="tel:+375293021021" className="flex items-center gap-2 hover:text-white transition-colors">
+              <a href="tel:+375447829302" className="flex items-center gap-2 hover:text-white transition-colors">
                 <Phone className="h-4 w-4" />
-                +375 29 302 10 21
+                +375 44 782 93 02
               </a>
               <div className="flex items-center gap-1 text-white/70">
                 <Clock className="h-4 w-4" />
@@ -66,9 +66,9 @@ export const RegionsHeader = () => {
           </nav>
           <div className="mt-8 pt-6 border-t border-border">
             <div className="flex flex-col gap-3 text-sm text-muted-foreground">
-              <a href="tel:+375293021021" className="flex items-center gap-2">
+              <a href="tel:+375447829302" className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
-                +375 29 302 10 21
+                +375 44 782 93 02
               </a>
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4" />

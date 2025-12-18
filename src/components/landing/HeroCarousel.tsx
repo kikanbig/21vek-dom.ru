@@ -156,9 +156,12 @@ export const HeroCarousel = () => {
             <Button 
               size="lg" 
               variant="outline"
+              asChild
               className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white/20 text-lg px-8 py-6 h-auto gap-2"
             >
-              Посмотреть мебель
+              <a href="https://www.21vek.by/special_offers/dom.html?producers=144110%2C144115%2C144535%2C145485%2C146080" target="_blank" rel="noopener noreferrer">
+                Посмотреть мебель
+              </a>
             </Button>
           </div>
         </div>

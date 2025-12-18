@@ -43,7 +43,7 @@ export const FinalCTA = () => {
               asChild
               className="border-white/30 text-white bg-white/10 hover:bg-white/20 text-lg px-10 py-7 h-auto gap-2"
             >
-              <a href="tel:+375291234567">
+              <a href="tel:+375447829302">
                 <Phone className="w-5 h-5" />
                 Позвонить
               </a>

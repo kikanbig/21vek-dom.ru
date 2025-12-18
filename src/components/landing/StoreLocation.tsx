@@ -1,4 +1,4 @@
-import { MapPin, Clock, Phone, Navigation, Car } from 'lucide-react';
+import { MapPin, Clock, Phone, Navigation, Car, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 // Correct coordinates for Minsk, Mayakovskogo 6
@@ -22,10 +22,9 @@ const contactInfo = [
   },
   {
     icon: Phone,
-    title: 'Телефоны',
-    value: '+375 44 783 32 54',
-    href: 'tel:+375447833254',
-    subtitle: '+375 44 782 93 02',
+    title: 'Телефон',
+    value: '+375 44 782 93 02',
+    href: 'tel:+375447829302',
   },
   {
     icon: Car,
@@ -110,16 +109,29 @@ export const StoreLocation = () => {
                   2700 м² мебели ждут вас каждый день
                 </p>
               </div>
-              <Button
-                asChild
-                size="lg"
-                className="h-14 px-8 text-lg gap-3 bg-primary hover:bg-primary/90 shrink-0"
-              >
-                <a href={YANDEX_ROUTE_URL} target="_blank" rel="noopener noreferrer">
-                  <Navigation className="w-5 h-5" />
-                  Построить маршрут
-                </a>
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="h-14 px-8 text-lg gap-3"
+                >
+                  <a href="https://www.21vek.by/special_offers/dom.html?producers=144110%2C144115%2C144535%2C145485%2C146080" target="_blank" rel="noopener noreferrer">
+                    <ShoppingCart className="w-5 h-5" />
+                    Купить онлайн
+                  </a>
+                </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  className="h-14 px-8 text-lg gap-3 bg-primary hover:bg-primary/90"
+                >
+                  <a href={YANDEX_ROUTE_URL} target="_blank" rel="noopener noreferrer">
+                    <Navigation className="w-5 h-5" />
+                    Построить маршрут
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
