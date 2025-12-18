@@ -51,7 +51,7 @@ export const HeroCarousel = () => {
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
 
   const openRoute = () => {
-    window.open('https://yandex.ru/maps/?rtext=~53.925,27.587&rtt=auto', '_blank');
+    window.open('https://yandex.ru/maps/?rtext=~53.884799,27.565861', '_blank');
   };
 
   const scrollToGallery = () => {

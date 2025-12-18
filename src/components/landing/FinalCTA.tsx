@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 
 export const FinalCTA = () => {
   const openRoute = () => {
-    window.open('https://yandex.ru/maps/?ll=27.5479,53.8942&z=17&text=Минск, ул. Маяковского, 6&rtext=~53.8942,27.5479', '_blank');
+    window.open('https://yandex.ru/maps/?rtext=~53.884799,27.565861', '_blank');
   };
 
   return (

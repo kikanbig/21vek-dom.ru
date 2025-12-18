@@ -1,4 +1,4 @@
-import { RegionsHeader } from '@/components/RegionsHeader';
+import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { HeroCarousel } from '@/components/landing/HeroCarousel';
 import { StoreCategories } from '@/components/landing/StoreCategories';
@@ -10,7 +10,7 @@ import { FinalCTA } from '@/components/landing/FinalCTA';
 const Landing = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <RegionsHeader />
+      <Header />
       <main className="flex-1">
         <HeroCarousel />
         <StoreCategories />

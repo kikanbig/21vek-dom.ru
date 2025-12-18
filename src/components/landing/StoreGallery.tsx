@@ -39,8 +39,13 @@ const galleryImages = [
   { src: gallery17, alt: 'Новогодние подарки', caption: 'Праздничный декор' },
 ];
 
+const videos = [
+  { id: 'fRnDhodrJTI', title: '1 этаж', thumbnail: gallery3 },
+  { id: '5Hqoz7ID1fM', title: '2 этаж', thumbnail: gallery7 },
+];
+
 export const StoreGallery = () => {
-  const [showVideo, setShowVideo] = useState(false);
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   const nextImage = () => {
@@ -70,56 +75,52 @@ export const StoreGallery = () => {
           </p>
         </div>
 
-        {/* Video section - Modern card design */}
-        <div className="mb-12">
-          <div 
-            className="relative max-w-5xl mx-auto rounded-3xl overflow-hidden cursor-pointer group bg-card border border-border"
-            onClick={() => setShowVideo(true)}
-          >
-            <div className="aspect-video relative">
-              <img 
-                src={gallery2} 
-                alt="Видео-тур по магазину" 
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-              
-              {/* Play button */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-primary/30 rounded-full blur-xl scale-150 group-hover:scale-175 transition-transform" />
-                  <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-primary flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-2xl shadow-primary/50">
-                    <Play className="w-8 h-8 md:w-10 md:h-10 text-primary-foreground ml-1" fill="currentColor" />
+        {/* Video section - Two videos */}
+        <div className="mb-12 grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          {videos.map((video) => (
+            <div 
+              key={video.id}
+              className="relative rounded-2xl overflow-hidden cursor-pointer group bg-card border border-border"
+              onClick={() => setActiveVideo(video.id)}
+            >
+              <div className="aspect-video relative">
+                <img 
+                  src={video.thumbnail} 
+                  alt={`Видео-тур ${video.title}`} 
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                
+                {/* Play button */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-primary/30 rounded-full blur-xl scale-150 group-hover:scale-175 transition-transform" />
+                    <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full bg-primary flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-2xl shadow-primary/50">
+                      <Play className="w-6 h-6 md:w-8 md:h-8 text-primary-foreground ml-1" fill="currentColor" />
+                    </div>
                   </div>
                 </div>
-              </div>
-              
-              {/* Info overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                <div className="flex items-end justify-between">
-                  <div>
-                    <p className="text-white/80 text-sm mb-1">Видео-тур</p>
-                    <h3 className="text-white text-xl md:text-2xl font-semibold">Прогулка по магазину 2700 м²</h3>
-                  </div>
-                  <div className="hidden md:block px-4 py-2 bg-white/20 backdrop-blur-md rounded-full">
-                    <span className="text-white text-sm font-medium">3:45</span>
-                  </div>
+                
+                {/* Info overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+                  <p className="text-white/80 text-sm mb-1">Видео-тур</p>
+                  <h3 className="text-white text-lg md:text-xl font-semibold">{video.title}</h3>
                 </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
 
         {/* Video Modal */}
-        {showVideo && (
+        {activeVideo && (
           <div 
             className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
-            onClick={() => setShowVideo(false)}
+            onClick={() => setActiveVideo(null)}
           >
             <button 
               className="absolute top-4 right-4 p-3 bg-white/10 hover:bg-white/20 rounded-full transition-colors backdrop-blur-sm"
-              onClick={() => setShowVideo(false)}
+              onClick={() => setActiveVideo(null)}
             >
               <X className="w-6 h-6 text-white" />
             </button>
@@ -127,7 +128,7 @@ export const StoreGallery = () => {
               <iframe
                 width="100%"
                 height="100%"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+                src={`https://www.youtube.com/embed/${activeVideo}?autoplay=1`}
                 title="Видео-тур по магазину"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
