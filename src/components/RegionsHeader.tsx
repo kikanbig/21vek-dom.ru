@@ -26,13 +26,17 @@ export const RegionsHeader = () => {
               </div>
             </div>
             <div className="hidden md:flex items-center gap-6">
-              <a href="tel:+375447829302" className="flex items-center gap-2 hover:text-white transition-colors">
+              <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
-                +375 44 782 93 02
-              </a>
+                <a href="tel:+375447833254" className="hover:text-white transition-colors">+375 44 783 32 54</a>
+                <span className="text-white/50">|</span>
+                <a href="tel:+375447829302" className="hover:text-white transition-colors">+375 44 782 93 02</a>
+                <span className="text-white/50">|</span>
+                <a href="tel:+375447826715" className="hover:text-white transition-colors">+375 44 782 67 15</a>
+              </div>
               <div className="flex items-center gap-1 text-white/70">
                 <Clock className="h-4 w-4" />
-                <span>с 8:00 до 22:00</span>
+                <span>с 10:00 до 22:00</span>
               </div>
             </div>
           </div>
@@ -66,13 +70,18 @@ export const RegionsHeader = () => {
           </nav>
           <div className="mt-8 pt-6 border-t border-border">
             <div className="flex flex-col gap-3 text-sm text-muted-foreground">
-              <a href="tel:+375447829302" className="flex items-center gap-2">
-                <Phone className="h-4 w-4" />
-                +375 44 782 93 02
-              </a>
+              <div className="flex flex-col gap-1">
+                <div className="flex items-center gap-2">
+                  <Phone className="h-4 w-4" />
+                  <span>Телефоны:</span>
+                </div>
+                <a href="tel:+375447833254" className="ml-6 hover:text-foreground">+375 44 783 32 54</a>
+                <a href="tel:+375447829302" className="ml-6 hover:text-foreground">+375 44 782 93 02</a>
+                <a href="tel:+375447826715" className="ml-6 hover:text-foreground">+375 44 782 67 15</a>
+              </div>
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4" />
-                с 8:00 до 22:00
+                с 10:00 до 22:00
               </div>
             </div>
           </div>

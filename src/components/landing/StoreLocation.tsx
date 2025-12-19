@@ -22,9 +22,13 @@ const contactInfo = [
   },
   {
     icon: Phone,
-    title: 'Телефон',
-    value: '+375 44 782 93 02',
-    href: 'tel:+375447829302',
+    title: 'Телефоны',
+    value: '+375 44 783 32 54',
+    phones: [
+      { number: '+375 44 783 32 54', href: 'tel:+375447833254' },
+      { number: '+375 44 782 93 02', href: 'tel:+375447829302' },
+      { number: '+375 44 782 67 15', href: 'tel:+375447826715' },
+    ],
   },
   {
     icon: Car,
@@ -63,13 +67,18 @@ export const StoreLocation = () => {
                 <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
                   {item.title}
                 </p>
-                {item.href ? (
-                  <a
-                    href={item.href}
-                    className="font-semibold text-primary hover:underline block"
-                  >
-                    {item.value}
-                  </a>
+                {'phones' in item && item.phones ? (
+                  <div className="flex flex-col gap-1">
+                    {item.phones.map((phone: { number: string; href: string }) => (
+                      <a
+                        key={phone.number}
+                        href={phone.href}
+                        className="font-semibold text-primary hover:underline block text-sm"
+                      >
+                        {phone.number}
+                      </a>
+                    ))}
+                  </div>
                 ) : (
                   <p className="font-semibold text-foreground">{item.value}</p>
                 )}
