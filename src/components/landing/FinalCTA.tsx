@@ -1,5 +1,7 @@
-import { MapPin, Phone, Calendar } from 'lucide-react';
+import { MapPin, Phone, Calendar, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+
+const SHOP_URL = "https://www.21vek.by/special_offers/dom.html?producers=144110%2C144115%2C144535%2C145485%2C146080";
 
 export const FinalCTA = () => {
   const openRoute = () => {
@@ -31,8 +33,19 @@ export const FinalCTA = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
-              onClick={openRoute}
+              asChild
               className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-10 py-7 h-auto gap-2 font-semibold"
+            >
+              <a href={SHOP_URL} target="_blank" rel="noopener noreferrer">
+                <ShoppingCart className="w-5 h-5" />
+                Купить онлайн
+              </a>
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline"
+              onClick={openRoute}
+              className="border-white/30 text-white bg-white/10 hover:bg-white/20 text-lg px-10 py-7 h-auto gap-2"
             >
               <MapPin className="w-5 h-5" />
               Построить маршрут

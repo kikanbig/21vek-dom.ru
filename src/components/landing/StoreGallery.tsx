@@ -18,6 +18,7 @@ import gallery14 from '@/assets/gallery/gallery-14.jpg';
 import gallery15 from '@/assets/gallery/gallery-15.jpg';
 import gallery16 from '@/assets/gallery/gallery-16.jpg';
 import gallery17 from '@/assets/gallery/gallery-17.jpg';
+import gallery18 from '@/assets/gallery/gallery-18.jpg';
 
 const galleryImages = [
   { src: gallery1, alt: 'Диваны в магазине', caption: 'Диваны на любой вкус' },
@@ -37,11 +38,12 @@ const galleryImages = [
   { src: gallery15, alt: 'Ванная комната', caption: 'Сантехника' },
   { src: gallery16, alt: 'Компьютерный стол', caption: 'Рабочая зона' },
   { src: gallery17, alt: 'Новогодние подарки', caption: 'Праздничный декор' },
+  { src: gallery18, alt: 'Сервированный стол', caption: 'Красивая сервировка' },
 ];
 
 const videos = [
-  { id: 'fRnDhodrJTI', title: '1 этаж', thumbnail: gallery3 },
-  { id: '5Hqoz7ID1fM', title: '2 этаж', thumbnail: gallery7 },
+  { id: 'fRnDhodrJTI', title: '1 этаж', thumbnail: gallery7 },
+  { id: '5Hqoz7ID1fM', title: '2 этаж', thumbnail: gallery3 },
 ];
 
 export const StoreGallery = () => {

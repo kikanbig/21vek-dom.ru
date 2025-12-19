@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight, MapPin, Play } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import banner1 from '@/assets/banners/banner-1.jpg';
 import banner2a from '@/assets/banners/banner-2a.jpg';
 import banner2b from '@/assets/banners/banner-2b.jpg';
@@ -50,36 +49,27 @@ export const HeroCarousel = () => {
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
 
-  const openRoute = () => {
-    window.open('https://yandex.ru/maps/?rtext=~53.884799,27.565861', '_blank');
-  };
-
-  const scrollToGallery = () => {
-    document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   const currentSlideData = slides[currentSlide];
 
   return (
-    <section className="relative w-full h-[600px] md:h-[700px] overflow-hidden">
+    <section className="relative w-full h-[500px] md:h-[550px] overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         {currentSlideData.secondImage ? (
-          // Split screen for slide with two images
           <div className="w-full h-full flex">
-            <div className="w-1/2 h-full relative">
+            <div className="w-1/2 h-full relative overflow-hidden">
               <img 
                 src={currentSlideData.image} 
                 alt="Мебельный зал" 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover scale-105 transition-transform duration-[8000ms] hover:scale-110"
                 loading="eager"
               />
             </div>
-            <div className="w-1/2 h-full relative">
+            <div className="w-1/2 h-full relative overflow-hidden">
               <img 
                 src={currentSlideData.secondImage} 
                 alt="Товары для дома" 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover scale-105 transition-transform duration-[8000ms] hover:scale-110"
                 loading="eager"
               />
             </div>
@@ -88,115 +78,110 @@ export const HeroCarousel = () => {
           <img 
             src={currentSlideData.image} 
             alt="Супермаркет мебели 2700 м²" 
-            className="w-full h-full object-cover transition-opacity duration-700"
+            className="w-full h-full object-cover scale-105 transition-all duration-[8000ms]"
             loading="eager"
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
+        
+        {/* Premium gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
+        
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-primary/50 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-1/3 h-px bg-gradient-to-r from-primary/50 to-transparent" />
       </div>
 
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10 h-full flex items-center">
-        <div className="max-w-3xl text-white">
+        <div className="max-w-4xl text-white">
           {slides.map((slide, index) => (
             <div
               key={slide.id}
               className={`transition-all duration-700 ${
                 index === currentSlide 
                   ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 translate-y-4 absolute'
+                  : 'opacity-0 translate-y-4 absolute pointer-events-none'
               }`}
             >
               {index === currentSlide && (
                 <>
-                  <div className="inline-block mb-4 px-4 py-2 bg-primary rounded-full text-sm font-medium">
+                  {/* Badge */}
+                  <div className="inline-flex items-center gap-2 mb-6 px-5 py-2.5 bg-primary/90 backdrop-blur-sm rounded-full text-sm font-semibold tracking-wide uppercase">
+                    <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
                     Мы открылись
                   </div>
                   
+                  {/* Title */}
                   {slide.highlight ? (
-                    <h1 className="text-6xl md:text-8xl lg:text-9xl font-heading font-bold mb-2 leading-none">
-                      {slide.title}
+                    <h1 className="text-7xl md:text-9xl lg:text-[10rem] font-heading font-black mb-2 leading-none tracking-tighter">
+                      <span className="bg-gradient-to-r from-white via-white to-white/70 bg-clip-text text-transparent">
+                        {slide.title}
+                      </span>
                     </h1>
                   ) : (
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold mb-4 leading-tight">
+                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-4 leading-tight tracking-tight">
                       {slide.title}
                     </h1>
                   )}
                   
-                  <p className="text-2xl md:text-4xl font-light mb-4 text-white/90">
+                  {/* Subtitle */}
+                  <p className="text-2xl md:text-4xl lg:text-5xl font-light mb-6 text-white/90 tracking-wide">
                     {slide.subtitle}
                   </p>
                   
-                  <p className="text-lg md:text-xl mb-8 text-white/80 max-w-xl">
+                  {/* Description */}
+                  <p className="text-lg md:text-xl text-white/70 max-w-2xl leading-relaxed">
                     {slide.description}
                   </p>
                 </>
               )}
             </div>
           ))}
-
-          <div className="flex flex-col sm:flex-row gap-4 mt-8">
-            <Button 
-              size="lg" 
-              onClick={openRoute}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-8 py-6 h-auto gap-2"
-            >
-              <MapPin className="w-5 h-5" />
-              Построить маршрут
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              onClick={scrollToGallery}
-              className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white/20 text-lg px-8 py-6 h-auto gap-2"
-            >
-              <Play className="w-5 h-5" />
-              Посмотреть залы
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              asChild
-              className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white/20 text-lg px-8 py-6 h-auto gap-2"
-            >
-              <a href="https://www.21vek.by/special_offers/dom.html?producers=144110%2C144115%2C144535%2C145485%2C146080" target="_blank" rel="noopener noreferrer">
-                Посмотреть мебель
-              </a>
-            </Button>
-          </div>
         </div>
       </div>
 
-      {/* Navigation arrows */}
+      {/* Navigation arrows - more stylish */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
+        className="absolute left-6 top-1/2 -translate-y-1/2 z-20 p-4 rounded-full bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/15 hover:border-white/30 transition-all duration-300 group"
         aria-label="Предыдущий слайд"
       >
-        <ChevronLeft className="w-6 h-6 text-white" />
+        <ChevronLeft className="w-6 h-6 text-white transition-transform group-hover:-translate-x-0.5" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
+        className="absolute right-6 top-1/2 -translate-y-1/2 z-20 p-4 rounded-full bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/15 hover:border-white/30 transition-all duration-300 group"
         aria-label="Следующий слайд"
       >
-        <ChevronRight className="w-6 h-6 text-white" />
+        <ChevronRight className="w-6 h-6 text-white transition-transform group-hover:translate-x-0.5" />
       </button>
 
-      {/* Dots */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+      {/* Slide indicators - redesigned */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all ${
+            className={`relative h-1 rounded-full transition-all duration-500 ${
               index === currentSlide 
-                ? 'bg-primary w-8' 
-                : 'bg-white/50 hover:bg-white/70'
+                ? 'w-12 bg-primary' 
+                : 'w-8 bg-white/30 hover:bg-white/50'
             }`}
             aria-label={`Перейти к слайду ${index + 1}`}
-          />
+          >
+            {index === currentSlide && (
+              <span className="absolute inset-0 rounded-full bg-primary animate-pulse" />
+            )}
+          </button>
         ))}
+      </div>
+
+      {/* Slide counter */}
+      <div className="absolute bottom-10 right-8 z-20 text-white/50 text-sm font-mono tracking-wider">
+        <span className="text-white font-semibold">{String(currentSlide + 1).padStart(2, '0')}</span>
+        <span className="mx-2">/</span>
+        <span>{String(slides.length).padStart(2, '0')}</span>
       </div>
     </section>
   );
