@@ -8,7 +8,7 @@ import banner3 from '@/assets/banners/banner-3.jpg';
 const slides = [
   {
     id: 1,
-    title: '2700 м²',
+    title: '2700 м\u00B2',
     subtitle: 'всё для дома в одном месте',
     description: 'Супермаркет мебели и товаров для дома в Минске',
     highlight: true,
@@ -114,7 +114,7 @@ export const HeroCarousel = () => {
                   
                   {/* Title */}
                   {slide.highlight ? (
-                    <h1 className="text-7xl md:text-9xl lg:text-[10rem] font-heading font-black mb-2 leading-none tracking-tighter">
+                    <h1 className="text-7xl md:text-9xl lg:text-[10rem] font-heading font-black mb-2 leading-[1.1] tracking-tighter pt-2">
                       <span className="bg-gradient-to-r from-white via-white to-white/70 bg-clip-text text-transparent">
                         {slide.title}
                       </span>
@@ -141,17 +141,17 @@ export const HeroCarousel = () => {
         </div>
       </div>
 
-      {/* Navigation arrows - more stylish */}
+      {/* Navigation arrows - hidden on mobile */}
       <button
         onClick={prevSlide}
-        className="absolute left-6 top-1/2 -translate-y-1/2 z-20 p-4 rounded-full bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/15 hover:border-white/30 transition-all duration-300 group"
+        className="hidden md:block absolute left-6 top-1/2 -translate-y-1/2 z-20 p-4 rounded-full bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/15 hover:border-white/30 transition-all duration-300 group"
         aria-label="Предыдущий слайд"
       >
         <ChevronLeft className="w-6 h-6 text-white transition-transform group-hover:-translate-x-0.5" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-6 top-1/2 -translate-y-1/2 z-20 p-4 rounded-full bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/15 hover:border-white/30 transition-all duration-300 group"
+        className="hidden md:block absolute right-6 top-1/2 -translate-y-1/2 z-20 p-4 rounded-full bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/15 hover:border-white/30 transition-all duration-300 group"
         aria-label="Следующий слайд"
       >
         <ChevronRight className="w-6 h-6 text-white transition-transform group-hover:translate-x-0.5" />
@@ -177,12 +177,6 @@ export const HeroCarousel = () => {
         ))}
       </div>
 
-      {/* Slide counter */}
-      <div className="absolute bottom-10 right-8 z-20 text-white/50 text-sm font-mono tracking-wider">
-        <span className="text-white font-semibold">{String(currentSlide + 1).padStart(2, '0')}</span>
-        <span className="mx-2">/</span>
-        <span>{String(slides.length).padStart(2, '0')}</span>
-      </div>
     </section>
   );
 };

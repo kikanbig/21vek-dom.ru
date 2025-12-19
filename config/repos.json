@@ -39,7 +39,7 @@
       "description": "Лендинг региональных магазинов с каруселью, галереей и локацией (БЕЗ навигации в Header)",
       "route": "/regions",
       "localPath": "../regions",
-      "components": ["HeroCarousel.tsx", "StoreCategories.tsx", "StoreTour.tsx", "StoreGallery.tsx", "StoreLocation.tsx", "FinalCTA.tsx", "RegionsHeader.tsx"],
+      "components": ["HeroCarousel.tsx", "StoreCategories.tsx", "WhyVisit.tsx", "StoreGallery.tsx", "StoreLocation.tsx", "FinalCTA.tsx", "RegionsHeader.tsx"],
       "pages": [{"source": "Landing.tsx", "target": "Regions.tsx"}],
       "data": [],
       "assets": true,

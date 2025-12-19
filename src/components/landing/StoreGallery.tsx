@@ -78,14 +78,14 @@ export const StoreGallery = () => {
         </div>
 
         {/* Video section - Two videos */}
-        <div className="mb-12 grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div className="mb-12 grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-4">
           {videos.map((video) => (
             <div 
               key={video.id}
               className="relative rounded-2xl overflow-hidden cursor-pointer group bg-card border border-border"
               onClick={() => setActiveVideo(video.id)}
             >
-              <div className="aspect-video relative">
+              <div className="aspect-square relative">
                 <img 
                   src={video.thumbnail} 
                   alt={`Видео-тур ${video.title}`} 
@@ -130,10 +130,10 @@ export const StoreGallery = () => {
               <iframe
                 width="100%"
                 height="100%"
-                src={`https://www.youtube.com/embed/${activeVideo}?autoplay=1`}
+                src={`https://www.youtube.com/embed/${activeVideo}?autoplay=1&rel=0&modestbranding=1&playsinline=1`}
                 title="Видео-тур по магазину"
                 frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 className="rounded-2xl"
               />

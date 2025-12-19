@@ -87,13 +87,12 @@ export const StoreLocation = () => {
             {/* Map */}
             <div className="aspect-[21/9] md:aspect-[3/1] w-full relative">
               <iframe
-                src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2351.5!2d${STORE_LNG}!3d${STORE_LAT}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbcfd35b1e6a1d%3A0x5cbe8a7e7e6f3b1a!2z0YPQuy4g0JzQsNGP0LrQvtCy0YHQutC-0LPQviwgNiwg0JzQuNC90YHQuiwg0JHQtdC70LDRgNGD0YHRjA!5e0!3m2!1sru!2sby!4v1`}
+                src={`https://yandex.ru/map-widget/v1/?ll=${STORE_LNG}%2C${STORE_LAT}&z=16&pt=${STORE_LNG}%2C${STORE_LAT}%2Cpm2rdm`}
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
                 title="Карта магазина"
                 className="absolute inset-0"
               />

@@ -184,7 +184,7 @@ case $REPO_NAME in
         mkdir -p src/components/landing
         cp "$REPO_PATH/src/components/landing/HeroCarousel.tsx" src/components/landing/ 2>/dev/null || true
         cp "$REPO_PATH/src/components/landing/StoreCategories.tsx" src/components/landing/ 2>/dev/null || true
-        cp "$REPO_PATH/src/components/landing/StoreTour.tsx" src/components/landing/ 2>/dev/null || true
+        cp "$REPO_PATH/src/components/landing/WhyVisit.tsx" src/components/landing/ 2>/dev/null || true
         cp "$REPO_PATH/src/components/landing/StoreGallery.tsx" src/components/landing/ 2>/dev/null || true
         cp "$REPO_PATH/src/components/landing/StoreLocation.tsx" src/components/landing/ 2>/dev/null || true
         cp "$REPO_PATH/src/components/landing/FinalCTA.tsx" src/components/landing/ 2>/dev/null || true
@@ -200,12 +200,12 @@ case $REPO_NAME in
         cp "$REPO_PATH/src/pages/Landing.tsx" src/pages/Regions.tsx 2>/dev/null || true
         echo "  ✅ Landing.tsx → Regions.tsx"
         
-        # Копируем ассеты (галерея, туры, баннеры)
+        # Копируем ассеты (галерея, баннеры, benefits)
         echo "🖼️ Копирование ассетов..."
-        mkdir -p src/assets/gallery src/assets/tour src/assets/banners
+        mkdir -p src/assets/gallery src/assets/banners src/assets/benefits
         cp -r "$REPO_PATH/src/assets/gallery/"* src/assets/gallery/ 2>/dev/null || true
-        cp -r "$REPO_PATH/src/assets/tour/"* src/assets/tour/ 2>/dev/null || true
         cp -r "$REPO_PATH/src/assets/banners/"* src/assets/banners/ 2>/dev/null || true
+        cp -r "$REPO_PATH/src/assets/benefits/"* src/assets/benefits/ 2>/dev/null || true
         echo "  ✅ Ассеты скопированы"
         ;;
 esac
