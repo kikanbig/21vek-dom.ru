@@ -95,7 +95,7 @@ All colors MUST be HSL.
 
 @layer utilities {
   .heart-glow {
-    filter: drop-shadow(0 0 8px hsl(var(--heart-glow) / 0.6));
+    filter: drop-shadow(0 0 8px hsl(0 100% 60% / 0.6));
   }
   
   .animate-heart-fill {

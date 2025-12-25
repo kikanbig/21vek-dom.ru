@@ -22,8 +22,8 @@ export const HeartRating = ({ value, onChange }: HeartRatingProps) => {
               className={cn(
                 "w-12 h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20 transition-all duration-300",
                 value !== null && i <= value
-                  ? "fill-heart-filled text-heart-filled heart-glow animate-heart-fill"
-                  : "fill-transparent text-heart-empty hover:text-heart-filled/40"
+                  ? "fill-[hsl(0,85%,50%)] text-[hsl(0,85%,50%)] heart-glow animate-heart-fill"
+                  : "fill-transparent text-[hsl(270,20%,85%)] hover:text-[hsl(0,85%,50%)]/40"
               )}
               strokeWidth={1.5}
             />
