@@ -41,10 +41,14 @@ All colors MUST be HSL.
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 316 95% 29%;
     
-    /* NPS Heart colors */
+    /* NPS Heart colors - оригинальные красные из Lovable */
     --heart-empty: 270 20% 85%;
-    --heart-filled: 316 95% 29%;
-    --heart-glow: 316 100% 40%;
+    --heart-filled: 0 85% 50%;
+    --heart-glow: 0 100% 60%;
+    
+    /* NPS Button colors - оригинальный градиент из Lovable */
+    --nps-primary: 320 85% 55%;
+    --nps-secondary: 270 60% 60%;
   }
 
   .dark {

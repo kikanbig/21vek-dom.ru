@@ -31,7 +31,7 @@ export const HeartRating = ({ value, onChange }: HeartRatingProps) => {
               className={cn(
                 "text-base lg:text-xl xl:text-2xl font-bold mt-1 transition-colors",
                 value !== null && i <= value
-                  ? "text-primary"
+                  ? "text-[hsl(320,85%,55%)]"
                   : "text-muted-foreground"
               )}
             >
