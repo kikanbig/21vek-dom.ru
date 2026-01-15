@@ -201,7 +201,7 @@ export const ProductModal = ({ product, open, onClose }: ProductModalProps) => {
             )}
 
             {/* CTA Section */}
-            <div className="mt-auto pt-6 border-t border-border space-y-4">
+            <div className="mt-auto pt-6 border-t border-border">
               {product.source_url && (
                 <a
                   href={product.source_url}
@@ -213,10 +213,6 @@ export const ProductModal = ({ product, open, onClose }: ProductModalProps) => {
                   <ExternalLink className="h-5 w-5" />
                 </a>
               )}
-              
-              <p className="text-center text-sm text-muted-foreground">
-                Цены и наличие уточняйте на сайте продавца
-              </p>
             </div>
           </div>
         </div>

@@ -74,7 +74,8 @@ export const PromoBanner = () => {
   return (
     <section className="relative w-full bg-muted">
       <div className="container mx-auto px-4 py-4">
-        <div className="relative rounded-2xl overflow-hidden aspect-[3.75/1] bg-muted-foreground/10">
+        {/* Адаптивный aspect ratio: выше на мобильных для читаемости */}
+        <div className="relative rounded-2xl overflow-hidden aspect-[2/1] md:aspect-[3/1] lg:aspect-[3.75/1] bg-muted-foreground/10">
           {/* Banners */}
           {banners.map((banner, index) => (
             <div
@@ -95,17 +96,17 @@ export const PromoBanner = () => {
               />
               
               {/* Overlay with text */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent flex items-center">
-                <div className="px-8 md:px-16 max-w-xl">
+              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent flex items-center">
+                <div className="px-4 sm:px-8 md:px-16 max-w-xl">
                   {/* Discount badge - large */}
                   {banner.discount && (
-                    <span className="inline-block px-5 py-2 mb-3 text-2xl md:text-4xl font-bold rounded-xl bg-destructive text-destructive-foreground shadow-lg">
+                    <span className="inline-block px-3 py-1 sm:px-5 sm:py-2 mb-2 sm:mb-3 text-xl sm:text-2xl md:text-4xl font-bold rounded-lg sm:rounded-xl bg-destructive text-destructive-foreground shadow-lg">
                       {banner.discount}
                     </span>
                   )}
                   {/* Special offer badge */}
                   {banner.badge && (
-                    <span className={`inline-block px-4 py-1.5 mb-3 text-sm md:text-base font-bold rounded-full ${
+                    <span className={`inline-block px-3 py-1 sm:px-4 sm:py-1.5 mb-2 sm:mb-3 text-xs sm:text-sm md:text-base font-bold rounded-full ${
                       banner.isSpecialOffer 
                         ? 'bg-yellow-500 text-black' 
                         : 'bg-destructive text-destructive-foreground'
@@ -113,14 +114,14 @@ export const PromoBanner = () => {
                       {banner.badge}
                     </span>
                   )}
-                  <h2 className="text-xl md:text-3xl lg:text-4xl font-heading font-bold text-white mb-1">
+                  <h2 className="text-base sm:text-xl md:text-3xl lg:text-4xl font-heading font-bold text-white mb-0.5 sm:mb-1 leading-tight">
                     {banner.title}
                   </h2>
-                  <p className="text-lg md:text-2xl font-semibold text-yellow-400 mb-2">
+                  <p className="text-sm sm:text-lg md:text-2xl font-semibold text-yellow-400 mb-1 sm:mb-2">
                     {banner.subtitle}
                   </p>
                   {banner.description && (
-                    <p className="text-sm md:text-lg text-white/95 leading-relaxed">
+                    <p className="text-xs sm:text-sm md:text-lg text-white/95 leading-snug sm:leading-relaxed line-clamp-2 sm:line-clamp-none">
                       {banner.description}
                     </p>
                   )}
