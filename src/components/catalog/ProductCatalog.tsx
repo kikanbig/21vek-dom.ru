@@ -248,11 +248,6 @@ export const ProductCatalog = () => {
       <div className="container mx-auto px-4">
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-foreground">Каталог товаров</h2>
-          <p className="text-muted-foreground mt-1">
-            {products.length > 0 
-              ? `${products.length} товаров в каталоге` 
-              : 'Каталог пуст'}
-          </p>
         </div>
 
         {loading ? (

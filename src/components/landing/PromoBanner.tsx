@@ -2,10 +2,9 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import promoBed from '@/assets/banners/promo-bed.png';
-import promoSale from '@/assets/banners/promo-sale.jpg';
-import promoBedroom from '@/assets/banners/promo-bedroom.jpg';
-import promoKitchen from '@/assets/banners/promo-kitchen.jpg';
-import promoOffice from '@/assets/banners/promo-office.jpg';
+import setComfortable from '@/assets/promos/set-comfortable.jpg';
+import setDining1 from '@/assets/promos/set-dining-1.jpg';
+import setDining2 from '@/assets/promos/set-dining-2.jpg';
 
 interface Banner {
   id: number;
@@ -14,6 +13,7 @@ interface Banner {
   subtitle: string;
   description?: string;
   badge?: string;
+  discount?: string;
   link?: string;
   isSpecialOffer?: boolean;
 }
@@ -31,35 +31,30 @@ const banners: Banner[] = [
   },
   {
     id: 2,
-    image: promoSale,
-    title: 'Зимняя распродажа',
-    subtitle: 'Скидки до 50% на диваны и кресла',
-    badge: 'до -50%',
-    link: '/catalog',
+    image: setComfortable,
+    title: 'Сет «Комфортный»',
+    subtitle: 'Кровать + матрас + подушки',
+    description: 'Кровать 160x200, матрас премиум-класса Veluna и 2 ортопедические подушки',
+    discount: '-15%',
+    link: '/sets/comfortable',
   },
   {
     id: 3,
-    image: promoBedroom,
-    title: 'Комфорт для спальни',
-    subtitle: 'Кровати, матрасы и текстиль',
-    badge: 'Новинки',
-    link: '/catalog',
+    image: setDining1,
+    title: 'Сет «Обеденный»',
+    subtitle: 'Стол + стулья + посуда для сервировки',
+    description: 'Стол, 4 стула и набор посуды JEWEL (16 предметов) для праздничных ужинов',
+    discount: '-10%',
+    link: '/sets/dining-1',
   },
   {
     id: 4,
-    image: promoKitchen,
-    title: 'Кухни мечты',
-    subtitle: 'Современный дизайн по доступным ценам',
-    badge: 'от 15 000 ₽',
-    link: '/catalog',
-  },
-  {
-    id: 5,
-    image: promoOffice,
-    title: 'Домашний офис',
-    subtitle: 'Эргономичная мебель для продуктивной работы',
-    badge: '-30%',
-    link: '/catalog',
+    image: setDining2,
+    title: 'Сет «Обеденный+»',
+    subtitle: 'Стол + стулья + посуда для приготовления',
+    description: 'Стол, 4 стула и профессиональные кастрюли/сковородки Lara для кулинаров',
+    discount: '-10%',
+    link: '/sets/dining-2',
   },
 ];
 
@@ -102,6 +97,13 @@ export const PromoBanner = () => {
               {/* Overlay with text */}
               <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent flex items-center">
                 <div className="px-8 md:px-16 max-w-xl">
+                  {/* Discount badge - large */}
+                  {banner.discount && (
+                    <span className="inline-block px-5 py-2 mb-3 text-2xl md:text-4xl font-bold rounded-xl bg-destructive text-destructive-foreground shadow-lg">
+                      {banner.discount}
+                    </span>
+                  )}
+                  {/* Special offer badge */}
                   {banner.badge && (
                     <span className={`inline-block px-4 py-1.5 mb-3 text-sm md:text-base font-bold rounded-full ${
                       banner.isSpecialOffer 
