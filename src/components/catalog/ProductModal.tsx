@@ -69,11 +69,11 @@ export const ProductModal = ({ product, open, onClose }: ProductModalProps) => {
           <X className="h-5 w-5 text-foreground" />
         </button>
 
-        <div className="flex flex-col lg:flex-row h-full max-h-[95vh]">
+        <div className="flex flex-col lg:flex-row h-full max-h-[95vh] overflow-y-auto lg:overflow-hidden">
           {/* Left: Image Gallery - Takes more space */}
-          <div className="lg:w-[60%] bg-muted/30 p-4 lg:p-8 flex flex-col">
+          <div className="lg:w-[60%] bg-muted/30 p-4 lg:p-8 flex flex-col flex-shrink-0">
             {/* Main Image */}
-            <div className="relative flex-1 min-h-[300px] lg:min-h-[500px] flex items-center justify-center bg-background rounded-xl overflow-hidden">
+            <div className="relative h-[50vh] lg:flex-1 lg:min-h-[500px] flex items-center justify-center bg-background rounded-xl overflow-hidden">
               {images.length > 0 ? (
                 <>
                   <SmartProductImage
