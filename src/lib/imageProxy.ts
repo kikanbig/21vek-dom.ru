@@ -13,10 +13,6 @@ export function getProxiedImageUrl(
     return originalUrl;
   }
   
-  // Only proxy 21vek.by images
-  if (originalUrl.includes('cdn21vek.by') || originalUrl.includes('21vek.by')) {
-    return `${SUPABASE_URL}/functions/v1/proxy-image?url=${encodeURIComponent(originalUrl)}&size=${size}`;
-  }
-  
+  // Direct loading for 21vek.by images (works on dom.21vek.by subdomain)
   return originalUrl;
 }
