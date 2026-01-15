@@ -3,7 +3,6 @@ import { Footer } from '@/components/Footer';
 import { CategoryBar } from '@/components/landing/CategoryBar';
 import { PromoBanner } from '@/components/landing/PromoBanner';
 import { BestsellersSection } from '@/components/landing/BestsellersSection';
-import { ProductCatalog } from '@/components/catalog/ProductCatalog';
 import { PromoGrid } from '@/components/landing/PromoGrid';
 import { InspirationSection } from '@/components/landing/InspirationSection';
 
@@ -23,9 +22,6 @@ const Landing = () => {
         
         {/* Акции */}
         <PromoGrid />
-        
-        {/* Каталог товаров */}
-        <ProductCatalog />
         
         {/* Идеи для интерьера */}
         <InspirationSection />
