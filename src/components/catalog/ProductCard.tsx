@@ -28,14 +28,14 @@ export const ProductCard = ({ product, onClick }: ProductCardProps) => {
       onClick={onClick}
     >
       {/* Image Container */}
-      <div className="relative aspect-square overflow-hidden bg-muted flex items-center justify-center">
+      <div className="relative aspect-square overflow-hidden bg-muted flex items-center justify-center p-2">
         {product.main_image ? (
           <SmartProductImage
             originalSrc={product.main_image}
             alt={product.name}
             size="small"
             objectFit="contain"
-            className="w-full h-full group-hover:scale-105 transition-transform duration-500"
+            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
             loading="lazy"
           />
         ) : (

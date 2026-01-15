@@ -75,7 +75,7 @@ export const PromoBanner = () => {
     <section className="relative w-full bg-muted">
       <div className="container mx-auto px-4 py-4">
         {/* Адаптивный aspect ratio: выше на мобильных для читаемости */}
-        <div className="relative rounded-2xl overflow-hidden aspect-[2/1] md:aspect-[3/1] lg:aspect-[3.75/1] bg-muted-foreground/10">
+        <div className="relative rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-[2/1] md:aspect-[3/1] lg:aspect-[3.75/1] bg-muted-foreground/10">
           {/* Banners */}
           {banners.map((banner, index) => (
             <div
