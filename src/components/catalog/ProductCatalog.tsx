@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { ProductCard } from "./ProductCard";
 import { ProductModal } from "./ProductModal";
 import { Button } from "@/components/ui/button";
-import { Loader2, RefreshCw } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 
@@ -246,33 +246,13 @@ export const ProductCatalog = () => {
   return (
     <section className="py-12 bg-background">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
-          <div>
-            <h2 className="text-3xl font-bold text-foreground">Каталог товаров</h2>
-            <p className="text-muted-foreground mt-1">
-              {products.length > 0 
-                ? `${products.length} товаров в каталоге` 
-                : 'Каталог пуст — запустите парсинг'}
-            </p>
-          </div>
-          
-          <Button 
-            onClick={handleScrape} 
-            disabled={scraping}
-            className="gap-2"
-          >
-            {scraping ? (
-              <>
-                <Loader2 className="h-4 w-4 animate-spin" />
-                Загрузка...
-              </>
-            ) : (
-              <>
-                <RefreshCw className="h-4 w-4" />
-                {products.length > 0 ? 'Обновить каталог' : 'Загрузить товары'}
-              </>
-            )}
-          </Button>
+        <div className="mb-8">
+          <h2 className="text-3xl font-bold text-foreground">Каталог товаров</h2>
+          <p className="text-muted-foreground mt-1">
+            {products.length > 0 
+              ? `${products.length} товаров в каталоге` 
+              : 'Каталог пуст'}
+          </p>
         </div>
 
         {loading ? (

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu, MapPin, Phone, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -19,7 +20,9 @@ export const Header = () => {
         <div className="container mx-auto px-4 py-2">
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center gap-4">
-              <img src={logo} alt="21vek.by ДОМ" className="h-6 w-auto" />
+              <Link to="/">
+                <img src={logo} alt="21vek.by ДОМ" className="h-6 w-auto hover:opacity-80 transition-opacity" />
+              </Link>
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
                 <span>г. Минск</span>

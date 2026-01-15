@@ -1,90 +1,54 @@
 import { ArrowRight, Heart } from 'lucide-react';
 import { Card } from '@/components/ui/card';
-
-import sofaImage from '@/assets/products/sofa-corner.jpg';
-import bedImage from '@/assets/products/bed-double.jpg';
-import tableImage from '@/assets/products/table-dining.jpg';
-import wardrobeImage from '@/assets/products/wardrobe.jpg';
-import chairImage from '@/assets/products/office-chair.jpg';
-import dresserImage from '@/assets/products/dresser.jpg';
-import bookshelfImage from '@/assets/products/bookshelf.jpg';
-import tvStandImage from '@/assets/products/tv-stand.jpg';
+import { useEffect, useState, useMemo } from 'react';
+import { supabase } from '@/integrations/supabase/client';
+import { getProxiedImageUrl } from '@/lib/imageProxy';
 
 interface Product {
-  id: number;
+  id: string;
   name: string;
-  image: string;
-  oldPrice?: number;
-  price: number;
-  discount?: number;
+  main_image: string | null;
 }
 
-const bestsellers: Product[] = [
-  {
-    id: 1,
-    name: 'Диван угловой "Комфорт"',
-    image: sofaImage,
-    oldPrice: 89990,
-    price: 69990,
-    discount: 22,
-  },
-  {
-    id: 2,
-    name: 'Кровать "Уют" 160x200',
-    image: bedImage,
-    oldPrice: 45990,
-    price: 35990,
-    discount: 22,
-  },
-  {
-    id: 3,
-    name: 'Стол обеденный "Классик"',
-    image: tableImage,
-    price: 24990,
-  },
-  {
-    id: 4,
-    name: 'Шкаф-купе "Модерн"',
-    image: wardrobeImage,
-    oldPrice: 54990,
-    price: 44990,
-    discount: 18,
-  },
-  {
-    id: 5,
-    name: 'Кресло офисное "Профи"',
-    image: chairImage,
-    price: 15990,
-  },
-  {
-    id: 6,
-    name: 'Комод "Элегант"',
-    image: dresserImage,
-    oldPrice: 29990,
-    price: 22990,
-    discount: 23,
-  },
-  {
-    id: 7,
-    name: 'Стеллаж "Лофт"',
-    image: bookshelfImage,
-    price: 18990,
-  },
-  {
-    id: 8,
-    name: 'Тумба ТВ "Минимал"',
-    image: tvStandImage,
-    oldPrice: 19990,
-    price: 14990,
-    discount: 25,
-  },
-];
-
-const formatPrice = (price: number) => {
-  return price.toLocaleString('ru-RU') + ' ₽';
+// Fisher-Yates shuffle
+const shuffleArray = <T,>(array: T[]): T[] => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
 };
 
 export const BestsellersSection = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data, error } = await supabase
+        .from('products')
+        .select('id, name, main_image')
+        .order('created_at', { ascending: false });
+
+      if (!error && data) {
+        setProducts(data);
+      }
+      setLoading(false);
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Memoize shuffled products to prevent re-shuffle on every render
+  const displayProducts = useMemo(() => {
+    return shuffleArray(products).slice(0, 8);
+  }, [products]);
+
+  if (loading || displayProducts.length === 0) {
+    return null;
+  }
+
   return (
     <section className="bg-background py-10">
       <div className="container mx-auto px-4">
@@ -101,18 +65,11 @@ export const BestsellersSection = () => {
 
         {/* Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {bestsellers.map((product) => (
+          {displayProducts.map((product) => (
             <Card
               key={product.id}
               className="group relative overflow-hidden border-border/50 hover:shadow-lg transition-all duration-300 cursor-pointer"
             >
-              {/* Discount badge */}
-              {product.discount && (
-                <div className="absolute top-3 left-3 z-10 bg-destructive text-destructive-foreground text-xs font-bold px-2 py-1 rounded">
-                  -{product.discount}%
-                </div>
-              )}
-              
               {/* Favorite button */}
               <button className="absolute top-3 right-3 z-10 w-8 h-8 bg-background/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-background transition-colors">
                 <Heart className="w-4 h-4 text-muted-foreground hover:text-destructive" />
@@ -120,29 +77,25 @@ export const BestsellersSection = () => {
 
               {/* Image */}
               <div className="aspect-square overflow-hidden bg-muted">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
+                {product.main_image ? (
+                  <img
+                    src={getProxiedImageUrl(product.main_image, 'small')}
+                    alt={product.name}
+                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+                    Нет фото
+                  </div>
+                )}
               </div>
 
               {/* Content */}
               <div className="p-4">
-                <h3 className="text-sm font-medium text-foreground line-clamp-2 mb-2 group-hover:text-primary transition-colors">
+                <h3 className="text-sm font-medium text-foreground line-clamp-2 group-hover:text-primary transition-colors">
                   {product.name}
                 </h3>
-                <div className="flex items-center gap-2">
-                  <span className="text-lg font-bold text-foreground">
-                    {formatPrice(product.price)}
-                  </span>
-                  {product.oldPrice && (
-                    <span className="text-sm text-muted-foreground line-through">
-                      {formatPrice(product.oldPrice)}
-                    </span>
-                  )}
-                </div>
               </div>
             </Card>
           ))}
