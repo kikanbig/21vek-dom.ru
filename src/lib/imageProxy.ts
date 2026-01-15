@@ -13,6 +13,15 @@ export function getProxiedImageUrl(
     return originalUrl;
   }
   
-  // Direct loading for 21vek.by images (works on dom.21vek.by subdomain)
+  // For 21vek.by images:
+  // - small/medium: load directly (works on dom.21vek.by subdomain)
+  // - big: use proxy (large images may have stricter protection)
+  if (originalUrl.includes('cdn21vek.by') || originalUrl.includes('21vek.by')) {
+    if (size === 'big') {
+      return `${SUPABASE_URL}/functions/v1/proxy-image?url=${encodeURIComponent(originalUrl)}&size=${size}`;
+    }
+    return originalUrl;
+  }
+  
   return originalUrl;
 }
