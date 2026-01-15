@@ -8,7 +8,6 @@ export const Footer = () => {
           {/* Navigation links */}
           <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm">
             <a href="https://www.21vek.by/services/delivery.html" target="_blank" rel="noopener noreferrer" className="hover:underline transition-colors">Доставка</a>
-            <a href="https://www.21vek.by/services/payment.html" target="_blank" rel="noopener noreferrer" className="hover:underline transition-colors">Оплата</a>
             <a href="https://www.21vek.by/self_delivery/" target="_blank" rel="noopener noreferrer" className="hover:underline transition-colors">Самовывоз</a>
             <a href="https://www.21vek.by/contacts/" target="_blank" rel="noopener noreferrer" className="hover:underline transition-colors">Контакты</a>
             <a href="https://www.21vek.by/services/credit.html" target="_blank" rel="noopener noreferrer" className="hover:underline transition-colors">Оплата частями</a>
@@ -16,10 +15,10 @@ export const Footer = () => {
           </div>
 
           {/* Contact info */}
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
-            <a href="tel:+375293021021" className="hover:underline">+375 29 302-10-21</a>
-            <a href="tel:+375255021021" className="hover:underline">+375 25 502-10-21</a>
-            <a href="tel:+375173021021" className="hover:underline">+375 17 302-10-21</a>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+            <a href="tel:+375447833254" className="hover:underline">+375 44 783 32 54</a>
+            <a href="tel:+375447829302" className="hover:underline">+375 44 782 93 02</a>
+            <a href="tel:+375447826715" className="hover:underline">+375 44 782 67 15</a>
             <a href="https://t.me/shop21vek" target="_blank" rel="noopener noreferrer" className="hover:underline">Telegram</a>
             <a href="mailto:info@21vek.by" className="hover:underline">Почта</a>
             <a href="https://www.21vek.by/contacts/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:underline">

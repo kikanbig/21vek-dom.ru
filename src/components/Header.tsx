@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Menu, MapPin, Phone, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -27,13 +26,17 @@ export const Header = () => {
               </div>
             </div>
             <div className="hidden md:flex items-center gap-6">
-              <a href="tel:+375293021021" className="flex items-center gap-2 hover:text-white transition-colors">
+              <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
-                +375 29 302 10 21
-              </a>
+                <a href="tel:+375447833254" className="hover:text-white transition-colors">+375 44 783 32 54</a>
+                <span className="text-white/50">|</span>
+                <a href="tel:+375447829302" className="hover:text-white transition-colors">+375 44 782 93 02</a>
+                <span className="text-white/50">|</span>
+                <a href="tel:+375447826715" className="hover:text-white transition-colors">+375 44 782 67 15</a>
+              </div>
               <div className="flex items-center gap-1 text-white/70">
                 <Clock className="h-4 w-4" />
-                <span>с 8:00 до 22:00</span>
+                <span>с 10:00 до 22:00</span>
               </div>
             </div>
           </div>
@@ -51,18 +54,6 @@ export const Header = () => {
               <Menu className="h-6 w-6" />
             </button>
             <nav className="hidden lg:flex items-center gap-2">
-              <Button variant="ghost" size="sm" className="text-sm whitespace-nowrap font-medium">
-                Мебель
-              </Button>
-              <Button variant="ghost" size="sm" className="text-sm whitespace-nowrap font-medium">
-                Сеты
-              </Button>
-              <Button variant="ghost" size="sm" className="text-sm whitespace-nowrap font-medium">
-                Лоты
-              </Button>
-              <Button variant="ghost" size="sm" className="text-sm whitespace-nowrap text-primary font-medium">
-                Акции
-              </Button>
             </nav>
           </div>
         </div>
@@ -75,20 +66,22 @@ export const Header = () => {
             <SheetTitle>Меню</SheetTitle>
           </SheetHeader>
           <nav className="flex flex-col gap-1 mt-6">
-            <Button variant="ghost" className="justify-start font-medium">Мебель</Button>
-            <Button variant="ghost" className="justify-start font-medium">Сеты</Button>
-            <Button variant="ghost" className="justify-start font-medium">Лоты</Button>
-            <Button variant="ghost" className="justify-start text-primary font-medium">Акции</Button>
+            
           </nav>
           <div className="mt-8 pt-6 border-t border-border">
             <div className="flex flex-col gap-3 text-sm text-muted-foreground">
-              <a href="tel:+375293021021" className="flex items-center gap-2">
-                <Phone className="h-4 w-4" />
-                +375 29 302 10 21
-              </a>
+              <div className="flex flex-col gap-1">
+                <div className="flex items-center gap-2">
+                  <Phone className="h-4 w-4" />
+                  <span>Телефоны:</span>
+                </div>
+                <a href="tel:+375447833254" className="ml-6 hover:text-foreground">+375 44 783 32 54</a>
+                <a href="tel:+375447829302" className="ml-6 hover:text-foreground">+375 44 782 93 02</a>
+                <a href="tel:+375447826715" className="ml-6 hover:text-foreground">+375 44 782 67 15</a>
+              </div>
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4" />
-                с 8:00 до 22:00
+                с 10:00 до 22:00
               </div>
             </div>
           </div>
