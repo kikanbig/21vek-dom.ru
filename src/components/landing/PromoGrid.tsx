@@ -92,7 +92,7 @@ export const PromoGrid = () => {
             <Link
               to={promo.link}
               key={promo.id}
-              className="group relative rounded-xl overflow-hidden aspect-[3/4] cursor-pointer bg-background"
+              className="group relative rounded-xl overflow-hidden aspect-square cursor-pointer bg-background"
             >
               <img
                 src={promo.image}
