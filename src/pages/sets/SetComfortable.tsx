@@ -3,7 +3,7 @@ import { Footer } from '@/components/Footer';
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import setImage from '@/assets/promos/set-comfortable.jpg';
+import setImage from '@/assets/promos/set-comfortable.png';
 import bedImage from '@/assets/sets/set-comfortable-bed.jpg';
 import mattressImage from '@/assets/sets/set-comfortable-mattress.jpg';
 import pillowsImage from '@/assets/sets/set-comfortable-pillows.jpg';
@@ -117,9 +117,9 @@ const SetComfortable = () => {
 
               {/* CTA */}
               <div className="pt-4 space-y-4">
-                <p className="text-sm text-muted-foreground">
-                  * Скидка предоставляется при покупке сета целиком
-                </p>
+              <p className="text-base font-bold text-foreground">
+                Скидки предоставляются только при покупке всех товаров вместе.
+              </p>
                 <Button size="lg" className="w-full md:w-auto" asChild>
                   <a href="tel:+375447829302">Получить консультацию</a>
                 </Button>
