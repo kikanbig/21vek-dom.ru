@@ -4,7 +4,7 @@ import banner1 from '@/assets/banners/banner-1.jpg';
 import banner2a from '@/assets/banners/banner-2a.jpg';
 import banner2b from '@/assets/banners/banner-2b.jpg';
 import banner3 from '@/assets/banners/banner-3.jpg';
-import promoBanner from '@/assets/banners/promo-banner-2.png';
+import promoBanner from '@/assets/banners/promo-banner-2.jpg';
 
 interface Slide {
   id: number;
