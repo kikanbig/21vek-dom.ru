@@ -85,16 +85,30 @@ export const ProductCatalog = () => {
     setLoading(false);
   };
 
-  const warmedUrlsRef = useRef<Set<string>>(new Set());
   const prefetchedUrlsRef = useRef<Set<string>>(new Set());
 
   useEffect(() => {
     fetchProducts();
   }, []);
 
-  // Priority loading disabled for testing
-
-  // Background warmup disabled for testing
+  // Prefetch next batch of images when products change or visibleCount changes
+  useEffect(() => {
+    if (products.length === 0) return;
+    
+    // Prefetch images for the NEXT batch (items visibleCount to visibleCount+24)
+    const nextBatchStart = visibleCount;
+    const nextBatchEnd = Math.min(visibleCount + 24, products.length);
+    const nextBatch = products.slice(nextBatchStart, nextBatchEnd);
+    
+    nextBatch.forEach((product) => {
+      if (product.main_image && !prefetchedUrlsRef.current.has(product.main_image)) {
+        prefetchedUrlsRef.current.add(product.main_image);
+        // Create a hidden image to prefetch
+        const img = new Image();
+        img.src = `https://likrmbiziyezyhemyodz.supabase.co/functions/v1/proxy-image?url=${encodeURIComponent(product.main_image)}&size=small`;
+      }
+    });
+  }, [products, visibleCount]);
 
   const handleScrape = async () => {
     setScraping(true);
