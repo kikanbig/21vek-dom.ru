@@ -1,38 +1,61 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { CategoryBar } from '@/components/landing/CategoryBar';
 import { PromoBanner } from '@/components/landing/PromoBanner';
-import { ProductCatalog } from '@/components/catalog/ProductCatalog';
 import { PromoGrid } from '@/components/landing/PromoGrid';
-import { StoreLocation } from '@/components/landing/StoreLocation';
-import { InspirationSection } from '@/components/landing/InspirationSection';
-import VirtualTour from '@/components/landing/VirtualTour';
+import { LazySection } from '@/components/LazySection';
+import { lazy, Suspense } from 'react';
+import { Loader2 } from 'lucide-react';
+
+// Lazy load компоненты ниже fold
+const VirtualTour = lazy(() => import('@/components/landing/VirtualTour'));
+const StoreLocation = lazy(() => import('@/components/landing/StoreLocation').then(m => ({ default: m.StoreLocation })));
+const ProductCatalog = lazy(() => import('@/components/catalog/ProductCatalog').then(m => ({ default: m.ProductCatalog })));
+const InspirationSection = lazy(() => import('@/components/landing/InspirationSection').then(m => ({ default: m.InspirationSection })));
+
+const LoadingFallback = () => (
+  <div className="flex items-center justify-center py-16">
+    <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+  </div>
+);
 
 const Landing = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
       <main className="flex-1">
-        {/* Категории - скрыто */}
-        {/* Баннерная карусель */}
+        {/* Баннерная карусель - загружается сразу */}
         <PromoBanner />
         
-        {/* Хиты продаж - временно скрыт */}
-        
-        {/* Акции */}
+        {/* Акции - загружается сразу (выше fold) */}
         <PromoGrid />
         
-        {/* Виртуальный тур */}
-        <VirtualTour />
+        {/* Виртуальный тур - lazy */}
+        <LazySection minHeight="400px">
+          <Suspense fallback={<LoadingFallback />}>
+            <VirtualTour />
+          </Suspense>
+        </LazySection>
         
-        {/* Как добраться */}
-        <StoreLocation />
+        {/* Как добраться - lazy */}
+        <LazySection minHeight="500px">
+          <Suspense fallback={<LoadingFallback />}>
+            <StoreLocation />
+          </Suspense>
+        </LazySection>
         
-        {/* Каталог товаров */}
-        <ProductCatalog />
+        {/* Каталог товаров - lazy */}
+        <LazySection minHeight="600px">
+          <Suspense fallback={<LoadingFallback />}>
+            <ProductCatalog />
+          </Suspense>
+        </LazySection>
         
-        {/* Идеи для интерьера */}
-        <InspirationSection />
+        {/* Идеи для интерьера - lazy */}
+        <LazySection minHeight="400px">
+          <Suspense fallback={<LoadingFallback />}>
+            <InspirationSection />
+          </Suspense>
+        </LazySection>
       </main>
       <Footer />
     </div>
