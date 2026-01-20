@@ -1,7 +1,7 @@
 import { ArrowRight, Play } from 'lucide-react';
-import countryHouseImg from '@/assets/inspiration/country-house.jpg';
-import rentalApartmentImg from '@/assets/inspiration/rental-apartment.jpg';
-import modernLivingImg from '@/assets/inspiration/modern-living.jpg';
+import countryHouseImg from '@/assets/inspiration/country-house-opt.jpg';
+import rentalApartmentImg from '@/assets/inspiration/rental-apartment-opt.jpg';
+import modernLivingImg from '@/assets/inspiration/modern-living-opt.jpg';
 
 interface Project {
   id: number;

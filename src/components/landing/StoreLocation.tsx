@@ -1,10 +1,10 @@
 import { MapPin, Clock, Phone, Navigation, Car } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-import locationAddress from '@/assets/location/location-address.jpg';
-import locationHours from '@/assets/location/location-hours.jpg';
-import locationPhone from '@/assets/location/location-phone.jpg';
-import locationParking from '@/assets/location/location-parking.jpg';
+import locationAddress from '@/assets/location/location-address-opt.jpg';
+import locationHours from '@/assets/location/location-hours-opt.jpg';
+import locationPhone from '@/assets/location/location-phone-opt.jpg';
+import locationParking from '@/assets/location/location-parking-opt.jpg';
 
 // Correct coordinates for Minsk, Mayakovskogo 6
 const STORE_LAT = 53.884799;

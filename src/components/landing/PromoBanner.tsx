@@ -1,10 +1,10 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-import promoBed from '@/assets/banners/promo-bed.png';
-import setComfortable from '@/assets/promos/set-comfortable.jpg';
-import setDining1 from '@/assets/promos/set-dining-1.jpg';
-import setDining2 from '@/assets/promos/set-dining-2.jpg';
+import promoBed from '@/assets/banners/promo-bed.jpg';
+import setComfortable from '@/assets/promos/set-comfortable-opt.jpg';
+import setDining1 from '@/assets/promos/set-dining-1-opt.jpg';
+import setDining2 from '@/assets/promos/set-dining-2-opt.jpg';
 
 interface Banner {
   id: number;
