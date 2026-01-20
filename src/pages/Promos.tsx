@@ -3,12 +3,12 @@ import { Footer } from '@/components/Footer';
 import { Percent, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-import setComfortable from '@/assets/promos/set-comfortable.png';
-import setConvenient from '@/assets/promos/set-convenient.jpg';
-import setKids from '@/assets/promos/set-kids.jpg';
-import setDining1 from '@/assets/promos/set-dining-1.jpg';
-import setDining2 from '@/assets/promos/set-dining-2.jpg';
-import setPractical from '@/assets/promos/set-practical.jpg';
+import setComfortable from '@/assets/promos/set-comfortable-opt.jpg';
+import setConvenient from '@/assets/promos/set-convenient-opt.jpg';
+import setKids from '@/assets/promos/set-kids-opt.jpg';
+import setDining1 from '@/assets/promos/set-dining-1-opt.jpg';
+import setDining2 from '@/assets/promos/set-dining-2-opt.jpg';
+import setPractical from '@/assets/promos/set-practical-opt.jpg';
 
 interface Promo {
   id: number;

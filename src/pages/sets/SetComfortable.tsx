@@ -3,7 +3,7 @@ import { Footer } from '@/components/Footer';
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import setImage from '@/assets/promos/set-comfortable.png';
+import setImage from '@/assets/promos/set-comfortable-opt.jpg';
 import bedImage from '@/assets/sets/set-comfortable-bed.jpg';
 import mattressImage from '@/assets/sets/set-comfortable-mattress.jpg';
 import pillowsImage from '@/assets/sets/set-comfortable-pillows.jpg';
