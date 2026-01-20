@@ -2,28 +2,28 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { CategoryBar } from '@/components/landing/CategoryBar';
 import { PromoBanner } from '@/components/landing/PromoBanner';
-import { BestsellersSection } from '@/components/landing/BestsellersSection';
 import { ProductCatalog } from '@/components/catalog/ProductCatalog';
 import { PromoGrid } from '@/components/landing/PromoGrid';
 import { StoreLocation } from '@/components/landing/StoreLocation';
 import { InspirationSection } from '@/components/landing/InspirationSection';
+import VirtualTour from '@/components/landing/VirtualTour';
 
 const Landing = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
       <main className="flex-1">
-        {/* Категории */}
-        <CategoryBar />
-        
+        {/* Категории - скрыто */}
         {/* Баннерная карусель */}
         <PromoBanner />
         
-        {/* Хиты продаж */}
-        <BestsellersSection />
+        {/* Хиты продаж - временно скрыт */}
         
         {/* Акции */}
         <PromoGrid />
+        
+        {/* Виртуальный тур */}
+        <VirtualTour />
         
         {/* Как добраться */}
         <StoreLocation />

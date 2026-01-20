@@ -25,7 +25,8 @@ export const Header = () => {
               </Link>
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
-                <span>г. Минск</span>
+                <span className="hidden sm:inline">Минск, ул. Маяковского, 6</span>
+                <span className="sm:hidden">г. Минск</span>
               </div>
             </div>
             <div className="hidden md:flex items-center gap-6">

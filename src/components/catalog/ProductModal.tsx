@@ -36,17 +36,7 @@ export const ProductModal = ({ product, open, onClose }: ProductModalProps) => {
     setCurrentImageIndex(0);
   }, [product?.id]);
 
-  // Prefetch all big images for this product when modal opens
-  useEffect(() => {
-    if (open && images.length > 0) {
-      const ordered = [images[0], ...images.slice(1)];
-      prefetch(ordered, "big");
-    }
-    return () => {
-      clear();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open, product?.id]);
+  // Prefetch disabled for testing
 
   if (!product) return null;
 

@@ -79,7 +79,6 @@ export function SmartProductImage({
           isLoading ? "opacity-0" : "opacity-100"
         )}
         referrerPolicy="no-referrer"
-        loading="lazy"
         decoding="async"
         {...imgProps}
         onError={handleError}

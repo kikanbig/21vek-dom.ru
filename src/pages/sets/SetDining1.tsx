@@ -3,7 +3,7 @@ import { Footer } from '@/components/Footer';
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import setImage from '@/assets/promos/set-dining-1.jpg';
+import setCardImage from '@/assets/promos/set-dining-1-card.jpg';
 import tableImage from '@/assets/sets/set-dining-table.jpg';
 import chairsImage from '@/assets/sets/set-dining-chairs.jpg';
 import dishesImage from '@/assets/sets/set-dining-dishes.jpg';
@@ -51,7 +51,7 @@ const SetDining1 = () => {
             {/* Image */}
             <div className="aspect-square rounded-2xl overflow-hidden bg-muted">
               <img
-                src={setImage}
+                src={setCardImage}
                 alt="Сет Обеденный"
                 className="w-full h-full object-cover"
               />

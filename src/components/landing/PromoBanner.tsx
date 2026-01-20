@@ -130,17 +130,17 @@ export const PromoBanner = () => {
             </div>
           ))}
 
-          {/* Navigation */}
+          {/* Navigation - hidden on mobile */}
           <button
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-background/90 backdrop-blur-sm shadow-lg hover:bg-background transition-all duration-200 z-10"
+            className="hidden md:block absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-background/90 backdrop-blur-sm shadow-lg hover:bg-background transition-all duration-200 z-10"
             aria-label="Предыдущий баннер"
           >
             <ChevronLeft className="w-5 h-5 text-foreground" />
           </button>
           <button
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-background/90 backdrop-blur-sm shadow-lg hover:bg-background transition-all duration-200 z-10"
+            className="hidden md:block absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-background/90 backdrop-blur-sm shadow-lg hover:bg-background transition-all duration-200 z-10"
             aria-label="Следующий баннер"
           >
             <ChevronRight className="w-5 h-5 text-foreground" />

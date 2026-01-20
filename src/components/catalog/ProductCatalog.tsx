@@ -92,89 +92,9 @@ export const ProductCatalog = () => {
     fetchProducts();
   }, []);
 
-  // Priority loading: first 12 images get high-priority prefetch via browser link tags
-  useEffect(() => {
-    const PRIORITY_COUNT = 12;
-    const priorityUrls = products
-      .slice(0, PRIORITY_COUNT)
-      .map((p) => p.main_image)
-      .filter((u): u is string => !!u && !prefetchedUrlsRef.current.has(u));
+  // Priority loading disabled for testing
 
-    priorityUrls.forEach((url) => {
-      prefetchedUrlsRef.current.add(url);
-      
-      // Use proxy URL for consistency
-      const proxyUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/proxy-image?url=${encodeURIComponent(url)}&size=small`;
-      
-      // Create prefetch link for browser-native priority loading
-      const link = document.createElement('link');
-      link.rel = 'prefetch';
-      link.as = 'image';
-      link.href = proxyUrl;
-      document.head.appendChild(link);
-    });
-  }, [products]);
-
-  // Warm up remaining visible card images in the background.
-  const warmupBlockedUntilRef = useRef<number>(0);
-
-  useEffect(() => {
-    let cancelled = false;
-
-    if (Date.now() < warmupBlockedUntilRef.current) return;
-
-    const PRIORITY_COUNT = 12;
-    const WARMUP_MAX = 48;
-    
-    // Skip already priority-loaded images
-    const urls = products
-      .slice(PRIORITY_COUNT, Math.min(visibleCount, WARMUP_MAX))
-      .map((p) => p.main_image)
-      .filter((u): u is string => !!u);
-
-    const toWarm = urls.filter((u) => !warmedUrlsRef.current.has(u));
-    if (toWarm.length === 0) return;
-
-    const BATCH_SIZE = 3;
-    const batches: string[][] = [];
-    for (let i = 0; i < toWarm.length; i += BATCH_SIZE) {
-      batches.push(toWarm.slice(i, i + BATCH_SIZE));
-    }
-
-    (async () => {
-      for (const batch of batches) {
-        if (cancelled) return;
-
-        batch.forEach((u) => warmedUrlsRef.current.add(u));
-
-        try {
-          const { error } = await supabase.functions.invoke('proxy-image', {
-            body: { urls: batch, sizes: ['small'] },
-          });
-
-          if (error) {
-            const msg = `${(error as any)?.message ?? ''} ${(error as any)?.name ?? ''}`.toLowerCase();
-            batch.forEach((u) => warmedUrlsRef.current.delete(u));
-
-            if (msg.includes('worker_limit') || msg.includes('compute')) {
-              warmupBlockedUntilRef.current = Date.now() + 60_000;
-              return;
-            }
-          }
-        } catch {
-          batch.forEach((u) => warmedUrlsRef.current.delete(u));
-          warmupBlockedUntilRef.current = Date.now() + 60_000;
-          return;
-        }
-
-        await new Promise((r) => setTimeout(r, 800));
-      }
-    })();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [products, visibleCount]);
+  // Background warmup disabled for testing
 
   const handleScrape = async () => {
     setScraping(true);
