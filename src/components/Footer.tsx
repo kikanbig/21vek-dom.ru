@@ -16,7 +16,6 @@ export const Footer = () => {
 
           {/* Contact info */}
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
-            <a href="tel:+375447833254" className="hover:underline">+375 44 783 32 54</a>
             <a href="tel:+375447829302" className="hover:underline">+375 44 782 93 02</a>
             <a href="tel:+375447826715" className="hover:underline">+375 44 782 67 15</a>
             <a href="https://t.me/shop21vek" target="_blank" rel="noopener noreferrer" className="hover:underline">Telegram</a>

@@ -78,8 +78,8 @@ export const NPSSurvey = () => {
   if (isSuccess) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-8 animate-fade-in-up">
-        <div className="w-32 h-32 rounded-full bg-gradient-to-br from-[hsl(320,85%,55%)]/20 to-[hsl(270,60%,60%)]/20 flex items-center justify-center mb-8 shadow-lg">
-          <CheckCircle2 className="w-16 h-16 text-[hsl(320,85%,55%)] animate-success-check" />
+        <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mb-8 shadow-lg">
+          <CheckCircle2 className="w-16 h-16 text-primary animate-success-check" />
         </div>
         <h2 className="text-4xl font-bold text-foreground mb-3">Спасибо!</h2>
         <p className="text-xl text-muted-foreground">Ваш отзыв очень важен для нас</p>
@@ -132,7 +132,7 @@ export const NPSSurvey = () => {
             size="lg"
             className={cn(
               "w-full h-14 lg:h-16 text-lg lg:text-xl font-semibold rounded-2xl shadow-lg transition-all duration-300",
-              "bg-gradient-to-r from-[hsl(320,85%,55%)] to-[hsl(270,60%,60%)] hover:shadow-xl hover:scale-[1.01]",
+              "bg-gradient-to-r from-primary to-secondary hover:shadow-xl hover:scale-[1.01]",
               "disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
             )}
           >

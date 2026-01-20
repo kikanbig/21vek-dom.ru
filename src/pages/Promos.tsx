@@ -36,7 +36,7 @@ const promos: Promo[] = [
     subtitle: 'Матрас + наматрасник + подушки',
     description: 'Обновите спальное место с матрасом Lagoma и качественными аксессуарами',
     image: setConvenient,
-    discount: 'до 10%',
+    discount: 'до 15%',
     link: '/sets/convenient',
   },
   {
@@ -45,7 +45,7 @@ const promos: Promo[] = [
     subtitle: 'Детский матрас + аксессуары',
     description: 'Забота о здоровье ребёнка: ортопедический матрас и гипоаллергенные аксессуары',
     image: setKids,
-    discount: 'до 10%',
+    discount: 'до 15%',
     link: '/sets/kids',
   },
   {
@@ -54,7 +54,7 @@ const promos: Promo[] = [
     subtitle: 'Стол + стулья + посуда для сервировки',
     description: 'Полный комплект для обеденной зоны с красивой посудой JEWEL',
     image: setDining1,
-    discount: 'до 10%',
+    discount: 'до 15%',
     link: '/sets/dining-1',
   },
   {
@@ -63,7 +63,7 @@ const promos: Promo[] = [
     subtitle: 'Стол + стулья + посуда для готовки',
     description: 'Обеденная группа с профессиональной посудой Lara для кулинаров',
     image: setDining2,
-    discount: 'до 10%',
+    discount: 'до 15%',
     link: '/sets/dining-2',
   },
   {
@@ -72,7 +72,7 @@ const promos: Promo[] = [
     subtitle: 'Текстиль + посуда + мебель',
     description: 'Универсальный набор: выбирайте из всего ассортимента 21vek.by ДОМ',
     image: setPractical,
-    discount: 'до 10%',
+    discount: 'до 15%',
     link: '/sets/practical',
   },
 ];

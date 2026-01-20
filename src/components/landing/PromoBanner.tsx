@@ -44,7 +44,7 @@ const banners: Banner[] = [
     title: 'Сет «Обеденный»',
     subtitle: 'Стол + стулья + посуда для сервировки',
     description: 'Стол, 4 стула и набор посуды JEWEL (16 предметов) для праздничных ужинов',
-    discount: '-10%',
+    discount: '-15%',
     link: '/sets/dining-1',
   },
   {
@@ -53,7 +53,7 @@ const banners: Banner[] = [
     title: 'Сет «Обеденный+»',
     subtitle: 'Стол + стулья + посуда для приготовления',
     description: 'Стол, 4 стула и профессиональные кастрюли/сковородки Lara для кулинаров',
-    discount: '-10%',
+    discount: '-15%',
     link: '/sets/dining-2',
   },
 ];

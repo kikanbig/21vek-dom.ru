@@ -31,8 +31,6 @@ export const Header = () => {
             <div className="hidden md:flex items-center gap-6">
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
-                <a href="tel:+375447833254" className="hover:text-white transition-colors">+375 44 783 32 54</a>
-                <span className="text-white/50">|</span>
                 <a href="tel:+375447829302" className="hover:text-white transition-colors">+375 44 782 93 02</a>
                 <span className="text-white/50">|</span>
                 <a href="tel:+375447826715" className="hover:text-white transition-colors">+375 44 782 67 15</a>
@@ -88,7 +86,6 @@ export const Header = () => {
                   <Phone className="h-4 w-4" />
                   <span>Телефоны:</span>
                 </div>
-                <a href="tel:+375447833254" className="ml-6 hover:text-foreground">+375 44 783 32 54</a>
                 <a href="tel:+375447829302" className="ml-6 hover:text-foreground">+375 44 782 93 02</a>
                 <a href="tel:+375447826715" className="ml-6 hover:text-foreground">+375 44 782 67 15</a>
               </div>

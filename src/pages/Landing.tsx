@@ -5,6 +5,7 @@ import { PromoBanner } from '@/components/landing/PromoBanner';
 import { BestsellersSection } from '@/components/landing/BestsellersSection';
 import { ProductCatalog } from '@/components/catalog/ProductCatalog';
 import { PromoGrid } from '@/components/landing/PromoGrid';
+import { StoreLocation } from '@/components/landing/StoreLocation';
 import { InspirationSection } from '@/components/landing/InspirationSection';
 
 const Landing = () => {
@@ -23,6 +24,9 @@ const Landing = () => {
         
         {/* Акции */}
         <PromoGrid />
+        
+        {/* Как добраться */}
+        <StoreLocation />
         
         {/* Каталог товаров */}
         <ProductCatalog />

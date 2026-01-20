@@ -31,7 +31,7 @@ const promos: Promo[] = [
     title: 'Удобный',
     subtitle: 'Матрас + наматрасник + подушки',
     image: setConvenient,
-    discount: 'до 10%',
+    discount: 'до 15%',
     link: '/sets/convenient',
   },
   {
@@ -39,7 +39,7 @@ const promos: Promo[] = [
     title: 'Детский',
     subtitle: 'Детский матрас + аксессуары',
     image: setKids,
-    discount: 'до 10%',
+    discount: 'до 15%',
     link: '/sets/kids',
   },
   {
@@ -47,7 +47,7 @@ const promos: Promo[] = [
     title: 'Обеденный',
     subtitle: 'Стол + стулья + посуда',
     image: setDining1,
-    discount: 'до 10%',
+    discount: 'до 15%',
     link: '/sets/dining-1',
   },
   {
@@ -55,7 +55,7 @@ const promos: Promo[] = [
     title: 'Обеденный+',
     subtitle: 'Стол + стулья + кастрюли',
     image: setDining2,
-    discount: 'до 10%',
+    discount: 'до 15%',
     link: '/sets/dining-2',
   },
   {
@@ -63,7 +63,7 @@ const promos: Promo[] = [
     title: 'Практичный',
     subtitle: 'Текстиль + посуда + мебель',
     image: setPractical,
-    discount: 'до 10%',
+    discount: 'до 15%',
     link: '/sets/practical',
   },
 ];

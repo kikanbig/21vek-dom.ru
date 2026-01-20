@@ -4,7 +4,7 @@ import { CategoryGrid } from '@/components/CategoryGrid';
 import { ProductsSection } from '@/components/ProductsSection';
 import { Footer } from '@/components/Footer';
 
-const Shop = () => {
+const Index = () => {
   return (
     <div className="min-h-screen">
       <Header />
@@ -18,4 +18,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default Index;

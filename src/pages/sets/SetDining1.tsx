@@ -1,9 +1,12 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { ArrowLeft, Check, Sparkles } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import setImage from '@/assets/promos/set-dining-1.jpg';
+import tableImage from '@/assets/sets/set-dining-table.jpg';
+import chairsImage from '@/assets/sets/set-dining-chairs.jpg';
+import dishesImage from '@/assets/sets/set-dining-dishes.jpg';
 
 const SetDining1 = () => {
   const items = [
@@ -12,18 +15,21 @@ const SetDining1 = () => {
       description: 'Любая модель из ассортимента 21vek.by ДОМ',
       quantity: 1,
       discount: '10%',
+      image: tableImage,
     },
     {
       name: 'Стул обеденный/для гостиной',
       description: 'Любая модель из ассортимента 21vek.by ДОМ',
       quantity: 4,
       discount: '10%',
+      image: chairsImage,
     },
     {
       name: 'Набор посуды для сервировки',
       description: 'JEWEL Аквамарин или JEWEL Жасмин — 16 предметов',
       quantity: 1,
-      discount: '10%',
+      discount: '15%',
+      image: dishesImage,
     },
   ];
 
@@ -54,10 +60,6 @@ const SetDining1 = () => {
             {/* Content */}
             <div className="space-y-6">
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
-                  <Sparkles className="w-4 h-4" />
-                  Для всей семьи
-                </div>
                 <h1 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
                   Сет «Обеденный» с посудой для сервировки
                 </h1>
@@ -65,7 +67,7 @@ const SetDining1 = () => {
                   Создайте уютное пространство для семейных обедов и праздничных ужинов! 
                   Стильный обеденный стол, 4 элегантных стула и роскошный набор посуды JEWEL 
                   станут украшением вашей столовой. 
-                  <span className="text-primary font-semibold"> Выгода 10% на всё!</span>
+                  <span className="text-yellow-500 font-semibold"> Выгода до 15%!</span>
                 </p>
               </div>
 
@@ -74,28 +76,37 @@ const SetDining1 = () => {
                 <h2 className="text-xl font-semibold text-foreground">
                   Что входит в сет
                 </h2>
-                <div className="space-y-3">
+                <div className="space-y-4">
                   {items.map((item, index) => (
                     <div
                       key={index}
-                      className="flex items-start gap-4 p-4 bg-muted/50 rounded-xl"
+                      className="flex flex-col sm:flex-row gap-4 p-4 bg-card border border-border rounded-2xl hover:border-primary/30 transition-colors"
                     >
-                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <Check className="w-4 h-4 text-primary" />
+                      {/* Image Preview */}
+                      <div className="sm:w-40 md:w-48 flex-shrink-0">
+                        <div className="aspect-[16/10] rounded-xl overflow-hidden bg-muted">
+                          <img 
+                            src={item.image} 
+                            alt={item.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
                       </div>
-                      <div className="flex-1">
-                        <div className="flex items-center justify-between gap-2">
-                          <h3 className="font-medium text-foreground">
+                      
+                      {/* Content */}
+                      <div className="flex-1 flex flex-col justify-center">
+                        <div className="flex items-start justify-between gap-3 mb-2">
+                          <h3 className="text-lg md:text-xl font-semibold text-foreground">
                             {item.name}
                           </h3>
-                          <span className="text-sm font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded">
+                          <span className="text-base font-bold text-white bg-red-500 px-3 py-1 rounded-lg whitespace-nowrap">
                             -{item.discount}
                           </span>
                         </div>
-                        <p className="text-sm text-muted-foreground mt-1">
+                        <p className="text-base text-muted-foreground">
                           {item.description}
                         </p>
-                        <p className="text-xs text-muted-foreground mt-1">
+                        <p className="text-sm text-muted-foreground mt-2">
                           Количество: <span className="font-semibold text-foreground">{item.quantity} шт.</span>
                         </p>
                       </div>
@@ -106,8 +117,8 @@ const SetDining1 = () => {
 
               {/* CTA */}
               <div className="pt-4 space-y-4">
-                <p className="text-sm text-muted-foreground">
-                  * Скидка предоставляется при покупке сета целиком
+                <p className="text-base font-bold text-foreground">
+                  Скидки предоставляются только при покупке всех товаров вместе.
                 </p>
                 <Button size="lg" className="w-full md:w-auto" asChild>
                   <a href="tel:+375447829302">Получить консультацию</a>
