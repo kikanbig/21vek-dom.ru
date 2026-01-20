@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import type { ImgHTMLAttributes } from "react";
 import { getProxiedImageUrl, type ImageSize } from "@/lib/imageProxy";
 import { cn } from "@/lib/utils";
@@ -33,8 +33,12 @@ export function SmartProductImage({
 
   const [src, setSrc] = useState(previewSrc ?? mainSrc);
   const [isLoading, setIsLoading] = useState(true);
+  const triedFallbackRef = useRef(false);
 
   useEffect(() => {
+    // Reset fallback state when originalSrc changes
+    triedFallbackRef.current = false;
+    
     // For big images, check if main is already cached
     if (size === "big" && originalSrc) {
       const testImg = new Image();
@@ -51,6 +55,13 @@ export function SmartProductImage({
   }, [previewSrc, mainSrc, size, originalSrc]);
 
   const handleError: React.ReactEventHandler<HTMLImageElement> = (e) => {
+    // If proxy failed, try original URL directly (for mobile browsers)
+    if (!triedFallbackRef.current && originalSrc && src !== originalSrc) {
+      triedFallbackRef.current = true;
+      setSrc(originalSrc);
+      return;
+    }
+    
     setSrc("/placeholder.svg");
     setIsLoading(false);
     onError?.(e);

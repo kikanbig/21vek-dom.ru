@@ -14,8 +14,9 @@ export function getProxiedImageUrl(
   }
   
   // For 21vek.by images (cdn21vek.by, static.21vek.by, etc.):
-  // Always use proxy to avoid mobile hotlinking issues with referrer policy
-  if (originalUrl.includes('21vek.by')) {
+  // Use proxy to avoid mobile hotlinking issues with referrer policy
+  // But only if SUPABASE_URL is properly configured
+  if (originalUrl.includes('21vek.by') && SUPABASE_URL) {
     return `${SUPABASE_URL}/functions/v1/proxy-image?url=${encodeURIComponent(originalUrl)}&size=${size}`;
   }
   
