@@ -89,8 +89,10 @@ export function SmartProductImage({
           objectFit === "contain" ? "object-contain" : "object-cover",
           isLoading ? "opacity-0" : "opacity-100"
         )}
-        referrerPolicy="no-referrer"
+        crossOrigin="anonymous"
+        referrerPolicy="origin"
         decoding="async"
+        loading="lazy"
         {...imgProps}
         onError={handleError}
         onLoad={handleLoad}
