@@ -13,28 +13,28 @@ const SetPractical = () => {
   const items = [
     {
       name: 'Текстиль',
-      description: 'Любые товары из ассортимента витрины 21vek.by ДОМ',
+      description: 'Любые товары из ассортимента 21vek.by и 21vek.by ДОМ',
       quantity: 4,
       discount: '10%',
       image: textileImage,
     },
     {
       name: 'Посуда для сервировки',
-      description: 'Любые товары из ассортимента витрины 21vek.by ДОМ поштучно',
+      description: 'Любые товары из ассортимента 21vek.by и 21vek.by ДОМ поштучно',
       quantity: 4,
       discount: '15%',
       image: dishesImage,
     },
     {
       name: 'Сантехника',
-      description: 'Любой товар из ассортимента витрины 21vek.by ДОМ',
+      description: 'Любой товар из ассортимента 21vek.by и 21vek.by ДОМ',
       quantity: 1,
       discount: '15%',
       image: plumbingImage,
     },
     {
       name: 'Любой элемент мебели',
-      description: 'Весь ассортимент мебели 21vek.by ДОМ на ваш выбор',
+      description: 'Весь ассортимент мебели 21vek.by и 21vek.by ДОМ на ваш выбор',
       quantity: 1,
       discount: '10%',
       image: furnitureImage,
