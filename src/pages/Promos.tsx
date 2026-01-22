@@ -1,8 +1,9 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { Percent, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+import promosHero from '@/assets/banners/promos-hero-opt.jpg';
 import setComfortable from '@/assets/promos/set-comfortable-opt.jpg';
 import setConvenient from '@/assets/promos/set-convenient-opt.jpg';
 import setKids from '@/assets/promos/set-kids-opt.jpg';
@@ -82,16 +83,30 @@ const Promos = () => {
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
       <main className="flex-1">
-        <div className="container mx-auto px-4 py-8">
-          {/* Header */}
-          <div className="mb-8">
-            <h1 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-              Все акции
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl">
-              Выбирайте готовые комплекты товаров со скидкой — выгоднее, чем покупать по отдельности!
-            </p>
+        {/* Hero Header */}
+        <div className="container mx-auto px-4 py-8 md:py-12">
+          <div className="relative overflow-hidden rounded-3xl">
+            {/* Background image */}
+            <img 
+              src={promosHero} 
+              alt="" 
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            {/* Overlay for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
+            
+            <div className="relative p-8 md:p-12 lg:p-16 text-left">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-4 tracking-tight">
+                Все акции
+              </h1>
+              <p className="text-lg md:text-xl font-medium text-white/90 max-w-xl leading-relaxed">
+                Готовые комплекты со скидкой — выгоднее, чем по отдельности
+              </p>
+            </div>
           </div>
+        </div>
+
+        <div className="container mx-auto px-4">
 
           {/* Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -113,8 +128,7 @@ const Promos = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   
                   {/* Discount badge */}
-                  <div className="absolute top-4 right-4 flex items-center gap-1 bg-primary text-primary-foreground px-3 py-1.5 rounded-lg text-sm font-bold">
-                    <Percent className="w-4 h-4" />
+                  <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1.5 rounded-lg text-sm font-bold">
                     {promo.discount}
                   </div>
                 </div>
