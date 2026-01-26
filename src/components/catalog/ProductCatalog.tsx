@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { ProductCard } from "./ProductCard";
 import { ProductModal } from "./ProductModal";
@@ -6,6 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
+// Fisher-Yates shuffle
+const shuffleArray = <T,>(array: T[]): T[] => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+};
 
 interface Product {
   id: string;
@@ -78,8 +87,9 @@ export const ProductCatalog = () => {
         description: "Не удалось загрузить товары",
         variant: "destructive",
       });
+      setProducts([]);
     } else {
-      setProducts(data || []);
+      setProducts(shuffleArray(data || []));
       setVisibleCount(24);
     }
     setLoading(false);
