@@ -3,33 +3,33 @@ import { Footer } from '@/components/Footer';
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import setImage from '@/assets/promos/set-dining-2.jpg';
+import setImage from '@/assets/promos/set-kitchen-light-opt.jpg';
+import kitchenFacadeImage from '@/assets/sets/set-kitchen-facade.jpg';
 import tableImage from '@/assets/sets/set-dining-table.jpg';
-import chairsImage from '@/assets/sets/set-dining-chairs.jpg';
-import cookwareImage from '@/assets/sets/set-dining-cookware.jpg';
+import appliancesImage from '@/assets/sets/set-kitchen-appliances.jpg';
 
-const SetDining2 = () => {
+const SetKitchenLight = () => {
   const items = [
     {
-      name: 'Стол для гостиной',
-      description: 'Любая модель из ассортимента 21vek.by ДОМ',
+      name: 'Кухня',
+      description: 'Все модели кухонь из ассортимента 21vek.by ДОМ',
       quantity: 1,
       discount: '10%',
+      image: kitchenFacadeImage,
+    },
+    {
+      name: 'Стол обеденный/для гостиной',
+      description: 'Все модели столов из ассортимента 21vek.by ДОМ',
+      quantity: 1,
+      discount: '15%',
       image: tableImage,
     },
     {
-      name: 'Стул обеденный/для гостиной',
-      description: 'Любая модель из ассортимента 21vek.by ДОМ',
-      quantity: 4,
-      discount: '10%',
-      image: chairsImage,
-    },
-    {
-      name: 'Набор посуды для приготовления',
-      description: 'Кастрюли Lara Симфония или сковородки Lara LR01-300',
+      name: 'Техника для кухни',
+      description: 'Любая техника для кухни из ассортимента 21vek.by ДОМ',
       quantity: 1,
-      discount: '15%',
-      image: cookwareImage,
+      discount: '10%',
+      image: appliancesImage,
     },
   ];
 
@@ -41,9 +41,9 @@ const SetDining2 = () => {
           {/* Breadcrumb */}
           <Link
             to="/promos"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-6"
+            className="inline-flex items-center gap-2 bg-primary/10 text-primary hover:bg-primary/20 transition-all px-4 py-2 rounded-lg font-medium mb-6"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-5 h-5" />
             Все акции
           </Link>
 
@@ -52,7 +52,7 @@ const SetDining2 = () => {
             <div className="aspect-square rounded-2xl overflow-hidden bg-muted">
               <img
                 src={setImage}
-                alt="Сет Обеденный для кулинаров"
+                alt="Сет Кухня Лайт"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -61,13 +61,34 @@ const SetDining2 = () => {
             <div className="space-y-6">
               <div>
                 <h1 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-                  Сет «Обеденный» с посудой для приготовления
+                  Сет «Кухня Лайт»
                 </h1>
-                <p className="text-lg text-muted-foreground">
-                  Идеальный выбор для любителей готовить! Элегантная обеденная группа 
-                  из стола и 4 стульев в комплекте с профессиональной посудой Lara — 
-                  кастрюлями или сковородками премиум-класса. 
-                  <span className="text-yellow-500 font-semibold"> Экономия до 15%!</span>
+                <p className="text-xl font-semibold text-primary mb-3">
+                  Магия СЕТА в 21vek.by ДОМ! ✨
+                </p>
+                <p className="text-lg text-muted-foreground mb-4">
+                  Выбирайте любую кухню, любой стол и любую технику из нашего ассортимента. 
+                  При покупке этих товаров вместе ваша выгода составит:
+                </p>
+                <ul className="space-y-2 text-lg mb-4">
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary font-bold">•</span>
+                    <span><span className="font-semibold text-foreground">-10%</span> на мебель для кухни</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary font-bold">•</span>
+                    <span><span className="font-semibold text-foreground">-15%</span> на обеденный стол</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary font-bold">•</span>
+                    <span><span className="font-semibold text-foreground">-10%</span> на бытовую технику</span>
+                  </li>
+                </ul>
+                <p className="text-base text-muted-foreground">
+                  📍 <span className="font-medium text-foreground">21vek.by ДОМ</span>, ул. Маяковского 6, ТРЦ «Червенский»
+                </p>
+                <p className="text-lg text-primary font-medium mt-3">
+                  Приходи, смотри и заказывай свой идеальный набор!
                 </p>
               </div>
 
@@ -133,4 +154,4 @@ const SetDining2 = () => {
   );
 };
 
-export default SetDining2;
+export default SetKitchenLight;

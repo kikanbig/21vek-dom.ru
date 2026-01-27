@@ -107,7 +107,7 @@ const SetPractical = () => {
                           <h3 className="text-lg md:text-xl font-semibold text-foreground">
                             {item.name}
                           </h3>
-                          <span className="text-base font-bold text-white bg-red-500 px-3 py-1 rounded-lg whitespace-nowrap">
+                          <span className="text-base font-bold bg-destructive text-destructive-foreground px-3 py-1 rounded-lg whitespace-nowrap shadow-lg">
                             -{item.discount}
                           </span>
                         </div>

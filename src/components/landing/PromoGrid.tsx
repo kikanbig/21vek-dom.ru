@@ -7,6 +7,7 @@ import setKids from '@/assets/promos/set-kids-opt.jpg';
 import setDining1 from '@/assets/promos/set-dining-1-opt.jpg';
 import setDining2 from '@/assets/promos/set-dining-2-opt.jpg';
 import setPractical from '@/assets/promos/set-practical-opt.jpg';
+import setKitchenLight from '@/assets/promos/set-kitchen-light-opt.jpg';
 
 interface Promo {
   id: number;
@@ -17,7 +18,15 @@ interface Promo {
   link: string;
 }
 
-const promos: Promo[] = [
+const allPromos: Promo[] = [
+  {
+    id: 7,
+    title: 'Кухня Лайт',
+    subtitle: 'Кухня + стол + техника',
+    image: setKitchenLight,
+    discount: 'до 15%',
+    link: '/sets/kitchen-light',
+  },
   {
     id: 1,
     title: 'Комфортный',
@@ -68,6 +77,9 @@ const promos: Promo[] = [
   },
 ];
 
+// Show only first 6 promos on landing page
+const promos = allPromos.slice(0, 6);
+
 export const PromoGrid = () => {
   return (
     <section className="bg-background py-10">
@@ -105,7 +117,7 @@ export const PromoGrid = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               
               {/* Discount badge */}
-              <div className="absolute top-3 right-3 flex items-center gap-1 bg-primary text-primary-foreground px-2 py-1 rounded-lg text-xs font-bold">
+              <div className="absolute top-3 right-3 flex items-center gap-1 bg-destructive text-destructive-foreground px-2 py-1 rounded-lg text-xs font-bold shadow-lg">
                 <Percent className="w-3 h-3" />
                 {promo.discount}
               </div>

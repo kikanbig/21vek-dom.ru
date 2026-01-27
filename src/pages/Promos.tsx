@@ -1,15 +1,16 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { ArrowRight } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-import promosHero from '@/assets/banners/promos-hero-opt.jpg';
+import puzzleBanner from '@/assets/banners/puzzle-pastel-opt.jpg';
 import setComfortable from '@/assets/promos/set-comfortable-opt.jpg';
 import setConvenient from '@/assets/promos/set-convenient-opt.jpg';
 import setKids from '@/assets/promos/set-kids-opt.jpg';
 import setDining1 from '@/assets/promos/set-dining-1-opt.jpg';
 import setDining2 from '@/assets/promos/set-dining-2-opt.jpg';
 import setPractical from '@/assets/promos/set-practical-opt.jpg';
+import setKitchenLight from '@/assets/promos/set-kitchen-light-opt.jpg';
 
 interface Promo {
   id: number;
@@ -22,6 +23,15 @@ interface Promo {
 }
 
 const promos: Promo[] = [
+  {
+    id: 7,
+    title: 'Кухня Лайт',
+    subtitle: 'Кухня + стол + техника',
+    description: 'Готовая кухня с обеденным столом и бытовой техникой по выгодной цене',
+    image: setKitchenLight,
+    discount: 'до 15%',
+    link: '/sets/kitchen-light',
+  },
   {
     id: 1,
     title: 'Комфортный',
@@ -83,71 +93,71 @@ const Promos = () => {
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
       <main className="flex-1">
-        {/* Hero Header */}
         <div className="container mx-auto px-4 py-8 md:py-12">
-          <div className="relative overflow-hidden rounded-3xl">
+          {/* Breadcrumb */}
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 bg-primary/10 text-primary hover:bg-primary/20 transition-all px-4 py-2 rounded-lg font-medium mb-6"
+          >
+            <ArrowLeft className="w-5 h-5" />
+            На главную
+          </Link>
+
+          {/* Definition Banner */}
+          <div className="relative overflow-hidden rounded-3xl mb-8">
             {/* Background image */}
             <img 
-              src={promosHero} 
+              src={puzzleBanner} 
               alt="" 
               className="absolute inset-0 w-full h-full object-cover"
             />
             {/* Overlay for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
+            <div className="absolute inset-0 bg-black/40" />
             
-            <div className="relative p-8 md:p-12 lg:p-16 text-left">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-4 tracking-tight">
-                Все акции
-              </h1>
-              <p className="text-lg md:text-xl font-medium text-white/90 max-w-xl leading-relaxed">
-                Готовые комплекты со скидкой — выгоднее, чем по отдельности
+            <div className="relative p-8 md:p-12 lg:p-16 text-center">
+              <p className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-white mb-4 leading-relaxed">
+                <span className="text-white/90">Сет</span> — это продуманная комбинация товаров,<br className="hidden md:block" /> собранная в одно выгодное предложение.
+              </p>
+              <p className="text-lg md:text-xl font-bold text-white mb-4">
+                📍 21vek.by ДОМ, ул. Маяковского 6, ТРЦ «Червенский»
+              </p>
+              <p className="text-xl md:text-2xl font-semibold text-white">
+                Приходи, сравнивай и заказывай свой идеальный набор!
               </p>
             </div>
           </div>
-        </div>
-
-        <div className="container mx-auto px-4">
 
           {/* Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pb-8">
             {promos.map((promo) => (
               <Link
                 to={promo.link}
                 key={promo.id}
-                className="group relative rounded-2xl overflow-hidden bg-background border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg"
+                className="group relative rounded-xl overflow-hidden aspect-square cursor-pointer bg-background"
               >
-                {/* Image */}
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img
-                    src={promo.image}
-                    alt={promo.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  
-                  {/* Discount badge */}
-                  <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1.5 rounded-lg text-sm font-bold">
-                    {promo.discount}
-                  </div>
+                <img
+                  src={promo.image}
+                  alt={promo.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+                
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                
+                {/* Discount badge */}
+                <div className="absolute top-3 right-3 bg-destructive text-destructive-foreground px-2.5 py-1 rounded-lg text-sm font-bold shadow-lg">
+                  {promo.discount}
                 </div>
                 
                 {/* Content */}
-                <div className="p-5">
-                  <h3 className="text-xl font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <h3 className="text-white font-semibold text-base md:text-lg mb-1">
                     Сет «{promo.title}»
                   </h3>
-                  <p className="text-sm text-primary font-medium mb-2">
+                  <p className="text-white/80 text-sm line-clamp-2">
                     {promo.subtitle}
                   </p>
-                  <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
-                    {promo.description}
-                  </p>
-                  <div className="flex items-center gap-2 text-primary font-medium text-sm">
-                    Подробнее
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </div>
                 </div>
               </Link>
             ))}
