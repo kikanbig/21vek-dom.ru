@@ -63,7 +63,7 @@ const SetKitchenLight = () => {
                 <h1 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
                   Сет «Кухня Лайт»
                 </h1>
-                <p className="text-xl font-semibold text-primary mb-3">
+                <p className="inline-block text-xl font-semibold text-highlight-foreground bg-highlight px-4 py-2 rounded-full mb-3">
                   Магия СЕТА в 21vek.by ДОМ! ✨
                 </p>
                 <p className="text-lg text-muted-foreground mb-4">
@@ -87,7 +87,7 @@ const SetKitchenLight = () => {
                 <p className="text-base text-muted-foreground">
                   📍 <span className="font-medium text-foreground">21vek.by ДОМ</span>, ул. Маяковского 6, ТРЦ «Червенский»
                 </p>
-                <p className="text-lg text-primary font-medium mt-3">
+                <p className="inline-block text-lg text-highlight-foreground bg-highlight font-medium mt-3 px-4 py-2 rounded-full">
                   Приходи, смотри и заказывай свой идеальный набор!
                 </p>
               </div>

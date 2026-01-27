@@ -41,9 +41,9 @@ const SetDining1 = () => {
           {/* Breadcrumb */}
           <Link
             to="/promos"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-6"
+            className="inline-flex items-center gap-2 bg-primary/10 text-primary hover:bg-primary/20 transition-all px-4 py-2 rounded-lg font-medium mb-6"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-5 h-5" />
             Все акции
           </Link>
 
@@ -63,11 +63,16 @@ const SetDining1 = () => {
                 <h1 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
                   Сет «Обеденный» с посудой для сервировки
                 </h1>
+                <p className="inline-block text-xl font-semibold text-highlight-foreground bg-highlight px-4 py-2 rounded-full mb-3">
+                  Магия СЕТА в 21vek.by ДОМ! ✨
+                </p>
                 <p className="text-lg text-muted-foreground">
                   Создайте уютное пространство для семейных обедов и праздничных ужинов! 
                   Стильный обеденный стол, 4 элегантных стула и роскошный набор посуды JEWEL 
-                  станут украшением вашей столовой. 
-                  <span className="text-yellow-500 font-semibold"> Выгода до 15%!</span>
+                  станут украшением вашей столовой. Выгода до 15%!
+                </p>
+                <p className="inline-block text-lg text-highlight-foreground bg-highlight font-medium mt-3 px-4 py-2 rounded-full">
+                  Приходи, смотри и заказывай свой идеальный набор!
                 </p>
               </div>
 
