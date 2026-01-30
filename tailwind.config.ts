@@ -61,6 +61,11 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        heart: {
+          empty: "hsl(var(--heart-empty))",
+          filled: "hsl(var(--heart-filled))",
+          glow: "hsl(var(--heart-glow))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -92,10 +97,22 @@ export default {
             height: "0",
           },
         },
+        "heart-fill": {
+          "0%": {
+            transform: "scale(1)",
+          },
+          "50%": {
+            transform: "scale(1.2)",
+          },
+          "100%": {
+            transform: "scale(1)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "heart-fill": "heart-fill 0.4s ease-out",
       },
     },
   },
