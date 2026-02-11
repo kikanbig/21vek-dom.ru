@@ -98,15 +98,9 @@ export default {
           },
         },
         "heart-fill": {
-          "0%": {
-            transform: "scale(1)",
-          },
-          "50%": {
-            transform: "scale(1.2)",
-          },
-          "100%": {
-            transform: "scale(1)",
-          },
+          "0%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.2)" },
+          "100%": { transform: "scale(1)" },
         },
       },
       animation: {

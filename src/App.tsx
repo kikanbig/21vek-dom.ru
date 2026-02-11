@@ -14,6 +14,7 @@ import SetDining1 from "./pages/sets/SetDining1";
 import SetDining2 from "./pages/sets/SetDining2";
 import SetPractical from "./pages/sets/SetPractical";
 import SetKitchenLight from "./pages/sets/SetKitchenLight";
+import Promo14 from "./pages/Promo14";
 import NPS from "./pages/NPS";
 
 const queryClient = new QueryClient();
@@ -35,6 +36,7 @@ const App = () => (
           <Route path="/sets/dining-2" element={<SetDining2 />} />
           <Route path="/sets/practical" element={<SetPractical />} />
           <Route path="/sets/kitchen-light" element={<SetKitchenLight />} />
+          <Route path="/promo14" element={<Promo14 />} />
           <Route path="/nps" element={<NPS />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

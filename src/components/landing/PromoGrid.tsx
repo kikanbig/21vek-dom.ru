@@ -1,6 +1,7 @@
 import { ArrowRight, Percent } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+import promoValentine from '@/assets/banners/promo-valentine.jpg';
 import setComfortable from '@/assets/promos/set-comfortable-opt.jpg';
 import setConvenient from '@/assets/promos/set-convenient-opt.jpg';
 import setKids from '@/assets/promos/set-kids-opt.jpg';
@@ -19,6 +20,14 @@ interface Promo {
 }
 
 const allPromos: Promo[] = [
+  {
+    id: 8,
+    title: 'Неделя влюблённых',
+    subtitle: 'Скидка 20% на все матрасы',
+    image: promoValentine,
+    discount: '-20%',
+    link: '/promo14',
+  },
   {
     id: 7,
     title: 'Кухня Лайт',

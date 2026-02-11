@@ -1,7 +1,6 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-import promoBed from '@/assets/banners/promo-bed.jpg';
 import setComfortable from '@/assets/promos/set-comfortable-opt.jpg';
 import setDining1 from '@/assets/promos/set-dining-1-opt.jpg';
 import setDining2 from '@/assets/promos/set-dining-2-opt.jpg';
@@ -19,16 +18,6 @@ interface Banner {
 }
 
 const banners: Banner[] = [
-  {
-    id: 1,
-    image: promoBed,
-    title: 'Специальное предложение только до 31 января',
-    subtitle: '21vek.by ДОМ!',
-    description: 'Преобразите свою спальню выгодно: тахта Involux Sale 90x200 + матрас LAGOMA Ilta 90x200x18 — всего за 670 рублей!',
-    badge: '670 руб.',
-    link: '/catalog',
-    isSpecialOffer: true,
-  },
   {
     id: 2,
     image: setComfortable,
