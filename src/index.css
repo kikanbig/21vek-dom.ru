@@ -101,8 +101,6 @@ All colors MUST be HSL.
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
-
-  /* NPS Heart glow effect */
   .heart-glow {
     filter: drop-shadow(0 0 8px hsl(var(--heart-glow) / 0.6));
   }

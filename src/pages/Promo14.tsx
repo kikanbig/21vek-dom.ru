@@ -19,8 +19,8 @@ const Promo14 = () => {
               className="w-full h-full object-cover"
             />
             {/* Text overlay */}
-            <div className="absolute inset-0 bg-gradient-to-l from-black/70 via-black/40 to-transparent flex items-center justify-end">
-              <div className="px-6 sm:px-10 md:px-16 max-w-xl text-right">
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent flex items-center justify-start">
+              <div className="px-6 sm:px-10 md:px-16 max-w-xl text-left">
                 <span className="inline-block px-4 py-1.5 mb-3 text-sm sm:text-base font-bold rounded-full bg-destructive text-destructive-foreground shadow-lg">
                   13–22 февраля
                 </span>

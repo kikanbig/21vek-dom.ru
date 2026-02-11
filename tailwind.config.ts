@@ -97,16 +97,19 @@ export default {
             height: "0",
           },
         },
-        "heart-fill": {
-          "0%": { transform: "scale(1)" },
-          "50%": { transform: "scale(1.2)" },
-          "100%": { transform: "scale(1)" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "heart-fill": "heart-fill 0.4s ease-out",
+      },
+      keyframes: {
+        ...require("tailwindcss-animate").keyframes,
+        "heart-fill": {
+          "0%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.2)" },
+          "100%": { transform: "scale(1)" },
+        },
       },
     },
   },
