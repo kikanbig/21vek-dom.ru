@@ -28,7 +28,7 @@ const Promo14 = () => {
                   Неделя влюблённых в&nbsp;21vek.by&nbsp;ДОМ
                 </h1>
                 <p className="text-sm sm:text-lg md:text-xl text-white/90 leading-relaxed">
-                  Скидка <span className="font-bold text-yellow-400">20%</span> на все матрасы в нашем магазине на&nbsp;Маяковского,&nbsp;6
+                  Скидка <span className="font-bold text-yellow-400">20%</span> на все матрасы в нашем магазине на&nbsp;Маяковского,&nbsp;6, ТРЦ&nbsp;«Червенский»
                 </p>
               </div>
             </div>
@@ -61,7 +61,7 @@ const Promo14 = () => {
               <p className="text-lg text-muted-foreground leading-relaxed">
                 С <strong className="text-foreground">13 по 22 февраля</strong> дарим скидку{' '}
                 <strong className="text-destructive">20%</strong> на все матрасы в нашем магазине! 
-                Приходите на Маяковского, 6 — выбирайте матрас мечты по лучшей цене.
+                Приходите на Маяковского, 6 (ТРЦ «Червенский») — выбирайте матрас мечты по лучшей цене.
               </p>
             </div>
 
@@ -78,7 +78,7 @@ const Promo14 = () => {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-destructive font-bold mt-0.5">•</span>
-                  Адрес: г. Минск, ул. Маяковского, 6
+                  Адрес: г. Минск, ул. Маяковского, 6, ТРЦ «Червенский»
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-destructive font-bold mt-0.5">•</span>
