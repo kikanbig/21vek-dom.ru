@@ -28,7 +28,7 @@ const Promo14 = () => {
                   Неделя влюблённых в&nbsp;21vek.by&nbsp;ДОМ
                 </h1>
                 <p className="text-sm sm:text-lg md:text-xl text-white/90 leading-relaxed">
-                  Скидка <span className="font-bold text-yellow-400">20%</span> на все матрасы в нашем магазине на&nbsp;Маяковского,&nbsp;6
+                  Скидка <span className="font-bold text-yellow-400">20%</span> на все матрасы в нашем магазине на&nbsp;Маяковского,&nbsp;6, ТРЦ&nbsp;«Червенский»
                 </p>
               </div>
             </div>
@@ -55,18 +55,18 @@ const Promo14 = () => {
 
           <div className="max-w-3xl space-y-6">
             <div>
-              <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-4">
+              <h2 className="text-2xl md:text-3xl font-heading font-bold text-primary mb-4">
                 💕 Неделя влюблённых в 21vek.by ДОМ!
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 С <strong className="text-foreground">13 по 22 февраля</strong> дарим скидку{' '}
                 <strong className="text-destructive">20%</strong> на все матрасы в нашем магазине! 
-                Приходите на Маяковского, 6 — выбирайте матрас мечты по лучшей цене.
+                Приходите на Маяковского, 6 (ТРЦ «Червенский») — выбирайте матрас мечты по лучшей цене.
               </p>
             </div>
 
             <div className="bg-card border border-border rounded-2xl p-6 space-y-3">
-              <h3 className="text-xl font-semibold text-foreground">Условия акции</h3>
+              <h3 className="text-xl font-semibold text-primary">Условия акции</h3>
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-start gap-2">
                   <span className="text-destructive font-bold mt-0.5">•</span>
@@ -78,7 +78,7 @@ const Promo14 = () => {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-destructive font-bold mt-0.5">•</span>
-                  Адрес: г. Минск, ул. Маяковского, 6
+                  Адрес: г. Минск, ул. Маяковского, 6, ТРЦ «Червенский»
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-destructive font-bold mt-0.5">•</span>
