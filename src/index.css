@@ -42,9 +42,6 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 317 96% 29%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 317 96% 29%;
-    --heart-empty: 270 20% 85%;
-    --heart-filled: 0 85% 50%;
-    --heart-glow: 0 100% 60%;
   }
 
   .dark {
@@ -98,8 +95,5 @@ All colors MUST be HSL.
   }
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
-  }
-  .heart-glow {
-    filter: drop-shadow(0 0 8px hsl(var(--heart-glow) / 0.6));
   }
 }

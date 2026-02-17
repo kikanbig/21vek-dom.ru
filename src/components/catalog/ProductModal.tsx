@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Heart, ExternalLink, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SmartProductImage } from "./SmartProductImage";
-import { useImagePrefetch } from "@/hooks/useImagePrefetch";
 
 interface Product {
   id: string;
@@ -23,7 +22,6 @@ interface ProductModalProps {
 export const ProductModal = ({ product, open, onClose }: ProductModalProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFavorite, setIsFavorite] = useState(false);
-  const { prefetch, clear } = useImagePrefetch();
 
   const images = product?.images?.length
     ? product.images
