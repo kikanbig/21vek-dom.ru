@@ -1,3 +1,6 @@
+# API Server (deployed separately)
+api-server/
+
 # Logs
 logs
 *.log

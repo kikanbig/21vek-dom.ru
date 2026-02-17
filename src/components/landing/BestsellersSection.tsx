@@ -1,14 +1,8 @@
 import { ArrowRight, Heart } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { useEffect, useState, useMemo } from 'react';
-import { supabase } from '@/integrations/supabase/client';
+import { fetchProducts, type Product } from '@/lib/api';
 import { getProxiedImageUrl } from '@/lib/imageProxy';
-
-interface Product {
-  id: string;
-  name: string;
-  main_image: string | null;
-}
 
 // Fisher-Yates shuffle
 const shuffleArray = <T,>(array: T[]): T[] => {
@@ -25,19 +19,17 @@ export const BestsellersSection = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const { data, error } = await supabase
-        .from('products')
-        .select('id, name, main_image')
-        .order('created_at', { ascending: false });
-
-      if (!error && data) {
+    const loadProducts = async () => {
+      try {
+        const data = await fetchProducts();
         setProducts(data);
+      } catch (error) {
+        console.error('Error fetching products:', error);
       }
       setLoading(false);
     };
 
-    fetchProducts();
+    loadProducts();
   }, []);
 
   // Memoize shuffled products to prevent re-shuffle on every render
