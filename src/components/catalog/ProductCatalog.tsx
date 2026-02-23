@@ -63,7 +63,7 @@ export const ProductCatalog = () => {
   useEffect(() => {
     if (products.length === 0) return;
     
-    const prefetchSize = isMobile ? 'mobile' : 'small';
+    const prefetchSize = 'small';
     const nextBatchStart = visibleCount;
     const nextBatchEnd = Math.min(visibleCount + batchSize, products.length);
     const nextBatch = products.slice(nextBatchStart, nextBatchEnd);
@@ -75,7 +75,7 @@ export const ProductCatalog = () => {
         img.src = getProxiedImageUrl(product.main_image, prefetchSize);
       }
     });
-  }, [products, visibleCount, batchSize, isMobile]);
+  }, [products, visibleCount, batchSize]);
 
   return (
     <section className="py-12 bg-background">

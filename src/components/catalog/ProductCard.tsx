@@ -2,7 +2,6 @@ import { Card } from "@/components/ui/card";
 import { SmartProductImage } from "./SmartProductImage";
 import { Heart } from "lucide-react";
 import { useState } from "react";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 interface Product {
   id: string;
@@ -17,7 +16,6 @@ interface ProductCardProps {
 
 export const ProductCard = ({ product, onClick }: ProductCardProps) => {
   const [isFavorite, setIsFavorite] = useState(false);
-  const isMobile = useIsMobile();
 
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -35,7 +33,7 @@ export const ProductCard = ({ product, onClick }: ProductCardProps) => {
           <SmartProductImage
             originalSrc={product.main_image}
             alt={product.name}
-            size={isMobile ? "mobile" : "small"}
+            size="small"
             objectFit="contain"
             className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
             loading="lazy"
