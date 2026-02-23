@@ -3,7 +3,7 @@ import { Footer } from '@/components/Footer';
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-import puzzleBanner from '@/assets/banners/puzzle-pastel-opt.jpg';
+import heroBanner from '@/assets/banners/promos-hero-new-opt.jpg';
 import promoSofas from '@/assets/banners/promo-sofas-banner.jpg';
 import setComfortable from '@/assets/promos/set-comfortable-opt.jpg';
 import setConvenient from '@/assets/promos/set-convenient-opt.jpg';
@@ -117,7 +117,7 @@ const Promos = () => {
           <div className="relative overflow-hidden rounded-3xl mb-8">
             {/* Background image */}
             <img 
-              src={puzzleBanner} 
+              src={heroBanner} 
               alt="" 
               className="absolute inset-0 w-full h-full object-cover"
             />
