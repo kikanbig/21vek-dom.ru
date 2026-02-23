@@ -6,6 +6,7 @@ import { ProductModal } from "./ProductModal";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 // Fisher-Yates shuffle
 const shuffleArray = <T,>(array: T[]): T[] => {
@@ -17,11 +18,16 @@ const shuffleArray = <T,>(array: T[]): T[] => {
   return shuffled;
 };
 
+const DESKTOP_BATCH = 24;
+const MOBILE_BATCH = 12;
+
 export const ProductCatalog = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [visibleCount, setVisibleCount] = useState(24);
+  const isMobile = useIsMobile();
+  const batchSize = isMobile ? MOBILE_BATCH : DESKTOP_BATCH;
+  const [visibleCount, setVisibleCount] = useState(batchSize);
   const { toast } = useToast();
 
   const prefetchedUrlsRef = useRef<Set<string>>(new Set());
@@ -31,7 +37,7 @@ export const ProductCatalog = () => {
     try {
       const data = await fetchProducts();
       setProducts(shuffleArray(data || []));
-      setVisibleCount(24);
+      setVisibleCount(batchSize);
     } catch (error) {
       console.error('Error fetching products:', error);
       toast({
@@ -48,24 +54,28 @@ export const ProductCatalog = () => {
     loadProducts();
   }, []);
 
+  // Reset visible count when switching mobile/desktop
+  useEffect(() => {
+    setVisibleCount((c) => Math.min(c, batchSize));
+  }, [batchSize]);
+
   // Prefetch next batch of images when products change or visibleCount changes
   useEffect(() => {
     if (products.length === 0) return;
     
-    // Prefetch images for the NEXT batch (items visibleCount to visibleCount+24)
+    const prefetchSize = isMobile ? 'mobile' : 'small';
     const nextBatchStart = visibleCount;
-    const nextBatchEnd = Math.min(visibleCount + 24, products.length);
+    const nextBatchEnd = Math.min(visibleCount + batchSize, products.length);
     const nextBatch = products.slice(nextBatchStart, nextBatchEnd);
     
     nextBatch.forEach((product) => {
       if (product.main_image && !prefetchedUrlsRef.current.has(product.main_image)) {
         prefetchedUrlsRef.current.add(product.main_image);
-        // Create a hidden image to prefetch
         const img = new Image();
-        img.src = getProxiedImageUrl(product.main_image, 'small');
+        img.src = getProxiedImageUrl(product.main_image, prefetchSize);
       }
     });
-  }, [products, visibleCount]);
+  }, [products, visibleCount, batchSize, isMobile]);
 
   return (
     <section className="py-12 bg-background">
@@ -104,7 +114,7 @@ export const ProductCatalog = () => {
               <div className="flex justify-center mt-8">
                 <Button
                   variant="outline"
-                  onClick={() => setVisibleCount((c) => Math.min(c + 24, products.length))}
+                  onClick={() => setVisibleCount((c) => Math.min(c + batchSize, products.length))}
                 >
                   Показать ещё
                 </Button>

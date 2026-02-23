@@ -1,6 +1,6 @@
 const API_URL = import.meta.env.VITE_API_URL || '';
 
-export type ImageSize = 'small' | 'big';
+export type ImageSize = 'mobile' | 'small' | 'big';
 
 export function getProxiedImageUrl(
   originalUrl: string | null | undefined,
