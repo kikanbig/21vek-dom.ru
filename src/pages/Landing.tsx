@@ -7,6 +7,7 @@ import { lazy, Suspense } from 'react';
 import { Loader2 } from 'lucide-react';
 
 // Lazy load компоненты ниже fold
+const ProductCatalog = lazy(() => import('@/components/catalog/ProductCatalog').then(m => ({ default: m.ProductCatalog })));
 const VirtualTour = lazy(() => import('@/components/landing/VirtualTour'));
 const StoreLocation = lazy(() => import('@/components/landing/StoreLocation').then(m => ({ default: m.StoreLocation })));
 const InspirationSection = lazy(() => import('@/components/landing/InspirationSection').then(m => ({ default: m.InspirationSection })));
@@ -27,6 +28,13 @@ const Landing = () => {
         
         {/* Акции - загружается сразу (выше fold) */}
         <PromoGrid />
+        
+        {/* Каталог товаров - lazy */}
+        <LazySection minHeight="600px">
+          <Suspense fallback={<LoadingFallback />}>
+            <ProductCatalog />
+          </Suspense>
+        </LazySection>
         
         {/* Виртуальный тур - lazy */}
         <LazySection minHeight="400px">
