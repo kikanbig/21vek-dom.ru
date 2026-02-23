@@ -1,6 +1,7 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
+import promoSofasBanner from '@/assets/banners/promo-sofas-banner.jpg';
 import setComfortable from '@/assets/promos/set-comfortable-opt.jpg';
 import setDining1 from '@/assets/promos/set-dining-1-opt.jpg';
 import setDining2 from '@/assets/promos/set-dining-2-opt.jpg';
@@ -18,6 +19,15 @@ interface Banner {
 }
 
 const banners: Banner[] = [
+  {
+    id: 1,
+    image: promoSofasBanner,
+    title: '−12% на все диваны',
+    subtitle: 'Только до 8 марта',
+    description: 'Угловые, прямые, раскладные — выбирайте свой идеальный диван по лучшей цене в 21vek.by ДОМ',
+    discount: '-12%',
+    link: '/promo14',
+  },
   {
     id: 2,
     image: setComfortable,

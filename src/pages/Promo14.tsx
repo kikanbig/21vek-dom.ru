@@ -3,7 +3,7 @@ import { Footer } from '@/components/Footer';
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import bannerImage from '@/assets/banners/promo-valentine.jpg';
+import bannerImage from '@/assets/banners/promo-sofas-banner.jpg';
 
 const Promo14 = () => {
   return (
@@ -15,20 +15,19 @@ const Promo14 = () => {
           <div className="relative aspect-[16/7] sm:aspect-[16/6] md:aspect-[16/5] overflow-hidden">
             <img
               src={bannerImage}
-              alt="Неделя влюбленных — скидка 20% на матрасы"
+              alt="Скидка 12% на все диваны — только до 8 марта"
               className="w-full h-full object-cover"
             />
-            {/* Text overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent flex items-center justify-start">
               <div className="px-6 sm:px-10 md:px-16 max-w-xl text-left">
                 <span className="inline-block px-4 py-1.5 mb-3 text-sm sm:text-base font-bold rounded-full bg-destructive text-destructive-foreground shadow-lg">
-                  13–22 февраля
+                  25 февраля — 8 марта
                 </span>
                 <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-2 leading-tight">
-                  Неделя влюблённых в&nbsp;21vek.by&nbsp;ДОМ
+                  −12% на&nbsp;все диваны
                 </h1>
                 <p className="text-sm sm:text-lg md:text-xl text-white/90 leading-relaxed">
-                  Скидка <span className="font-bold text-yellow-400">20%</span> на все матрасы в нашем магазине на&nbsp;Маяковского,&nbsp;6, ТРЦ&nbsp;«Червенский»
+                  Только в&nbsp;21vek.by&nbsp;ДОМ на&nbsp;Маяковского,&nbsp;6, ТРЦ&nbsp;«Червенский»
                 </p>
               </div>
             </div>
@@ -56,12 +55,16 @@ const Promo14 = () => {
           <div className="max-w-3xl space-y-6">
             <div>
               <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-4">
-                💕 Неделя влюблённых в 21vek.by ДОМ!
+                🛋️ −12% на все диваны в 21vek.by ДОМ!
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                С <strong className="text-foreground">13 по 22 февраля</strong> дарим скидку{' '}
-                <strong className="text-destructive">20%</strong> на все матрасы в нашем магазине! 
-                Приходите на Маяковского, 6 (ТРЦ «Червенский») — выбирайте матрас мечты по лучшей цене.
+                С <strong className="text-foreground">25 февраля по 8 марта</strong> действует скидка{' '}
+                <strong className="text-destructive">12%</strong> на все диваны на витрине нашего магазина!
+                Угловые, прямые, раскладные — выбирайте свой идеальный диван по лучшей цене.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed mt-3">
+                Приходите в 21vek.by ДОМ, присядьте, оцените комфорт вживую — и забирайте со скидкой.
+                Такие цены бывают редко!
               </p>
             </div>
 
@@ -70,11 +73,11 @@ const Promo14 = () => {
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-start gap-2">
                   <span className="text-destructive font-bold mt-0.5">•</span>
-                  Скидка 20% действует на все матрасы в экспозиции магазина
+                  Скидка 12% действует на все диваны на витрине магазина
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-destructive font-bold mt-0.5">•</span>
-                  Период акции: с 13 по 22 февраля 2026 г.
+                  Период акции: с 25 февраля по 8 марта 2026 г.
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-destructive font-bold mt-0.5">•</span>

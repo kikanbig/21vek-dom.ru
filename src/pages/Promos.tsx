@@ -4,7 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import puzzleBanner from '@/assets/banners/puzzle-pastel-opt.jpg';
-import promoValentine from '@/assets/banners/promo-valentine.jpg';
+import promoSofas from '@/assets/banners/promo-sofas-banner.jpg';
 import setComfortable from '@/assets/promos/set-comfortable-opt.jpg';
 import setConvenient from '@/assets/promos/set-convenient-opt.jpg';
 import setKids from '@/assets/promos/set-kids-opt.jpg';
@@ -26,11 +26,11 @@ interface Promo {
 const promos: Promo[] = [
   {
     id: 8,
-    title: 'Неделя влюблённых',
-    subtitle: 'Скидка 20% на все матрасы',
-    description: 'С 13 по 22 февраля — скидка 20% на все матрасы в магазине на Маяковского, 6',
-    image: promoValentine,
-    discount: '-20%',
+    title: '−12% на диваны',
+    subtitle: 'Только до 8 марта',
+    description: 'С 25 февраля по 8 марта — скидка 12% на все диваны на витрине в 21vek.by ДОМ',
+    image: promoSofas,
+    discount: '-12%',
     link: '/promo14',
   },
   {
@@ -163,7 +163,7 @@ const Promos = () => {
                 {/* Content */}
                 <div className="absolute bottom-0 left-0 right-0 p-4">
                   <h3 className="text-white font-semibold text-base md:text-lg mb-1">
-                    {promo.title.startsWith('Неделя') ? promo.title : `Сет «${promo.title}»`}
+                    {promo.title.startsWith('−12%') ? promo.title : `Сет «${promo.title}»`}
                   </h3>
                   <p className="text-white/80 text-sm line-clamp-2">
                     {promo.subtitle}
