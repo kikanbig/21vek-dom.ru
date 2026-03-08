@@ -11,7 +11,7 @@ export const ArticleCard = ({ article }: ArticleCardProps) => {
       to={`/inspiration/${article.slug}`}
       className="group block"
     >
-      <div className="relative rounded-2xl overflow-hidden aspect-[3/4] mb-3">
+      <div className="relative rounded-2xl overflow-hidden aspect-[3/4] mb-3 bg-neutral-200">
         <img
           src={article.coverImage}
           alt={article.title}

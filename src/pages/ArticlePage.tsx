@@ -30,7 +30,7 @@ const ArticlePage = () => {
       <Header />
       <main className="flex-1">
         {/* Hero */}
-        <div className="relative h-[50vh] md:h-[60vh] overflow-hidden">
+        <div className="relative h-[50vh] md:h-[60vh] overflow-hidden bg-neutral-300">
           <img
             src={article.coverImage}
             alt={article.title}
@@ -53,48 +53,52 @@ const ArticlePage = () => {
         </div>
 
         {/* Content */}
-        <article className="container mx-auto px-4 py-12 md:py-16">
-          <div className="max-w-2xl mx-auto">
+        <article className="container mx-auto px-4 py-12 md:py-20">
+          <div className="max-w-3xl mx-auto">
             {/* Back link */}
             <Link
               to="/inspiration"
-              className="inline-flex items-center gap-2 text-foreground/50 hover:text-foreground transition-colors font-medium mb-10"
+              className="inline-flex items-center gap-2 text-foreground/60 hover:text-foreground transition-colors font-medium mb-12 text-lg"
             >
-              <ArrowLeft className="w-4 h-4" />
+              <ArrowLeft className="w-5 h-5" />
               Все статьи
             </Link>
 
-            {/* Intro */}
-            <p className="text-xl md:text-2xl font-heading font-semibold text-foreground leading-relaxed mb-12 border-l-4 border-foreground pl-6">
+            {/* Intro - large readable text */}
+            <p className="text-2xl md:text-3xl font-heading font-semibold text-foreground leading-relaxed mb-16 border-l-4 border-foreground pl-8 text-balance">
               {article.intro}
             </p>
 
-            {/* First image pair */}
+            {/* First image pair - full width */}
             {article.images.length >= 2 && (
-              <div className="grid grid-cols-2 gap-3 mb-12 -mx-4 md:-mx-12">
-                <div className="aspect-[4/3] rounded-xl overflow-hidden">
-                  <img src={article.images[0]} alt="" className="w-full h-full object-cover" loading="lazy" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-16 -mx-4 md:-mx-0">
+                <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
+                  <img src={article.images[0]} alt="" className="w-full h-full object-cover" loading="eager" />
                 </div>
-                <div className="aspect-[4/3] rounded-xl overflow-hidden">
-                  <img src={article.images[1]} alt="" className="w-full h-full object-cover" loading="lazy" />
+                <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
+                  <img src={article.images[1]} alt="" className="w-full h-full object-cover" loading="eager" />
                 </div>
               </div>
             )}
 
-            {/* Sections */}
+            {/* Sections - full articles with large text */}
             {article.sections.map((section, index) => (
-              <div key={index} className="mb-10">
-                <h2 className="text-2xl md:text-3xl font-heading font-black text-foreground mb-4">
+              <div key={index} className="mb-16">
+                <h2 className="text-3xl md:text-4xl font-heading font-black text-foreground mb-6">
                   {section.heading}
                 </h2>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                  {section.text}
-                </p>
+                <div className="space-y-6">
+                  {section.text.split('\n\n').map((para, i) => (
+                    <p key={i} className="text-xl md:text-2xl text-foreground/90 leading-relaxed">
+                      {para}
+                    </p>
+                  ))}
+                </div>
 
-                {/* Section image or gallery image - distribute 5-7 images through article */}
+                {/* Section image - 5-7 photos per article */}
                 {(section.image || article.images[index + 2]) && (
-                  <div className="mt-8 -mx-4 md:-mx-12">
-                    <div className="aspect-[16/9] rounded-xl overflow-hidden">
+                  <div className="mt-10 -mx-4 md:mx-0">
+                    <div className="aspect-[16/9] rounded-2xl overflow-hidden shadow-lg">
                       <img
                         src={section.image || article.images[index + 2]!}
                         alt=""
