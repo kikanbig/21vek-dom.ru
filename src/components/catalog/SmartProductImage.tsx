@@ -14,7 +14,7 @@ export function SmartProductImage({
   alt,
   className,
   onError,
-  size = "medium",
+  size = "small",
   objectFit = "cover",
   ...imgProps
 }: SmartProductImageProps) {

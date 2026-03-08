@@ -107,32 +107,33 @@ const Promos = () => {
           {/* Breadcrumb */}
           <Link
             to="/"
-            className="inline-flex items-center gap-2 bg-primary/10 text-primary hover:bg-primary/20 transition-all px-4 py-2 rounded-lg font-medium mb-6"
+            className="inline-flex items-center gap-2 text-foreground/60 hover:text-foreground transition-colors font-medium mb-8"
           >
-            <ArrowLeft className="w-5 h-5" />
+            <ArrowLeft className="w-4 h-4" />
             На главную
           </Link>
 
           {/* Definition Banner */}
-          <div className="relative overflow-hidden rounded-3xl mb-8">
-            {/* Background image */}
-            <img 
-              src={heroBanner} 
-              alt="" 
+          <div className="relative overflow-hidden rounded-3xl mb-10">
+            <img
+              src={heroBanner}
+              alt=""
               className="absolute inset-0 w-full h-full object-cover"
             />
-            {/* Overlay for text readability */}
-            <div className="absolute inset-0 bg-black/40" />
-            
-            <div className="relative p-8 md:p-12 lg:p-16 text-center">
-              <p className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-white mb-4 leading-relaxed">
-                <span className="text-white/90">Сет</span> — это продуманная комбинация товаров,<br className="hidden md:block" /> собранная в одно выгодное предложение.
+            <div className="absolute inset-0 bg-black/60" />
+
+            <div className="relative py-14 px-6 md:py-20 md:px-12 text-center flex flex-col items-center gap-4">
+              <p className="text-xs font-bold uppercase tracking-widest text-white/50">
+                21vek.by ДОМ · Акции
               </p>
-              <p className="text-lg md:text-xl font-bold text-white mb-4">
-                📍 21vek.by ДОМ, ул. Маяковского 6, ТРЦ «Червенский»
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-heading font-black text-white leading-tight max-w-3xl">
+                Сет — это выгода<br className="hidden md:block" /> без компромиссов
+              </h1>
+              <p className="text-base md:text-xl text-white/75 max-w-xl leading-relaxed">
+                Продуманная комбинация товаров, собранная в одно предложение. Выбирай, приходи, экономь.
               </p>
-              <p className="text-xl md:text-2xl font-semibold text-white">
-                Приходи, сравнивай и заказывай свой идеальный набор!
+              <p className="text-sm font-semibold text-white/60 mt-2">
+                📍 ул. Маяковского 6, ТРЦ «Червенский»
               </p>
             </div>
           </div>
@@ -143,7 +144,7 @@ const Promos = () => {
               <Link
                 to={promo.link}
                 key={promo.id}
-                className="group relative rounded-xl overflow-hidden aspect-square cursor-pointer bg-background"
+                className="group relative rounded-2xl overflow-hidden aspect-square cursor-pointer bg-background"
               >
                 <img
                   src={promo.image}
@@ -151,21 +152,21 @@ const Promos = () => {
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
-                
+
                 {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                
-                {/* Discount badge */}
-                <div className="absolute top-3 right-3 bg-destructive text-destructive-foreground px-2.5 py-1 rounded-lg text-sm font-bold shadow-lg">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+
+                {/* Discount badge — black/white */}
+                <div className="absolute top-3 right-3 bg-white text-foreground px-2.5 py-1 rounded-lg text-sm font-black shadow-lg">
                   {promo.discount}
                 </div>
-                
+
                 {/* Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <h3 className="text-white font-semibold text-base md:text-lg mb-1">
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
+                  <h3 className="text-white font-bold text-sm md:text-base mb-1">
                     {promo.title.startsWith('−12%') ? promo.title : `Сет «${promo.title}»`}
                   </h3>
-                  <p className="text-white/80 text-sm line-clamp-2">
+                  <p className="text-white/65 text-xs line-clamp-2">
                     {promo.subtitle}
                   </p>
                 </div>

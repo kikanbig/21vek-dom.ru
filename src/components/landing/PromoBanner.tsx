@@ -94,33 +94,29 @@ export const PromoBanner = () => {
                 loading={index === 0 ? 'eager' : 'lazy'}
               />
               
-              {/* Overlay with text */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent flex items-center">
-                <div className="px-4 sm:px-8 md:px-16 max-w-xl">
-                  {/* Discount badge - large */}
+              {/* Overlay with text — centered */}
+              <div className="absolute inset-0 bg-black/55 flex items-center justify-center">
+                <div className="text-center px-4 sm:px-8 max-w-2xl">
+                  {/* Discount badge — black */}
                   {banner.discount && (
-                    <span className="inline-block px-3 py-1 sm:px-5 sm:py-2 mb-2 sm:mb-3 text-xl sm:text-2xl md:text-4xl font-bold rounded-lg sm:rounded-xl bg-destructive text-destructive-foreground shadow-lg">
+                    <span className="inline-block px-4 py-1.5 sm:px-6 sm:py-2 mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-5xl font-black rounded-xl bg-white text-foreground shadow-lg">
                       {banner.discount}
                     </span>
                   )}
-                  {/* Special offer badge */}
+                  {/* Special offer badge — white */}
                   {banner.badge && (
-                    <span className={`inline-block px-3 py-1 sm:px-4 sm:py-1.5 mb-2 sm:mb-3 text-xs sm:text-sm md:text-base font-bold rounded-full ${
-                      banner.isSpecialOffer 
-                        ? 'bg-yellow-500 text-black' 
-                        : 'bg-destructive text-destructive-foreground'
-                    }`}>
+                    <span className="inline-block px-4 py-1.5 mb-3 text-sm font-bold rounded-full bg-white text-foreground">
                       {banner.badge}
                     </span>
                   )}
-                  <h2 className="text-base sm:text-xl md:text-3xl lg:text-4xl font-heading font-bold text-white mb-0.5 sm:mb-1 leading-tight">
+                  <h2 className="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-heading font-black text-white mb-2 sm:mb-3 leading-tight">
                     {banner.title}
                   </h2>
-                  <p className="text-sm sm:text-lg md:text-2xl font-semibold text-yellow-400 mb-1 sm:mb-2">
+                  <p className="text-sm sm:text-base md:text-xl font-bold text-white/80 mb-1 sm:mb-2 uppercase tracking-wide">
                     {banner.subtitle}
                   </p>
                   {banner.description && (
-                    <p className="text-xs sm:text-sm md:text-lg text-white/95 leading-snug sm:leading-relaxed line-clamp-2 sm:line-clamp-none">
+                    <p className="text-xs sm:text-sm md:text-base text-white/75 leading-relaxed line-clamp-2 sm:line-clamp-none mt-2">
                       {banner.description}
                     </p>
                   )}
