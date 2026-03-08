@@ -91,20 +91,16 @@ const ArticlePage = () => {
                   {section.text}
                 </p>
 
-                {/* Insert image after 2nd section */}
-                {index === 1 && article.images.length >= 3 && (
+                {/* Section image or gallery image - distribute 5-7 images through article */}
+                {(section.image || article.images[index + 2]) && (
                   <div className="mt-8 -mx-4 md:-mx-12">
                     <div className="aspect-[16/9] rounded-xl overflow-hidden">
-                      <img src={article.images[2]} alt="" className="w-full h-full object-cover" loading="lazy" />
-                    </div>
-                  </div>
-                )}
-
-                {/* Insert image after last section */}
-                {index === article.sections.length - 1 && article.images.length >= 4 && (
-                  <div className="mt-8 -mx-4 md:-mx-12">
-                    <div className="aspect-[16/9] rounded-xl overflow-hidden">
-                      <img src={article.images[3]} alt="" className="w-full h-full object-cover" loading="lazy" />
+                      <img
+                        src={section.image || article.images[index + 2]!}
+                        alt=""
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
                     </div>
                   </div>
                 )}
