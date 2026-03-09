@@ -1,0 +1,45 @@
+---
+description: Image generation and optimization workflow for all project images
+globs: ["public/images/**", "src/data/**"]
+alwaysApply: false
+---
+
+# Image Optimization Rules
+
+Every time we generate or add new images to this project, ALWAYS perform these steps:
+
+## 1. Resize
+- Max width: **1280px**
+- Use `sips --resampleWidth 1280` on macOS
+
+## 2. Convert to WebP
+- Use `cwebp -q 82 -m 6` to convert to WebP format
+- Quality 82 is the sweet spot for this project (good quality, small size)
+
+## 3. Remove originals
+- After successful WebP conversion, delete the original JPG/PNG files
+- Only keep `.webp` files in `public/images/`
+
+## 4. Reference with .webp extension
+- All image paths in code (articles.ts, components, etc.) must use `.webp` extension
+- Never reference `.jpg` or `.png` for article/generated images
+
+## 5. Cache headers
+- The project has a custom `Caddyfile` with 1-year immutable cache for static assets
+- No extra action needed — just make sure files go to `public/images/`
+
+## Quick one-liner for batch conversion
+```bash
+for f in *.jpg *.png; do
+  [ -f "$f" ] || continue
+  BASE="${f%.*}"
+  sips --resampleWidth 1280 "$f" --out "/tmp/resized_$f"
+  cwebp -q 82 -m 6 "/tmp/resized_$f" -o "${BASE}.webp"
+  rm "$f"
+done
+```
+
+## Size targets
+- Cover images: 80-180 KB (webp)
+- Interior/article images: 30-240 KB (webp)
+- If any image exceeds 300 KB — reduce quality to 75 or resize to 1024px width
