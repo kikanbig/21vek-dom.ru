@@ -25,10 +25,9 @@ const coverNames = [
   'fireplace', 'sofa-guide', 'mattress-sleep', 'trends-2025', 'renovation-mistakes',
 ];
 const pad = (n: number) => String(n).padStart(2, '0');
-const ext = (n: number, i: number) => (n <= 14 || (n === 15 && i <= 4)) ? 'jpg' : 'png';
-const artCover = (n: number) => `${P}/cover-${pad(n)}-${coverNames[n - 1]}.jpg`;
+const artCover = (n: number) => `${P}/cover-${pad(n)}-${coverNames[n - 1]}.webp`;
 const artImgs = (n: number): string[] =>
-  Array.from({ length: 6 }, (_, i) => `${P}/art${pad(n)}-img${i + 1}.${ext(n, i + 1)}`);
+  Array.from({ length: 6 }, (_, i) => `${P}/art${pad(n)}-img${i + 1}.webp`);
 
 export const articles: Article[] = [
   {
