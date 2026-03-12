@@ -8,7 +8,7 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
-import logo from '@/assets/logo-21vek.png';
+import logo from '@/assets/logo-21vek-dom.png';
 
 const NAV_ITEMS = [
   { to: '/shop', label: 'Каталог', exact: true },
@@ -28,7 +28,7 @@ export const Header = () => {
         <div className="flex items-center h-14 gap-8">
           {/* Logo */}
           <Link to="/" className="flex-shrink-0">
-            <img src={logo} alt="21vek.by ДОМ" className="h-5 w-auto" />
+            <img src={logo} alt="21vek.by ДОМ" className="h-7 w-auto" />
           </Link>
 
           {/* Desktop Nav */}
@@ -79,7 +79,7 @@ export const Header = () => {
           <SheetHeader className="px-5 pt-5 pb-4 border-b border-border/50">
             <SheetTitle>
               <Link to="/" onClick={() => setIsMenuOpen(false)}>
-                <img src={logo} alt="21vek.by ДОМ" className="h-5 w-auto" />
+                <img src={logo} alt="21vek.by ДОМ" className="h-6 w-auto" />
               </Link>
             </SheetTitle>
           </SheetHeader>
