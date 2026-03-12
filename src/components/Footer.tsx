@@ -26,6 +26,7 @@ export const Footer = () => {
               <a href="tel:+375447829302" className="hover:text-foreground transition-colors tabular-nums">+375 44 782 93 02</a>
               <a href="tel:+375447826715" className="hover:text-foreground transition-colors tabular-nums">+375 44 782 67 15</a>
               <a href="https://t.me/+375447829302" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Telegram</a>
+              <a href="viber://chat?number=%2B375447829302" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Viber</a>
             </div>
           </div>
 
