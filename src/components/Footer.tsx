@@ -25,7 +25,7 @@ export const Footer = () => {
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] text-foreground/50">
               <a href="tel:+375447829302" className="hover:text-foreground transition-colors tabular-nums">+375 44 782 93 02</a>
               <a href="tel:+375447826715" className="hover:text-foreground transition-colors tabular-nums">+375 44 782 67 15</a>
-              <a href="https://t.me/shop21vek" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Telegram</a>
+              <a href="https://t.me/+375447829302" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Telegram</a>
             </div>
           </div>
 
