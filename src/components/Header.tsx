@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, MapPin, Phone, Clock } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, MapPin, Phone, Clock, Sofa, Home, ShoppingBag, Sparkles, Newspaper } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -8,10 +8,20 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet';
+import { cn } from '@/lib/utils';
 import logo from '@/assets/logo-21vek.png';
+
+const NAV_ITEMS = [
+  { to: '/shop', label: 'Каталог', icon: ShoppingBag },
+  { to: '/shop/furniture', label: 'Мебель', icon: Sofa },
+  { to: '/shop/home', label: 'Для дома', icon: Home },
+  { to: '/promos', label: 'Акции', icon: Sparkles },
+  { to: '/inspiration', label: 'Идеи', icon: Newspaper },
+];
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   return (
     <header className="sticky top-0 z-50 w-full">
@@ -45,17 +55,38 @@ export const Header = () => {
         </div>
       </div>
 
-      {/* Categories navigation - white background */}
+      {/* Navigation bar */}
       <div className="bg-background border-b border-border">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between py-3">
+          <div className="flex items-center justify-between py-2">
             <button 
-              className="lg:hidden text-foreground"
+              className="lg:hidden text-foreground p-1"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               <Menu className="h-6 w-6" />
             </button>
-            <nav className="hidden lg:flex items-center gap-2">
+            <nav className="hidden lg:flex items-center gap-1">
+              {NAV_ITEMS.map(item => {
+                const isActive = item.to === '/shop'
+                  ? location.pathname === '/shop'
+                  : location.pathname.startsWith(item.to);
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    className={cn(
+                      'flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors',
+                      isActive
+                        ? 'bg-primary/10 text-primary'
+                        : 'text-foreground hover:bg-muted'
+                    )}
+                  >
+                    <Icon className="h-4 w-4" />
+                    {item.label}
+                  </Link>
+                );
+              })}
             </nav>
           </div>
         </div>
@@ -79,6 +110,20 @@ export const Header = () => {
             >
               Главная
             </Link>
+            {NAV_ITEMS.map(item => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="flex items-center gap-3 py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors font-medium"
+                >
+                  <Icon className="h-5 w-5 text-muted-foreground" />
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
           <div className="mt-8 pt-6 border-t border-border">
             <div className="flex flex-col gap-3 text-sm text-muted-foreground">
