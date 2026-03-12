@@ -249,12 +249,10 @@ export default function ProductPage() {
                     href={product.sourceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4"
+                    className="inline-flex items-center gap-2 mt-4 px-5 py-2.5 rounded-lg bg-foreground text-background text-[13px] font-medium hover:opacity-90 transition-opacity"
                   >
-                    <Button size="lg" className="w-full gap-2 h-12 text-[15px] font-semibold">
-                      <ExternalLink className="h-4 w-4" />
-                      Купить на 21vek.by
-                    </Button>
+                    Купить на 21vek.by
+                    <ExternalLink className="h-3.5 w-3.5 opacity-50" />
                   </a>
                 )}
 
