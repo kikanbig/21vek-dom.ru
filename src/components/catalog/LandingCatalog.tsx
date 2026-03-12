@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Loader2 } from 'lucide-react';
-import { useCatalog } from '@/hooks/useCatalog';
+import { useCatalog, CATEGORY_ORDER, SUBCATEGORY_ORDER } from '@/hooks/useCatalog';
 import { CatalogProductCard } from './CatalogProductCard';
 import { SUBCATEGORY_IMAGES, CATEGORY_IMAGES } from '@/lib/categoryImages';
 
@@ -21,7 +21,23 @@ export function LandingCatalog() {
 
   if (!data) return null;
 
-  const categories = Object.values(data.categories);
+  const categories = Object.values(data.categories)
+    .sort((a, b) => {
+      const ia = CATEGORY_ORDER.indexOf(a.slug);
+      const ib = CATEGORY_ORDER.indexOf(b.slug);
+      return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+    })
+    .map(cat => {
+      const order = SUBCATEGORY_ORDER[cat.slug];
+      if (order) {
+        cat.subcategories.sort((a, b) => {
+          const ia = order.indexOf(a.slug);
+          const ib = order.indexOf(b.slug);
+          return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+        });
+      }
+      return cat;
+    });
   const popular = data.products
     .filter(p => p.mainImage && p.price > 0)
     .sort((a, b) => (b.rating || 0) - (a.rating || 0))

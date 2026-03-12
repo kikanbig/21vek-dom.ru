@@ -84,7 +84,23 @@ export function useCatalogProducts(opts: {
 
   const categories = useMemo(() => {
     if (!data) return [];
-    return Object.values(data.categories);
+    const cats = Object.values(data.categories);
+    cats.sort((a, b) => {
+      const ia = CATEGORY_ORDER.indexOf(a.slug);
+      const ib = CATEGORY_ORDER.indexOf(b.slug);
+      return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+    });
+    for (const cat of cats) {
+      const order = SUBCATEGORY_ORDER[cat.slug];
+      if (order) {
+        cat.subcategories.sort((a, b) => {
+          const ia = order.indexOf(a.slug);
+          const ib = order.indexOf(b.slug);
+          return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+        });
+      }
+    }
+    return cats;
   }, [data]);
 
   return { products: filtered, categories, loading, total: data?.meta.total ?? 0 };
@@ -107,6 +123,19 @@ export function useCatalogProduct(code: string | undefined) {
 
   return { product, related, loading };
 }
+
+export const CATEGORY_ORDER = ['furniture', 'home'];
+
+export const SUBCATEGORY_ORDER: Record<string, string[]> = {
+  furniture: [
+    'sofas', 'beds', 'mattresses', 'armchairs', 'wardrobes',
+    'tables', 'chairs', 'dressers', 'shelves', 'mirrors', 'poufs',
+  ],
+  home: [
+    'cookware', 'plates', 'glasses', 'mugs', 'cutlery',
+    'bedlinen', 'blankets', 'pillows', 'towels', 'decor', 'other',
+  ],
+};
 
 const CATEGORY_NAMES: Record<string, string> = {
   furniture: 'Мебель',
