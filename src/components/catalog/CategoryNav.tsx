@@ -1,13 +1,8 @@
 import { Link, useParams } from 'react-router-dom';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { CategoryInfo } from '@/types/catalog';
 import { getCategoryName, getSubcategoryName } from '@/hooks/useCatalog';
-
-const CATEGORY_ICONS: Record<string, string> = {
-  furniture: '🛋️',
-  home: '🏠',
-};
 
 interface CategoryNavProps {
   categories: CategoryInfo[];
@@ -18,55 +13,78 @@ export function CategoryNav({ categories, className }: CategoryNavProps) {
   const { category, subcategory } = useParams<{ category?: string; subcategory?: string }>();
 
   return (
-    <aside className={cn('space-y-1', className)}>
+    <aside className={cn('', className)}>
       <Link
         to="/shop"
         className={cn(
-          'flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
+          'block px-3 py-2 rounded-lg text-[13px] font-semibold uppercase tracking-wide transition-colors',
           !category
-            ? 'bg-primary text-primary-foreground'
-            : 'text-foreground hover:bg-muted'
+            ? 'text-primary'
+            : 'text-muted-foreground hover:text-foreground'
         )}
       >
         Все товары
       </Link>
 
-      {categories.map(cat => (
-        <div key={cat.slug}>
-          <Link
-            to={`/shop/${cat.slug}`}
-            className={cn(
-              'flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
-              category === cat.slug && !subcategory
-                ? 'bg-primary text-primary-foreground'
-                : 'text-foreground hover:bg-muted'
-            )}
-          >
-            <span>{CATEGORY_ICONS[cat.slug] || '📁'}</span>
-            {cat.name}
-          </Link>
+      <div className="mt-2 space-y-0.5">
+        {categories.map(cat => {
+          const isOpen = category === cat.slug;
+          const isActive = isOpen && !subcategory;
 
-          {category === cat.slug && (
-            <div className="ml-4 mt-1 space-y-0.5 border-l-2 border-border pl-3">
-              {cat.subcategories.map(sub => (
-                <Link
-                  key={sub.slug}
-                  to={`/shop/${cat.slug}/${sub.slug}`}
+          return (
+            <div key={cat.slug}>
+              <Link
+                to={`/shop/${cat.slug}`}
+                className={cn(
+                  'flex items-center justify-between px-3 py-2.5 rounded-lg text-sm transition-colors',
+                  isActive
+                    ? 'bg-primary text-primary-foreground font-medium'
+                    : isOpen
+                      ? 'text-foreground font-medium bg-muted/60'
+                      : 'text-foreground/80 hover:bg-muted hover:text-foreground'
+                )}
+              >
+                <span>{cat.name}</span>
+                <ChevronDown
                   className={cn(
-                    'flex items-center justify-between px-3 py-2 rounded-md text-sm transition-colors',
-                    subcategory === sub.slug
-                      ? 'bg-primary/10 text-primary font-medium'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                    'h-4 w-4 transition-transform duration-200',
+                    isActive ? 'text-primary-foreground' : 'text-muted-foreground',
+                    isOpen && 'rotate-180'
                   )}
-                >
-                  <span>{sub.name}</span>
-                  <span className="text-xs opacity-60">{sub.count}</span>
-                </Link>
-              ))}
+                />
+              </Link>
+
+              {isOpen && (
+                <div className="mt-1 mb-2 ml-2 space-y-px">
+                  {cat.subcategories.map(sub => {
+                    const isSubActive = subcategory === sub.slug;
+                    return (
+                      <Link
+                        key={sub.slug}
+                        to={`/shop/${cat.slug}/${sub.slug}`}
+                        className={cn(
+                          'flex items-center justify-between px-3 py-2 rounded-md text-sm transition-all',
+                          isSubActive
+                            ? 'bg-primary/10 text-primary font-medium'
+                            : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                        )}
+                      >
+                        <span className="leading-tight">{sub.name}</span>
+                        <span className={cn(
+                          'text-xs tabular-nums ml-2 flex-shrink-0',
+                          isSubActive ? 'text-primary/70' : 'text-muted-foreground/50'
+                        )}>
+                          {sub.count}
+                        </span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
             </div>
-          )}
-        </div>
-      ))}
+          );
+        })}
+      </div>
     </aside>
   );
 }
