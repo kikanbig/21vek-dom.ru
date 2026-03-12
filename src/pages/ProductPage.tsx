@@ -111,11 +111,11 @@ export default function ProductPage() {
 
           {/* Main card */}
           <div className="bg-white rounded-xl overflow-hidden">
-            <div className="grid lg:grid-cols-[420px,1fr] gap-0">
-              {/* Gallery — fixed width, compact */}
-              <div className="p-5">
+            <div className="grid lg:grid-cols-[520px,1fr] gap-0">
+              {/* Gallery */}
+              <div className="p-6">
                 <div
-                  className="relative aspect-[4/3] max-h-[320px] bg-[#fafafa] rounded-lg overflow-hidden cursor-zoom-in group"
+                  className="relative aspect-square max-h-[480px] bg-[#fafafa] rounded-lg overflow-hidden cursor-zoom-in group"
                   onClick={() => images.length > 0 && setLightbox(true)}
                 >
                   {images.length > 0 ? (
