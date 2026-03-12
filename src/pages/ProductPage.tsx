@@ -4,9 +4,9 @@ import {
   ChevronLeft,
   ChevronRight,
   ExternalLink,
-  Star,
   Truck,
   Shield,
+  MapPin,
   Loader2,
   X,
 } from 'lucide-react';
@@ -19,9 +19,8 @@ import { useCatalogProduct, getCategoryName, getSubcategoryName } from '@/hooks/
 
 function formatPrice(price: number): string {
   if (!price) return '';
-  const parts = price.toFixed(2).split('.');
-  const intPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-  return `${intPart},${parts[1]}`;
+  const intPart = Math.floor(price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  return intPart;
 }
 
 function sanitizeHtml(html: string): string {
@@ -63,10 +62,10 @@ export default function ProductPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col bg-[#f5f5f5]">
+      <div className="min-h-screen flex flex-col bg-white">
         <Header />
         <main className="flex-1 flex items-center justify-center">
-          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+          <Loader2 className="h-6 w-6 animate-spin text-foreground/30" />
         </main>
         <Footer />
       </div>
@@ -75,12 +74,12 @@ export default function ProductPage() {
 
   if (!product) {
     return (
-      <div className="min-h-screen flex flex-col bg-[#f5f5f5]">
+      <div className="min-h-screen flex flex-col bg-white">
         <Header />
         <main className="flex-1 flex flex-col items-center justify-center gap-4 py-20">
-          <h1 className="text-2xl font-bold">Товар не найден</h1>
+          <h1 className="text-xl font-semibold">Товар не найден</h1>
           <Link to="/shop">
-            <Button variant="outline">Вернуться в каталог</Button>
+            <Button variant="outline" size="sm">Вернуться в каталог</Button>
           </Link>
         </main>
         <Footer />
@@ -89,259 +88,270 @@ export default function ProductPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f5f5f5]">
+    <div className="min-h-screen flex flex-col bg-white">
       <Header />
       <main className="flex-1">
-        <div className="container mx-auto px-4 py-4">
-          {/* Breadcrumbs */}
-          <nav className="flex items-center gap-1 text-[13px] text-muted-foreground mb-4 flex-wrap">
-            <Link to="/shop" className="hover:text-primary transition-colors">Каталог</Link>
-            <ChevronRight className="h-3 w-3" />
-            <Link to={`/shop/${product.class}`} className="hover:text-primary transition-colors">
-              {getCategoryName(product.class)}
-            </Link>
-            <ChevronRight className="h-3 w-3" />
-            <Link
-              to={`/shop/${product.class}/${product.subcategory}`}
-              className="hover:text-primary transition-colors"
-            >
-              {getSubcategoryName(product.subcategory)}
-            </Link>
-          </nav>
+        {/* Breadcrumbs */}
+        <div className="border-b border-black/[0.05]">
+          <div className="container mx-auto px-4">
+            <nav className="flex items-center gap-1.5 py-3 text-[13px] text-foreground/40 flex-wrap">
+              <Link to="/shop" className="hover:text-foreground transition-colors">Каталог</Link>
+              <ChevronRight className="h-3 w-3" />
+              <Link to={`/shop/${product.class}`} className="hover:text-foreground transition-colors">
+                {getCategoryName(product.class)}
+              </Link>
+              <ChevronRight className="h-3 w-3" />
+              <Link
+                to={`/shop/${product.class}/${product.subcategory}`}
+                className="hover:text-foreground transition-colors"
+              >
+                {getSubcategoryName(product.subcategory)}
+              </Link>
+            </nav>
+          </div>
+        </div>
 
-          {/* Main card */}
-          <div className="bg-white rounded-xl overflow-hidden">
-            <div className="grid lg:grid-cols-[520px,1fr] gap-0">
-              {/* Gallery */}
-              <div className="p-6">
-                <div
-                  className="relative aspect-square max-h-[480px] bg-[#fafafa] rounded-lg overflow-hidden cursor-zoom-in group"
-                  onClick={() => images.length > 0 && setLightbox(true)}
-                >
+        {/* Product section */}
+        <div className="container mx-auto px-4 py-8">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+            {/* Left: Gallery */}
+            <div>
+              <div
+                className="relative bg-[#f7f7f7] rounded-2xl overflow-hidden cursor-zoom-in"
+                onClick={() => images.length > 0 && setLightbox(true)}
+              >
+                <div className="aspect-[4/3]">
                   {images.length > 0 ? (
                     <SmartProductImage
                       originalSrc={images[currentImage]}
                       alt={product.name}
                       size="big"
                       objectFit="contain"
-                      className="w-full h-full p-4"
+                      className="w-full h-full p-6"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
-                      <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center">
-                        <span className="text-2xl text-muted-foreground/40">?</span>
-                      </div>
-                    </div>
-                  )}
-
-                  {images.length > 1 && (
-                    <>
-                      <button
-                        onClick={e => { e.stopPropagation(); prevImage(); }}
-                        className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 shadow flex items-center justify-center hover:bg-white transition-colors"
-                      >
-                        <ChevronLeft className="h-4 w-4 text-foreground" />
-                      </button>
-                      <button
-                        onClick={e => { e.stopPropagation(); nextImage(); }}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 shadow flex items-center justify-center hover:bg-white transition-colors"
-                      >
-                        <ChevronRight className="h-4 w-4 text-foreground" />
-                      </button>
-                    </>
-                  )}
-
-                  {hasDiscount && (
-                    <div className="absolute top-2.5 left-2.5 bg-red-500 text-white text-[10px] font-semibold px-1.5 py-0.5 rounded">
-                      -{Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)}%
+                      <span className="text-foreground/10 text-6xl font-light">?</span>
                     </div>
                   )}
                 </div>
 
-                {/* Thumbnails */}
                 {images.length > 1 && (
-                  <div className="flex gap-1.5 mt-3 overflow-x-auto scrollbar-hide">
-                    {images.map((img, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => setCurrentImage(idx)}
-                        className={`flex-shrink-0 w-12 h-12 rounded overflow-hidden border-2 transition-colors ${
-                          idx === currentImage
-                            ? 'border-primary'
-                            : 'border-transparent hover:border-foreground/20'
-                        }`}
-                      >
-                        <SmartProductImage
-                          originalSrc={img}
-                          alt={`${product.name} ${idx + 1}`}
-                          size="small"
-                          objectFit="contain"
-                          className="w-full h-full"
-                        />
-                      </button>
-                    ))}
+                  <>
+                    <button
+                      onClick={e => { e.stopPropagation(); prevImage(); }}
+                      className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white shadow-sm flex items-center justify-center hover:shadow transition-shadow"
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                    </button>
+                    <button
+                      onClick={e => { e.stopPropagation(); nextImage(); }}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white shadow-sm flex items-center justify-center hover:shadow transition-shadow"
+                    >
+                      <ChevronRight className="h-4 w-4" />
+                    </button>
+                  </>
+                )}
+
+                {hasDiscount && (
+                  <div className="absolute top-4 left-4 bg-red-500 text-white text-[11px] font-semibold px-2 py-1 rounded-lg">
+                    -{Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)}%
+                  </div>
+                )}
+
+                {images.length > 1 && (
+                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/40 text-white text-[11px] px-2.5 py-1 rounded-full backdrop-blur-sm">
+                    {currentImage + 1} / {images.length}
                   </div>
                 )}
               </div>
 
-              {/* Info panel */}
-              <div className="border-t lg:border-t-0 lg:border-l border-border/50 p-6 lg:p-8 flex flex-col">
-                <h1 className="text-xl font-bold text-foreground leading-snug">
-                  {product.name}
-                </h1>
-
-                <div className="flex items-center gap-3 mt-2 flex-wrap">
-                  {product.rating > 0 && (
-                    <div className="flex items-center gap-1">
-                      <div className="flex gap-px">
-                        {[1, 2, 3, 4, 5].map(s => (
-                          <Star
-                            key={s}
-                            className={`h-3.5 w-3.5 ${
-                              s <= Math.round(product.rating)
-                                ? 'fill-amber-400 text-amber-400'
-                                : 'fill-muted text-muted'
-                            }`}
-                          />
-                        ))}
-                      </div>
-                      <span className="text-xs text-muted-foreground">{product.rating.toFixed(1)}</span>
-                    </div>
-                  )}
-                  <span className="text-xs text-muted-foreground">Арт. {product.code}</span>
+              {/* Thumbnails */}
+              {images.length > 1 && (
+                <div className="flex gap-2 mt-3 overflow-x-auto scrollbar-hide">
+                  {images.map((img, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentImage(idx)}
+                      className={`flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden transition-all ${
+                        idx === currentImage
+                          ? 'ring-2 ring-foreground ring-offset-2'
+                          : 'opacity-50 hover:opacity-80'
+                      }`}
+                    >
+                      <SmartProductImage
+                        originalSrc={img}
+                        alt={`${product.name} ${idx + 1}`}
+                        size="small"
+                        objectFit="contain"
+                        className="w-full h-full bg-[#f7f7f7]"
+                      />
+                    </button>
+                  ))}
                 </div>
+              )}
+            </div>
 
-                {product.producer?.name && (
-                  <div className="text-[13px] text-muted-foreground mt-2">
-                    Бренд: <span className="text-foreground font-medium">{product.producer.name}</span>
-                  </div>
+            {/* Right: Info */}
+            <div className="lg:sticky lg:top-20">
+              {/* Brand tag */}
+              {product.producer?.name && (
+                <div className="text-[12px] font-medium text-foreground/40 uppercase tracking-wider mb-2">
+                  {product.producer.name}
+                </div>
+              )}
+
+              <h1 className="text-2xl font-semibold text-foreground leading-tight tracking-tight">
+                {product.name}
+              </h1>
+
+              <div className="flex items-center gap-2 mt-2 text-[12px] text-foreground/35">
+                <span>Арт. {product.code}</span>
+                {product.rating > 0 && (
+                  <>
+                    <span>·</span>
+                    <span className="text-amber-500">★ {product.rating.toFixed(1)}</span>
+                  </>
                 )}
+              </div>
 
-                {/* Price */}
-                <div className="mt-6 pt-6 border-t border-border/50">
-                  {product.price > 0 ? (
-                    <div>
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-[28px] font-bold text-foreground leading-none">
-                          {formatPrice(product.price)}
+              {/* Price */}
+              <div className="mt-6">
+                {product.price > 0 ? (
+                  <div>
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-[32px] font-bold text-foreground tracking-tight leading-none">
+                        {formatPrice(product.price)}
+                      </span>
+                      <span className="text-[20px] font-semibold text-foreground/60">р.</span>
+                    </div>
+                    {hasDiscount && (
+                      <div className="flex items-center gap-3 mt-1.5">
+                        <span className="text-[14px] text-foreground/30 line-through">
+                          {formatPrice(product.oldPrice)} р.
                         </span>
-                        <span className="text-[28px] font-bold text-foreground leading-none">р.</span>
+                        <span className="text-[12px] font-semibold text-red-500 bg-red-50 px-2 py-0.5 rounded">
+                          -{Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)}%
+                        </span>
                       </div>
-                      {hasDiscount && (
-                        <div className="flex items-center gap-2 mt-1.5">
-                          <span className="text-sm text-muted-foreground line-through">
-                            {formatPrice(product.oldPrice)} р.
-                          </span>
-                          <span className="text-xs font-semibold text-[#ff4d00]">
-                            Выгода {formatPrice(product.oldPrice - product.price)} р.
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <span className="text-lg text-muted-foreground">Цена по запросу</span>
-                  )}
-                </div>
-
-                {/* CTA */}
-                {product.sourceUrl && (
-                  <a
-                    href={product.sourceUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 mt-4 px-5 py-2.5 rounded-lg bg-foreground text-background text-[13px] font-medium hover:opacity-90 transition-opacity"
-                  >
-                    Купить на 21vek.by
-                    <ExternalLink className="h-3.5 w-3.5 opacity-50" />
-                  </a>
-                )}
-
-                {/* Info badges */}
-                <div className="mt-6 space-y-3 text-[13px] text-muted-foreground">
-                  <div className="flex items-center gap-2.5">
-                    <Truck className="h-4 w-4 flex-shrink-0" />
-                    <span>Доставка по Минску</span>
+                    )}
                   </div>
-                  {product.warranty && (
-                    <div className="flex items-center gap-2.5">
-                      <Shield className="h-4 w-4 flex-shrink-0" />
-                      <span>Гарантия {product.warranty}</span>
-                    </div>
-                  )}
-                  {product.country && (
-                    <div className="flex items-center gap-2.5">
-                      <span className="w-4 text-center flex-shrink-0">🌍</span>
-                      <span>{product.country}</span>
-                    </div>
-                  )}
+                ) : (
+                  <span className="text-lg text-foreground/40">Цена по запросу</span>
+                )}
+              </div>
+
+              {/* CTA */}
+              {product.sourceUrl && (
+                <a
+                  href={product.sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 mt-6 w-full py-3.5 rounded-xl bg-foreground text-background text-[14px] font-medium hover:opacity-90 transition-opacity"
+                >
+                  Купить на 21vek.by
+                  <ExternalLink className="h-4 w-4 opacity-40" />
+                </a>
+              )}
+
+              {/* Info section */}
+              <div className="mt-6 pt-6 border-t border-black/[0.06] space-y-4">
+                <div className="flex items-start gap-3">
+                  <Truck className="h-[18px] w-[18px] text-foreground/30 flex-shrink-0 mt-px" />
+                  <div>
+                    <div className="text-[13px] font-medium text-foreground">Доставка по Минску</div>
+                    <div className="text-[12px] text-foreground/40 mt-0.5">Подробности уточняйте</div>
+                  </div>
                 </div>
+                {product.warranty && (
+                  <div className="flex items-start gap-3">
+                    <Shield className="h-[18px] w-[18px] text-foreground/30 flex-shrink-0 mt-px" />
+                    <div>
+                      <div className="text-[13px] font-medium text-foreground">Гарантия {product.warranty}</div>
+                    </div>
+                  </div>
+                )}
+                {product.country && (
+                  <div className="flex items-start gap-3">
+                    <MapPin className="h-[18px] w-[18px] text-foreground/30 flex-shrink-0 mt-px" />
+                    <div>
+                      <div className="text-[13px] font-medium text-foreground">{product.country}</div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Tabs: Description / Attributes */}
-          {(hasDescription || hasAttributes) && (
-            <div className="bg-white rounded-xl mt-4 overflow-hidden">
-              <div className="flex border-b border-border/50">
+        {/* Tabs: Description / Attributes */}
+        {(hasDescription || hasAttributes) && (
+          <div className="border-t border-black/[0.05]">
+            <div className="container mx-auto px-4">
+              <div className="flex gap-0">
                 {hasDescription && (
                   <button
                     onClick={() => setActiveTab('desc')}
-                    className={`px-6 py-3.5 text-sm font-medium transition-colors relative ${
+                    className={`px-6 py-4 text-[14px] font-medium transition-colors relative ${
                       activeTab === 'desc'
-                        ? 'text-primary'
-                        : 'text-muted-foreground hover:text-foreground'
+                        ? 'text-foreground'
+                        : 'text-foreground/35 hover:text-foreground/60'
                     }`}
                   >
                     Описание
                     {activeTab === 'desc' && (
-                      <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />
+                      <span className="absolute bottom-0 left-6 right-6 h-[2px] bg-foreground rounded-full" />
                     )}
                   </button>
                 )}
                 {hasAttributes && (
                   <button
                     onClick={() => setActiveTab('attrs')}
-                    className={`px-6 py-3.5 text-sm font-medium transition-colors relative ${
+                    className={`px-6 py-4 text-[14px] font-medium transition-colors relative ${
                       activeTab === 'attrs'
-                        ? 'text-primary'
-                        : 'text-muted-foreground hover:text-foreground'
+                        ? 'text-foreground'
+                        : 'text-foreground/35 hover:text-foreground/60'
                     }`}
                   >
                     Характеристики
                     {activeTab === 'attrs' && (
-                      <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />
+                      <span className="absolute bottom-0 left-6 right-6 h-[2px] bg-foreground rounded-full" />
                     )}
                   </button>
                 )}
               </div>
+            </div>
+          </div>
+        )}
 
-              <div className="p-6 lg:p-8">
+        {(hasDescription || hasAttributes) && (
+          <div className="bg-[#fafafa]">
+            <div className="container mx-auto px-4 py-8 lg:py-10">
+              <div className="max-w-3xl">
                 {activeTab === 'desc' && hasDescription && (
                   <div
-                    className="prose prose-sm max-w-none text-foreground/80 prose-p:leading-relaxed prose-p:mb-3 prose-b:text-foreground prose-strong:text-foreground prose-headings:text-foreground"
+                    className="prose prose-sm max-w-none text-foreground/70 prose-p:leading-relaxed prose-p:mb-3 prose-b:text-foreground prose-strong:text-foreground prose-headings:text-foreground"
                     dangerouslySetInnerHTML={{ __html: cleanDescription }}
                   />
                 )}
 
                 {activeTab === 'attrs' && hasAttributes && (
-                  <div className="space-y-6">
+                  <div className="space-y-8">
                     {product.attributes.map((group, gi) => (
                       <div key={gi}>
                         {group.group && (
-                          <h3 className="text-sm font-semibold text-foreground mb-3">{group.group}</h3>
+                          <h3 className="text-[14px] font-semibold text-foreground mb-4">{group.group}</h3>
                         )}
-                        <dl className="grid grid-cols-1 gap-0">
+                        <dl className="space-y-0">
                           {group.items.map((item, ii) => (
                             <div
                               key={ii}
-                              className={`flex text-[13px] py-2.5 ${
-                                ii % 2 === 0 ? 'bg-[#fafafa]' : 'bg-white'
-                              } -mx-3 px-3 rounded`}
+                              className="flex text-[13px] py-3 border-b border-black/[0.04] last:border-0"
                             >
-                              <dt className="text-muted-foreground w-1/2 flex-shrink-0">
+                              <dt className="text-foreground/40 w-1/2 flex-shrink-0">
                                 {item.name}
                               </dt>
-                              <dd className="text-foreground font-medium">{item.value}</dd>
+                              <dd className="text-foreground">{item.value}</dd>
                             </div>
                           ))}
                         </dl>
@@ -351,22 +361,22 @@ export default function ProductPage() {
                 )}
               </div>
             </div>
-          )}
+          </div>
+        )}
 
-          {/* Related Products */}
-          {related.length > 0 && (
-            <section className="mt-8 mb-4">
-              <h2 className="text-xl font-bold text-foreground mb-4">
-                Похожие товары
-              </h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-                {related.map(p => (
-                  <CatalogProductCard key={p.code} product={p} />
-                ))}
-              </div>
-            </section>
-          )}
-        </div>
+        {/* Related Products */}
+        {related.length > 0 && (
+          <div className="container mx-auto px-4 py-10">
+            <h2 className="text-xl font-semibold text-foreground mb-6">
+              Похожие товары
+            </h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+              {related.map(p => (
+                <CatalogProductCard key={p.code} product={p} />
+              ))}
+            </div>
+          </div>
+        )}
       </main>
       <Footer />
 
