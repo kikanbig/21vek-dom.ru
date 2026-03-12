@@ -21,21 +21,21 @@ export function CatalogProductCard({ product }: { product: CatalogProduct }) {
       to={`/product/${product.code}`}
       className="group flex flex-col bg-white rounded-xl border border-black/[0.06] overflow-hidden hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-200"
     >
-      {/* Image — small fixed height */}
-      <div className="relative h-[130px] overflow-hidden bg-[#fafafa]">
+      {/* Image */}
+      <div className="relative aspect-square overflow-hidden bg-[#fafafa]">
         {product.mainImage ? (
           <SmartProductImage
             originalSrc={product.mainImage}
             alt={product.name}
             size="small"
             objectFit="contain"
-            className="w-full h-full p-5 group-hover:scale-[1.03] transition-transform duration-300"
+            className="w-full h-full p-3 group-hover:scale-[1.03] transition-transform duration-300"
             loading="lazy"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
-            <div className="w-10 h-10 rounded-full bg-black/[0.04] flex items-center justify-center">
-              <span className="text-base text-foreground/20">?</span>
+            <div className="w-12 h-12 rounded-full bg-black/[0.04] flex items-center justify-center">
+              <span className="text-lg text-foreground/20">?</span>
             </div>
           </div>
         )}

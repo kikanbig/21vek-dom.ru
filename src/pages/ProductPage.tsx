@@ -111,11 +111,11 @@ export default function ProductPage() {
 
           {/* Main card */}
           <div className="bg-white rounded-xl overflow-hidden">
-            <div className="grid lg:grid-cols-[1fr,400px] gap-0">
-              {/* Gallery */}
-              <div className="p-6 lg:p-8">
+            <div className="grid lg:grid-cols-[420px,1fr] gap-0">
+              {/* Gallery — fixed width, compact */}
+              <div className="p-5">
                 <div
-                  className="relative aspect-square bg-[#fafafa] rounded-lg overflow-hidden cursor-zoom-in group"
+                  className="relative aspect-[4/3] max-h-[320px] bg-[#fafafa] rounded-lg overflow-hidden cursor-zoom-in group"
                   onClick={() => images.length > 0 && setLightbox(true)}
                 >
                   {images.length > 0 ? (
@@ -124,12 +124,12 @@ export default function ProductPage() {
                       alt={product.name}
                       size="big"
                       objectFit="contain"
-                      className="w-full h-full"
+                      className="w-full h-full p-4"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
-                      <div className="w-24 h-24 rounded-full bg-muted flex items-center justify-center">
-                        <span className="text-3xl text-muted-foreground/40">?</span>
+                      <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center">
+                        <span className="text-2xl text-muted-foreground/40">?</span>
                       </div>
                     </div>
                   )}
@@ -138,21 +138,21 @@ export default function ProductPage() {
                     <>
                       <button
                         onClick={e => { e.stopPropagation(); prevImage(); }}
-                        className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 shadow-md flex items-center justify-center hover:bg-white transition-colors"
+                        className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 shadow flex items-center justify-center hover:bg-white transition-colors"
                       >
-                        <ChevronLeft className="h-5 w-5 text-foreground" />
+                        <ChevronLeft className="h-4 w-4 text-foreground" />
                       </button>
                       <button
                         onClick={e => { e.stopPropagation(); nextImage(); }}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 shadow-md flex items-center justify-center hover:bg-white transition-colors"
+                        className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 shadow flex items-center justify-center hover:bg-white transition-colors"
                       >
-                        <ChevronRight className="h-5 w-5 text-foreground" />
+                        <ChevronRight className="h-4 w-4 text-foreground" />
                       </button>
                     </>
                   )}
 
                   {hasDiscount && (
-                    <div className="absolute top-3 left-3 bg-[#ff4d00] text-white text-xs font-bold px-2 py-1 rounded">
+                    <div className="absolute top-2.5 left-2.5 bg-red-500 text-white text-[10px] font-semibold px-1.5 py-0.5 rounded">
                       -{Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)}%
                     </div>
                   )}
@@ -160,15 +160,15 @@ export default function ProductPage() {
 
                 {/* Thumbnails */}
                 {images.length > 1 && (
-                  <div className="flex gap-2 mt-4 overflow-x-auto scrollbar-hide">
+                  <div className="flex gap-1.5 mt-3 overflow-x-auto scrollbar-hide">
                     {images.map((img, idx) => (
                       <button
                         key={idx}
                         onClick={() => setCurrentImage(idx)}
-                        className={`flex-shrink-0 w-14 h-14 rounded-md overflow-hidden border-2 transition-colors ${
+                        className={`flex-shrink-0 w-12 h-12 rounded overflow-hidden border-2 transition-colors ${
                           idx === currentImage
                             ? 'border-primary'
-                            : 'border-transparent hover:border-muted-foreground/30'
+                            : 'border-transparent hover:border-foreground/20'
                         }`}
                       >
                         <SmartProductImage
