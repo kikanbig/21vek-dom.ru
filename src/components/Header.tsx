@@ -14,8 +14,8 @@ const NAV_ITEMS = [
   { to: '/shop', label: 'Каталог', exact: true },
   { to: '/shop/furniture', label: 'Мебель' },
   { to: '/shop/home', label: 'Для дома' },
-  { to: '/promos', label: 'Акции' },
-  { to: '/inspiration', label: 'Идеи' },
+  { to: '/shop/plumbing', label: 'Сантехника' },
+  { to: '/shop/appliances', label: 'Техника' },
 ];
 
 export const Header = () => {

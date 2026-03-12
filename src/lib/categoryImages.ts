@@ -22,6 +22,17 @@ import catPlates from '@/assets/categories/cat-plates.webp';
 import catOther from '@/assets/categories/cat-other.webp';
 import catFurniture from '@/assets/categories/cat-furniture.webp';
 import catHome from '@/assets/categories/cat-home.webp';
+import catPlumbing from '@/assets/categories/cat-plumbing.webp';
+import catAppliances from '@/assets/categories/cat-appliances.webp';
+import catMassagers from '@/assets/categories/cat-massagers.webp';
+import catVacuums from '@/assets/categories/cat-vacuums.webp';
+import catHomeTech from '@/assets/categories/cat-home-tech.webp';
+import catBeautyTech from '@/assets/categories/cat-beauty-tech.webp';
+import catKitchenTech from '@/assets/categories/cat-kitchen-tech.webp';
+import catBaths from '@/assets/categories/cat-baths.webp';
+import catSinks from '@/assets/categories/cat-sinks.webp';
+import catFaucets from '@/assets/categories/cat-faucets.webp';
+import catOrthoPillows from '@/assets/categories/cat-ortho-pillows.webp';
 
 export const SUBCATEGORY_IMAGES: Record<string, string> = {
   poufs: catPoufs, sofas: catSofas, mirrors: catMirrors, armchairs: catArmchairs,
@@ -30,9 +41,15 @@ export const SUBCATEGORY_IMAGES: Record<string, string> = {
   mugs: catMugs, blankets: catBlankets, pillows: catPillows, towels: catTowels,
   bedlinen: catBedlinen, cookware: catCookware, glasses: catGlasses,
   cutlery: catCutlery, plates: catPlates, other: catOther,
+  'ortho-pillows': catOrthoPillows,
+  baths: catBaths, sinks: catSinks, faucets: catFaucets,
+  massagers: catMassagers, vacuums: catVacuums,
+  'home-tech': catHomeTech, 'beauty-tech': catBeautyTech, 'kitchen-tech': catKitchenTech,
 };
 
 export const CATEGORY_IMAGES: Record<string, string> = {
   furniture: catFurniture,
   home: catHome,
+  plumbing: catPlumbing,
+  appliances: catAppliances,
 };

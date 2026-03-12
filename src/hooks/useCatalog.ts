@@ -124,7 +124,7 @@ export function useCatalogProduct(code: string | undefined) {
   return { product, related, loading };
 }
 
-export const CATEGORY_ORDER = ['furniture', 'home'];
+export const CATEGORY_ORDER = ['furniture', 'home', 'plumbing', 'appliances'];
 
 export const SUBCATEGORY_ORDER: Record<string, string[]> = {
   furniture: [
@@ -133,13 +133,21 @@ export const SUBCATEGORY_ORDER: Record<string, string[]> = {
   ],
   home: [
     'cookware', 'plates', 'glasses', 'mugs', 'cutlery',
-    'bedlinen', 'blankets', 'pillows', 'towels', 'decor', 'other',
+    'bedlinen', 'blankets', 'pillows', 'ortho-pillows', 'towels', 'decor', 'other',
+  ],
+  plumbing: [
+    'faucets', 'baths', 'sinks',
+  ],
+  appliances: [
+    'kitchen-tech', 'massagers', 'vacuums', 'home-tech', 'beauty-tech',
   ],
 };
 
 const CATEGORY_NAMES: Record<string, string> = {
   furniture: 'Мебель',
   home: 'Товары для дома',
+  plumbing: 'Сантехника',
+  appliances: 'Бытовая техника',
 };
 
 const SUBCATEGORY_NAMES: Record<string, string> = {
@@ -151,6 +159,11 @@ const SUBCATEGORY_NAMES: Record<string, string> = {
   pillows: 'Подушки и одеяла', towels: 'Полотенца', bedlinen: 'Постельное белье',
   cookware: 'Посуда для готовки', glasses: 'Стаканы и бокалы',
   cutlery: 'Столовые приборы', plates: 'Тарелки и блюда', other: 'Другое',
+  'ortho-pillows': 'Ортопедические подушки',
+  baths: 'Ванны и санфаянс', sinks: 'Мойки и раковины', faucets: 'Смесители и души',
+  massagers: 'Массажеры', vacuums: 'Пылесосы',
+  'home-tech': 'Техника для дома', 'beauty-tech': 'Техника для красоты',
+  'kitchen-tech': 'Техника для кухни',
 };
 
 export function getCategoryName(slug: string): string {
