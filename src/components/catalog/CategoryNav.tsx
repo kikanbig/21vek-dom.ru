@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
-import { ChevronRight, ChevronDown } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { CategoryInfo } from '@/types/catalog';
 import { getCategoryName, getSubcategoryName } from '@/hooks/useCatalog';
@@ -17,16 +17,16 @@ export function CategoryNav({ categories, className }: CategoryNavProps) {
       <Link
         to="/shop"
         className={cn(
-          'block px-3 py-2 rounded-lg text-[13px] font-semibold uppercase tracking-wide transition-colors',
+          'block px-3 py-2 text-[13px] font-medium tracking-wide transition-colors rounded-lg',
           !category
-            ? 'text-primary'
-            : 'text-muted-foreground hover:text-foreground'
+            ? 'text-foreground'
+            : 'text-foreground/50 hover:text-foreground'
         )}
       >
         Все товары
       </Link>
 
-      <div className="mt-2 space-y-0.5">
+      <div className="mt-1 space-y-px">
         {categories.map(cat => {
           const isOpen = category === cat.slug;
           const isActive = isOpen && !subcategory;
@@ -36,26 +36,26 @@ export function CategoryNav({ categories, className }: CategoryNavProps) {
               <Link
                 to={`/shop/${cat.slug}`}
                 className={cn(
-                  'flex items-center justify-between px-3 py-2.5 rounded-lg text-sm transition-colors',
+                  'flex items-center justify-between px-3 py-2 rounded-lg text-[13px] transition-colors',
                   isActive
-                    ? 'bg-primary text-primary-foreground font-medium'
+                    ? 'bg-foreground text-background font-medium'
                     : isOpen
-                      ? 'text-foreground font-medium bg-muted/60'
-                      : 'text-foreground/80 hover:bg-muted hover:text-foreground'
+                      ? 'text-foreground font-medium'
+                      : 'text-foreground/65 hover:text-foreground hover:bg-black/[0.03]'
                 )}
               >
                 <span>{cat.name}</span>
-                <ChevronDown
+                <ChevronRight
                   className={cn(
-                    'h-4 w-4 transition-transform duration-200',
-                    isActive ? 'text-primary-foreground' : 'text-muted-foreground',
-                    isOpen && 'rotate-180'
+                    'h-3.5 w-3.5 transition-transform duration-200',
+                    isActive ? 'text-background/50' : 'text-foreground/25',
+                    isOpen && 'rotate-90'
                   )}
                 />
               </Link>
 
               {isOpen && (
-                <div className="mt-1 mb-2 ml-2 space-y-px">
+                <div className="mt-0.5 mb-1.5 ml-3 border-l border-black/[0.06] pl-2.5 space-y-px">
                   {cat.subcategories.map(sub => {
                     const isSubActive = subcategory === sub.slug;
                     return (
@@ -63,16 +63,16 @@ export function CategoryNav({ categories, className }: CategoryNavProps) {
                         key={sub.slug}
                         to={`/shop/${cat.slug}/${sub.slug}`}
                         className={cn(
-                          'flex items-center justify-between px-3 py-2 rounded-md text-sm transition-all',
+                          'flex items-center justify-between px-2.5 py-1.5 rounded-md text-[12px] transition-all',
                           isSubActive
-                            ? 'bg-primary/10 text-primary font-medium'
-                            : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                            ? 'text-foreground font-medium bg-black/[0.04]'
+                            : 'text-foreground/50 hover:text-foreground/80 hover:bg-black/[0.02]'
                         )}
                       >
                         <span className="leading-tight">{sub.name}</span>
                         <span className={cn(
-                          'text-xs tabular-nums ml-2 flex-shrink-0',
-                          isSubActive ? 'text-primary/70' : 'text-muted-foreground/50'
+                          'text-[10px] tabular-nums ml-2 flex-shrink-0',
+                          isSubActive ? 'text-foreground/40' : 'text-foreground/25'
                         )}>
                           {sub.count}
                         </span>
@@ -93,13 +93,13 @@ export function Breadcrumbs() {
   const { category, subcategory } = useParams<{ category?: string; subcategory?: string }>();
 
   return (
-    <nav className="flex items-center gap-1.5 text-sm text-muted-foreground flex-wrap">
+    <nav className="flex items-center gap-1.5 text-[13px] text-foreground/40 flex-wrap">
       <Link to="/shop" className="hover:text-foreground transition-colors">
         Каталог
       </Link>
       {category && (
         <>
-          <ChevronRight className="h-3.5 w-3.5" />
+          <ChevronRight className="h-3 w-3" />
           <Link to={`/shop/${category}`} className={cn(
             'hover:text-foreground transition-colors',
             !subcategory && 'text-foreground font-medium'
@@ -110,7 +110,7 @@ export function Breadcrumbs() {
       )}
       {subcategory && (
         <>
-          <ChevronRight className="h-3.5 w-3.5" />
+          <ChevronRight className="h-3 w-3" />
           <span className="text-foreground font-medium">
             {getSubcategoryName(subcategory)}
           </span>
