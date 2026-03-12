@@ -16,6 +16,13 @@ import { CategoryNav, Breadcrumbs } from './CategoryNav';
 import { cn } from '@/lib/utils';
 import { SUBCATEGORY_IMAGES } from '@/lib/categoryImages';
 
+const SORT_LABELS: Record<SortOption, string> = {
+  name: 'По названию',
+  'price-asc': 'Сначала дешевле',
+  'price-desc': 'Сначала дороже',
+  rating: 'По рейтингу',
+};
+
 const PAGE_SIZE = 24;
 
 export function CatalogGrid() {
