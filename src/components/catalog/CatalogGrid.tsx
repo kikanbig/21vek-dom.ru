@@ -14,21 +14,7 @@ import type { SortOption } from '@/hooks/useCatalog';
 import { CatalogProductCard } from './CatalogProductCard';
 import { CategoryNav, Breadcrumbs } from './CategoryNav';
 import { cn } from '@/lib/utils';
-
-const SORT_LABELS: Record<SortOption, string> = {
-  name: 'По названию',
-  'price-asc': 'Сначала дешевле',
-  'price-desc': 'Сначала дороже',
-  rating: 'По рейтингу',
-};
-
-const SUBCATEGORY_ICONS: Record<string, string> = {
-  poufs: '🪑', sofas: '🛋️', mirrors: '🪞', armchairs: '💺', beds: '🛏️',
-  mattresses: '🛏️', shelves: '📚', tables: '🪵', chairs: '🪑', dressers: '🗄️',
-  wardrobes: '🗃️', decor: '🏺', mugs: '☕', blankets: '🧶', pillows: '🛌',
-  towels: '🧴', bedlinen: '🛏️', cookware: '🍳', glasses: '🥂', cutlery: '🍴',
-  plates: '🍽️', other: '📦',
-};
+import { SUBCATEGORY_IMAGES } from '@/lib/categoryImages';
 
 const PAGE_SIZE = 24;
 
@@ -158,16 +144,21 @@ export function CatalogGrid() {
                 <Link
                   key={sub.slug}
                   to={`/shop/${category}/${sub.slug}`}
-                  className="group flex items-center gap-3 p-4 rounded-xl border border-border/40 bg-card hover:border-primary/30 hover:shadow-card transition-all duration-200"
+                  className="group relative overflow-hidden rounded-xl aspect-[4/3]"
                 >
-                  <span className="text-2xl">{SUBCATEGORY_ICONS[sub.slug] || '📦'}</span>
-                  <div className="min-w-0 flex-1">
-                    <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors line-clamp-1">
+                  <img
+                    src={SUBCATEGORY_IMAGES[sub.slug]}
+                    alt={sub.name}
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-3">
+                    <span className="text-sm font-medium text-white leading-tight line-clamp-2">
                       {sub.name}
                     </span>
-                    <span className="text-xs text-muted-foreground">{sub.count} шт.</span>
+                    <span className="text-xs text-white/70 block">{sub.count} шт.</span>
                   </div>
-                  <ArrowRight className="h-4 w-4 text-muted-foreground/40 group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
                 </Link>
               ))}
             </div>
@@ -192,16 +183,21 @@ export function CatalogGrid() {
                       <Link
                         key={sub.slug}
                         to={`/shop/${cat.slug}/${sub.slug}`}
-                        className="group flex items-center gap-3 p-4 rounded-xl border border-border/40 bg-card hover:border-primary/30 hover:shadow-card transition-all duration-200"
+                        className="group relative overflow-hidden rounded-xl aspect-[4/3]"
                       >
-                        <span className="text-2xl">{SUBCATEGORY_ICONS[sub.slug] || '📦'}</span>
-                        <div className="min-w-0 flex-1">
-                          <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors line-clamp-1">
+                        <img
+                          src={SUBCATEGORY_IMAGES[sub.slug]}
+                          alt={sub.name}
+                          className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                        <div className="absolute bottom-0 left-0 right-0 p-3">
+                          <span className="text-sm font-medium text-white leading-tight line-clamp-2">
                             {sub.name}
                           </span>
-                          <span className="text-xs text-muted-foreground">{sub.count} шт.</span>
+                          <span className="text-xs text-white/70 block">{sub.count} шт.</span>
                         </div>
-                        <ArrowRight className="h-4 w-4 text-muted-foreground/40 group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
                       </Link>
                     ))}
                   </div>
