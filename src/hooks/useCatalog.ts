@@ -125,7 +125,7 @@ export function useCatalogProduct(code: string | undefined) {
   return { product, related, loading };
 }
 
-export const CATEGORY_ORDER = ['furniture', 'home', 'plumbing', 'appliances'];
+export const CATEGORY_ORDER = ['furniture', 'appliances', 'plumbing', 'home'];
 
 export const SUBCATEGORY_ORDER: Record<string, string[]> = {
   furniture: [
