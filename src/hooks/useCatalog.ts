@@ -134,7 +134,7 @@ export const SUBCATEGORY_ORDER: Record<string, string[]> = {
   ],
   home: [
     'cookware', 'plates', 'glasses', 'mugs', 'cutlery',
-    'bedsets', 'sheets', 'duvet-covers', 'pillowcases', 'bedlinen',
+    'bedsets', 'sheets', 'duvet-covers', 'pillowcases',
     'blankets', 'pillows', 'ortho-pillows', 'towels', 'decor', 'other',
   ],
   plumbing: [
