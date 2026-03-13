@@ -11,11 +11,10 @@ import { cn } from '@/lib/utils';
 import logo from '@/assets/logo-21vek-dom.png';
 
 const NAV_ITEMS = [
-  { to: '/shop', label: 'Каталог', exact: true },
-  { to: '/shop/furniture', label: 'Мебель' },
-  { to: '/shop/home', label: 'Для дома' },
-  { to: '/shop/plumbing', label: 'Сантехника' },
-  { to: '/shop/appliances', label: 'Техника' },
+  { to: '/shop', label: 'Каталог' },
+  { to: '/promos', label: 'Акции' },
+  { to: '/inspiration', label: 'Статьи' },
+  { to: '/#store', label: 'Магазин' },
 ];
 
 export const Header = () => {
@@ -34,9 +33,10 @@ export const Header = () => {
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-1 flex-1">
             {NAV_ITEMS.map(item => {
-              const isActive = item.exact
-                ? location.pathname === item.to
-                : location.pathname.startsWith(item.to);
+              const path = item.to.split('#')[0] || '/';
+              const isActive = path === '/'
+                ? false
+                : location.pathname.startsWith(path);
               return (
                 <Link
                   key={item.to}
