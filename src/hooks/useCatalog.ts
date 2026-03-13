@@ -66,18 +66,19 @@ export function useCatalogProducts(opts: {
     }
 
     const sorted = [...items];
+    const hasImg = (p: CatalogProduct) => p.mainImage ? 0 : 1;
     switch (sort) {
       case 'price-asc':
-        sorted.sort((a, b) => (a.price || 99999) - (b.price || 99999));
+        sorted.sort((a, b) => hasImg(a) - hasImg(b) || (a.price || 99999) - (b.price || 99999));
         break;
       case 'price-desc':
-        sorted.sort((a, b) => (b.price || 0) - (a.price || 0));
+        sorted.sort((a, b) => hasImg(a) - hasImg(b) || (b.price || 0) - (a.price || 0));
         break;
       case 'rating':
-        sorted.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+        sorted.sort((a, b) => hasImg(a) - hasImg(b) || (b.rating || 0) - (a.rating || 0));
         break;
       default:
-        sorted.sort((a, b) => a.name.localeCompare(b.name, 'ru'));
+        sorted.sort((a, b) => hasImg(a) - hasImg(b) || a.name.localeCompare(b.name, 'ru'));
     }
     return sorted;
   }, [data, categorySlug, subcategorySlug, search, sort]);
