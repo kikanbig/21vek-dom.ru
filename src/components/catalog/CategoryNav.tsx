@@ -70,12 +70,6 @@ export function CategoryNav({ categories, className }: CategoryNavProps) {
                         )}
                       >
                         <span className="leading-tight">{sub.name}</span>
-                        <span className={cn(
-                          'text-[10px] tabular-nums ml-2 flex-shrink-0',
-                          isSubActive ? 'text-foreground/40' : 'text-foreground/25'
-                        )}>
-                          {sub.count}
-                        </span>
                       </Link>
                     );
                   })}

@@ -74,9 +74,6 @@ export function LandingCatalog() {
                 <h3 className="text-2xl font-heading font-bold text-white mb-1">
                   {cat.name}
                 </h3>
-                <p className="text-white/80 text-sm">
-                  {cat.subcategories.reduce((sum, s) => sum + s.count, 0)} товаров
-                </p>
               </div>
               <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity">
                 <ArrowRight className="h-5 w-5 text-white" />
@@ -117,7 +114,6 @@ export function LandingCatalog() {
                     <span className="text-sm font-medium text-white leading-tight line-clamp-2">
                       {sub.name}
                     </span>
-                    <span className="text-xs text-white/70 block">{sub.count} шт.</span>
                   </div>
                 </Link>
               ))}

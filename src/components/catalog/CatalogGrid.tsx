@@ -164,7 +164,6 @@ export function CatalogGrid() {
                     <span className="text-sm font-medium text-white leading-tight line-clamp-2">
                       {sub.name}
                     </span>
-                    <span className="text-xs text-white/70 block">{sub.count} шт.</span>
                   </div>
                 </Link>
               ))}
@@ -203,7 +202,6 @@ export function CatalogGrid() {
                           <span className="text-sm font-medium text-white leading-tight line-clamp-2">
                             {sub.name}
                           </span>
-                          <span className="text-xs text-white/70 block">{sub.count} шт.</span>
                         </div>
                       </Link>
                     ))}
