@@ -133,7 +133,7 @@ export const SUBCATEGORY_ORDER: Record<string, string[]> = {
   ],
   home: [
     'cookware', 'plates', 'glasses', 'mugs', 'cutlery',
-    'bedlinen', 'blankets', 'pillows', 'ortho-pillows', 'towels', 'decor', 'other',
+    'bedlinen', 'blankets', 'pillows', 'ortho-pillows', 'towels', 'table-linen', 'decor', 'other',
   ],
   plumbing: [
     'faucets', 'baths', 'sinks',
@@ -160,6 +160,7 @@ const SUBCATEGORY_NAMES: Record<string, string> = {
   cookware: 'Посуда для готовки', glasses: 'Стаканы и бокалы',
   cutlery: 'Столовые приборы', plates: 'Тарелки и блюда', other: 'Другое',
   'ortho-pillows': 'Ортопедические подушки',
+  'table-linen': 'Скатерти и салфетки',
   baths: 'Ванны и санфаянс', sinks: 'Мойки и раковины', faucets: 'Смесители и души',
   massagers: 'Массажеры', vacuums: 'Пылесосы',
   'home-tech': 'Техника для дома', 'beauty-tech': 'Техника для красоты',
