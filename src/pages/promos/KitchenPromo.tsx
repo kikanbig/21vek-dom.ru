@@ -22,14 +22,15 @@ const KitchenPromo = () => {
 
           {/* Header */}
           <div className="mb-10">
-            <div className="inline-flex items-center gap-3 mb-6">
-              <span className="bg-destructive text-destructive-foreground px-4 py-2 rounded-xl text-sm font-bold">
-                С 18 по 31 марта
-              </span>
-              <span className="bg-destructive text-destructive-foreground px-4 py-2 rounded-xl text-2xl font-black">
-                −12%
-              </span>
+            {/* Promo Badge */}
+            <div className="inline-flex flex-col sm:flex-row items-start sm:items-center gap-3 bg-destructive text-destructive-foreground px-6 py-4 rounded-2xl mb-8">
+              <div className="flex items-baseline gap-2">
+                <span className="text-4xl md:text-5xl font-black">−12%</span>
+                <span className="text-lg font-semibold">на все кухни</span>
+              </div>
+              <span className="text-sm font-medium opacity-90">С 18 по 31 марта</span>
             </div>
+
             <h1 className="text-4xl md:text-6xl font-heading font-black text-foreground mb-6 leading-tight">
               Ваша кухня.<br />Ваши правила.
             </h1>
