@@ -14,6 +14,7 @@ import SetDining1 from "./pages/sets/SetDining1";
 import SetDining2 from "./pages/sets/SetDining2";
 import SetPractical from "./pages/sets/SetPractical";
 import SetKitchenLight from "./pages/sets/SetKitchenLight";
+import KitchenPromo from "./pages/promos/KitchenPromo";
 import NPS from "./pages/NPS";
 import InspirationPage from "./pages/InspirationPage";
 import ArticlePage from "./pages/ArticlePage";
@@ -58,6 +59,7 @@ const App = () => (
             <Route path="/sets/dining-2" element={<SetDining2 />} />
             <Route path="/sets/practical" element={<SetPractical />} />
             <Route path="/sets/kitchen-light" element={<SetKitchenLight />} />
+            <Route path="/promos/kitchen" element={<KitchenPromo />} />
             <Route path="/nps" element={<NPS />} />
             <Route path="/inspiration" element={<InspirationPage />} />
             <Route path="/inspiration/:slug" element={<ArticlePage />} />

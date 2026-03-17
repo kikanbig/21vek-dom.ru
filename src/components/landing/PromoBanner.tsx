@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import setComfortable from '@/assets/promos/set-comfortable-opt.jpg';
 import setDining1 from '@/assets/promos/set-dining-1-opt.jpg';
 import setDining2 from '@/assets/promos/set-dining-2-opt.jpg';
+import kitchenPromoBanner from '@/assets/promos/kitchen-promo-banner.png';
 
 interface Banner {
   id: number;
@@ -18,6 +19,15 @@ interface Banner {
 }
 
 const banners: Banner[] = [
+  {
+    id: 1,
+    image: kitchenPromoBanner,
+    title: 'На все кухни',
+    subtitle: 'С 18 по 31 марта',
+    description: 'Приходите. Откройте каждый ящик. Потрогайте столешницу. Почувствуйте свою кухню до покупки.',
+    discount: '-12%',
+    link: '/promos/kitchen',
+  },
   {
     id: 2,
     image: setComfortable,

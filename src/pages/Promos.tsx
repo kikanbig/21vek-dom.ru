@@ -11,6 +11,7 @@ import setDining1 from '@/assets/promos/set-dining-1-opt.jpg';
 import setDining2 from '@/assets/promos/set-dining-2-opt.jpg';
 import setPractical from '@/assets/promos/set-practical-opt.jpg';
 import setKitchenLight from '@/assets/promos/set-kitchen-light-opt.jpg';
+import kitchenPromoTile from '@/assets/promos/kitchen-promo-tile.png';
 
 interface Promo {
   id: number;
@@ -23,6 +24,15 @@ interface Promo {
 }
 
 const promos: Promo[] = [
+  {
+    id: 0,
+    title: 'На все кухни',
+    subtitle: 'С 18 по 31 марта',
+    description: 'Скидка 12% на все кухни из ассортимента 21vek.by ДОМ',
+    image: kitchenPromoTile,
+    discount: '12%',
+    link: '/promos/kitchen',
+  },
   {
     id: 7,
     title: 'Кухня Лайт',
@@ -154,7 +164,7 @@ const Promos = () => {
                 {/* Content */}
                 <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
                   <h3 className="text-white font-bold text-sm md:text-base mb-1">
-                    Сет «{promo.title}»
+                    {promo.id === 0 ? promo.title : `Сет «${promo.title}»`}
                   </h3>
                   <p className="text-white/65 text-xs line-clamp-2">
                     {promo.subtitle}

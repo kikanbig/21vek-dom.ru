@@ -8,6 +8,7 @@ import setDining1 from '@/assets/promos/set-dining-1-opt.jpg';
 import setDining2 from '@/assets/promos/set-dining-2-opt.jpg';
 import setPractical from '@/assets/promos/set-practical-opt.jpg';
 import setKitchenLight from '@/assets/promos/set-kitchen-light-opt.jpg';
+import kitchenPromoTile from '@/assets/promos/kitchen-promo-tile.png';
 
 interface Promo {
   id: number;
@@ -19,6 +20,14 @@ interface Promo {
 }
 
 const allPromos: Promo[] = [
+  {
+    id: 0,
+    title: 'На все кухни',
+    subtitle: 'С 18 по 31 марта',
+    image: kitchenPromoTile,
+    discount: '12%',
+    link: '/promos/kitchen',
+  },
   {
     id: 7,
     title: 'Кухня Лайт',
