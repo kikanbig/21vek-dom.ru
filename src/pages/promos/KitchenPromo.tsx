@@ -22,9 +22,14 @@ const KitchenPromo = () => {
 
           {/* Header */}
           <div className="mb-10">
-            <p className="text-xs font-bold uppercase tracking-widest text-foreground/40 mb-3">
-              С 18 по 31 марта
-            </p>
+            <div className="inline-flex items-center gap-3 mb-6">
+              <span className="bg-destructive text-destructive-foreground px-4 py-2 rounded-xl text-sm font-bold">
+                С 18 по 31 марта
+              </span>
+              <span className="bg-destructive text-destructive-foreground px-4 py-2 rounded-xl text-2xl font-black">
+                −12%
+              </span>
+            </div>
             <h1 className="text-4xl md:text-6xl font-heading font-black text-foreground mb-6 leading-tight">
               Ваша кухня.<br />Ваши правила.
             </h1>
@@ -40,18 +45,6 @@ const KitchenPromo = () => {
               alt="Скидка 12% на все кухни"
               className="w-full h-full object-cover"
             />
-          </div>
-
-          {/* Offer */}
-          <div className="mb-12">
-            <div className="text-center py-12 border-y border-border">
-              <p className="text-5xl md:text-7xl font-heading font-black text-foreground mb-4">
-                −12%
-              </p>
-              <p className="text-xl md:text-2xl text-muted-foreground">
-                на все кухни в 21vek.by ДОМ
-              </p>
-            </div>
           </div>
 
           {/* Description */}
