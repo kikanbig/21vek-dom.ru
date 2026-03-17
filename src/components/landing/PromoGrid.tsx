@@ -125,11 +125,6 @@ export const PromoGrid = () => {
               {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               
-              {/* Discount badge */}
-              <div className="absolute top-3 right-3 flex items-center gap-1 bg-destructive text-destructive-foreground px-2 py-1 rounded-lg text-xs font-bold shadow-lg">
-                {promo.discount}
-              </div>
-              
               {/* Content */}
               <div className="absolute bottom-0 left-0 right-0 p-4">
                 <h3 className="text-white font-semibold text-sm mb-0.5">

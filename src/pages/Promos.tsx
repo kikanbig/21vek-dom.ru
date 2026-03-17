@@ -156,11 +156,6 @@ const Promos = () => {
                 {/* Gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
 
-                {/* Discount badge — black/white */}
-                <div className="absolute top-3 right-3 bg-white text-foreground px-2.5 py-1 rounded-lg text-sm font-black shadow-lg">
-                  {promo.discount}
-                </div>
-
                 {/* Content */}
                 <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
                   <h3 className="text-white font-bold text-sm md:text-base mb-1">
