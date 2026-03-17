@@ -1,4 +1,4 @@
-import { ArrowRight, Percent } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import setComfortable from '@/assets/promos/set-comfortable-opt.jpg';
@@ -127,7 +127,6 @@ export const PromoGrid = () => {
               
               {/* Discount badge */}
               <div className="absolute top-3 right-3 flex items-center gap-1 bg-destructive text-destructive-foreground px-2 py-1 rounded-lg text-xs font-bold shadow-lg">
-                <Percent className="w-3 h-3" />
                 {promo.discount}
               </div>
               

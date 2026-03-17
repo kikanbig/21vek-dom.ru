@@ -97,9 +97,9 @@ export const PromoBanner = () => {
               {/* Overlay with text — centered */}
               <div className="absolute inset-0 bg-black/55 flex items-center justify-center">
                 <div className="text-center px-4 sm:px-8 max-w-2xl">
-                  {/* Discount badge — black */}
+                  {/* Discount badge — red */}
                   {banner.discount && (
-                    <span className="inline-block px-4 py-1.5 sm:px-6 sm:py-2 mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-5xl font-black rounded-xl bg-white text-foreground shadow-lg">
+                    <span className="inline-block px-4 py-1.5 sm:px-6 sm:py-2 mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-5xl font-black rounded-xl bg-destructive text-destructive-foreground shadow-lg">
                       {banner.discount}
                     </span>
                   )}
