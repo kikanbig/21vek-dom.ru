@@ -22,7 +22,7 @@ const CookiePolicy = () => {
           {/* Header */}
           <div className="mb-10">
             <h1 className="text-4xl md:text-5xl font-heading font-black text-foreground mb-4">
-              Политика в отношении обработки файлов cookie
+              Обработка файлов cookie
             </h1>
             <p className="text-lg text-muted-foreground">
               ООО «ТРИОВИСТ»
