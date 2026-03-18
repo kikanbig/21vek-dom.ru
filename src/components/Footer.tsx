@@ -18,6 +18,7 @@ export const Footer = () => {
               <a href="https://www.21vek.by/self_delivery/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Самовывоз</a>
               <a href="https://www.21vek.by/contacts/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Контакты</a>
               <a href="https://www.21vek.by/services/credit.html" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Оплата частями</a>
+              <Link to="/cookie-policy" className="hover:text-foreground transition-colors">Политика cookies</Link>
               <a href="https://www.21vek.by/company/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">О нас</a>
             </div>
 

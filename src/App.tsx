@@ -18,6 +18,7 @@ import KitchenPromo from "./pages/promos/KitchenPromo";
 import NPS from "./pages/NPS";
 import InspirationPage from "./pages/InspirationPage";
 import ArticlePage from "./pages/ArticlePage";
+import CookiePolicy from "./pages/CookiePolicy";
 import { CookieConsent } from "./components/CookieConsent";
 import { Loader2 } from "lucide-react";
 
@@ -64,6 +65,7 @@ const App = () => (
             <Route path="/nps" element={<NPS />} />
             <Route path="/inspiration" element={<InspirationPage />} />
             <Route path="/inspiration/:slug" element={<ArticlePage />} />
+            <Route path="/cookie-policy" element={<CookiePolicy />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
