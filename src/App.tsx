@@ -18,6 +18,7 @@ import KitchenPromo from "./pages/promos/KitchenPromo";
 import NPS from "./pages/NPS";
 import InspirationPage from "./pages/InspirationPage";
 import ArticlePage from "./pages/ArticlePage";
+import { CookieConsent } from "./components/CookieConsent";
 import { Loader2 } from "lucide-react";
 
 const ShopCatalog = lazy(() => import("./pages/ShopCatalog"));
@@ -66,6 +67,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
+        <CookieConsent />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
