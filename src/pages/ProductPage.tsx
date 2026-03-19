@@ -3,13 +3,14 @@ import { useParams, Link } from 'react-router-dom';
 import {
   ChevronLeft,
   ChevronRight,
-  ExternalLink,
+  Navigation,
   Truck,
   Shield,
   MapPin,
   Loader2,
   X,
 } from 'lucide-react';
+import { STORE_YANDEX_ROUTE_URL } from '@/constants/storeRoute';
 import { Button } from '@/components/ui/button';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
@@ -255,17 +256,15 @@ export default function ProductPage() {
               </div>
 
               {/* CTA */}
-              {product.sourceUrl && (
-                <a
-                  href={product.sourceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 mt-5 w-full py-3.5 rounded-full bg-foreground text-background text-[14px] font-medium hover:opacity-90 transition-opacity"
-                >
-                  Купить на 21vek.by
-                  <ExternalLink className="h-3.5 w-3.5 opacity-40" />
-                </a>
-              )}
+              <a
+                href={STORE_YANDEX_ROUTE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 mt-5 w-full py-3.5 rounded-full bg-foreground text-background text-[14px] font-medium hover:opacity-90 transition-opacity"
+              >
+                Построить маршрут
+                <Navigation className="h-3.5 w-3.5 opacity-40" />
+              </a>
 
               {/* Delivery & info */}
               <div className="mt-6 pt-5 border-t border-black/[0.06] space-y-3.5">
@@ -322,17 +321,15 @@ export default function ProductPage() {
               )}
             </div>
 
-            {product.sourceUrl && (
-              <a
-                href={product.sourceUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 mt-4 w-full py-3 rounded-full bg-foreground text-background text-[14px] font-medium"
-              >
-                Купить на 21vek.by
-                <ExternalLink className="h-3.5 w-3.5 opacity-40" />
-              </a>
-            )}
+            <a
+              href={STORE_YANDEX_ROUTE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 mt-4 w-full py-3 rounded-full bg-foreground text-background text-[14px] font-medium"
+            >
+              Построить маршрут
+              <Navigation className="h-3.5 w-3.5 opacity-40" />
+            </a>
 
             <div className="mt-5 pt-4 border-t border-black/[0.06] flex flex-wrap gap-x-5 gap-y-2 text-[12px] text-foreground/50">
               <div className="flex items-center gap-1.5">

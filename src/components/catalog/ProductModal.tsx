@@ -1,7 +1,8 @@
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Heart, ExternalLink, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Heart, Navigation, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { STORE_YANDEX_ROUTE_URL } from "@/constants/storeRoute";
 import { SmartProductImage } from "./SmartProductImage";
 
 interface Product {
@@ -190,17 +191,15 @@ export const ProductModal = ({ product, open, onClose }: ProductModalProps) => {
 
             {/* CTA Section */}
             <div className="mt-auto pt-6 border-t border-border">
-              {product.source_url && (
-                <a
-                  href={product.source_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full py-4 px-6 bg-primary text-primary-foreground rounded-xl font-semibold hover:bg-primary/90 transition-colors"
-                >
-                  Смотреть на 21vek.by
-                  <ExternalLink className="h-5 w-5" />
-                </a>
-              )}
+              <a
+                href={STORE_YANDEX_ROUTE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 w-full py-4 px-6 bg-primary text-primary-foreground rounded-xl font-semibold hover:bg-primary/90 transition-colors"
+              >
+                Построить маршрут
+                <Navigation className="h-5 w-5" />
+              </a>
             </div>
           </div>
         </div>
