@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, Phone } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import {
   Sheet,
   SheetContent,
@@ -11,6 +13,8 @@ import { OFFICIAL_DOM_URL } from '@/constants/officialSite';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const articlesActive = location.pathname.startsWith('/inspiration');
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white border-b border-black/[0.06]">
@@ -20,7 +24,21 @@ export const Header = () => {
             <img src={logo} alt="21vek.by ДОМ" className="h-7 w-auto" />
           </a>
 
-          <div className="hidden lg:flex items-center gap-4 text-[13px] text-foreground/60 ml-auto">
+          <nav className="hidden lg:flex items-center flex-1">
+            <Link
+              to="/inspiration"
+              className={cn(
+                'px-3 py-1.5 text-[13px] font-medium rounded-full transition-colors',
+                articlesActive
+                  ? 'bg-foreground text-background'
+                  : 'text-foreground/70 hover:text-foreground hover:bg-black/[0.04]'
+              )}
+            >
+              Статьи
+            </Link>
+          </nav>
+
+          <div className="hidden lg:flex items-center gap-4 text-[13px] text-foreground/60 flex-shrink-0">
             <a
               href="tel:+375447829302"
               className="hover:text-foreground transition-colors tabular-nums"
@@ -50,6 +68,15 @@ export const Header = () => {
               </a>
             </SheetTitle>
           </SheetHeader>
+          <nav className="flex flex-col py-2 border-b border-border/50">
+            <Link
+              to="/inspiration"
+              onClick={() => setIsMenuOpen(false)}
+              className="px-5 py-3 text-[15px] text-foreground/80 hover:bg-black/[0.03] transition-colors"
+            >
+              Статьи
+            </Link>
+          </nav>
           <div className="mt-auto border-t border-border/50 px-5 py-4 space-y-2">
             <a
               href="tel:+375447829302"
