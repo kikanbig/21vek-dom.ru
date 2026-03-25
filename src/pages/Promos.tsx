@@ -100,6 +100,46 @@ const promos: Promo[] = [
 const promoCardClass =
   'group relative rounded-2xl overflow-hidden aspect-square bg-background border border-black/[0.06] shadow-sm';
 
+const PROMOS_PER_ROW = 4;
+const promosFirstRow = promos.slice(0, PROMOS_PER_ROW);
+const promosSecondRow = promos.slice(PROMOS_PER_ROW);
+
+const PromoStoryBlock = () => (
+  <section aria-label="О магазине и акциях" className="w-full py-2 md:py-4">
+    <div className="w-full rounded-3xl border border-black/[0.06] bg-gradient-to-b from-muted/40 to-background px-5 py-8 md:px-10 md:py-10 shadow-[0_1px_0_rgba(0,0,0,0.04)]">
+      <p className="text-lg md:text-xl font-semibold text-foreground tracking-tight text-center mb-6">
+        В 21vek.by ДОМ всегда есть повод заглянуть.
+      </p>
+      <div className="space-y-4 text-[15px] md:text-base text-foreground/80 leading-relaxed max-w-none">
+        <p>
+          Мы верим: идеальный дом не должен стоить целое состояние. Поэтому в нашем магазине
+          постоянно действуют выгодные акции и специальные предложения на мебель, интерьеры и бытовую
+          технику.
+        </p>
+        <p>
+          Диваны, кухни, спальни, столы, кресла, техника для дома — здесь всегда можно найти то, что
+          вы давно хотели, по лучшей цене.
+        </p>
+        <p>
+          Каждый найдёт то, что ему по душе — и по кошельку. Молодая пара, которая обустраивает первую
+          квартиру. Семья, которая решила обновить гостиную. Или тот, кто просто давно хотел кресло, в
+          котором хочется остаться навсегда.
+        </p>
+        <p>
+          Приходите, смотрите, трогайте, сравнивайте. 2&nbsp;700 кв.м. мебели и техники. Всё вживую.
+          Всё по честным ценам. А наши акции сделают покупку ещё приятнее.
+        </p>
+        <p className="font-medium text-foreground pt-1">
+          21vek.by ДОМ — ваш идеальный дом начинается здесь.
+        </p>
+      </div>
+      <p className="mt-8 pt-6 border-t border-black/[0.06] text-center text-sm md:text-[15px] font-medium text-foreground/90">
+        📍 ТРЦ «Червенский», ул. Маяковского 6
+      </p>
+    </div>
+  </section>
+);
+
 const PromoTileContent = ({ promo }: { promo: Promo }) => (
   <>
     <img
@@ -149,53 +189,30 @@ const Promos = () => {
             </div>
           </div>
 
-          <section
-            aria-label="О магазине и акциях"
-            className="relative max-w-6xl mx-auto mb-12 md:mb-16 px-1 md:px-2"
-          >
-            <div className="rounded-3xl border border-black/[0.06] bg-gradient-to-b from-muted/40 to-background px-6 py-8 md:px-10 md:py-10 shadow-[0_1px_0_rgba(0,0,0,0.04)]">
-              <p className="text-lg md:text-xl font-semibold text-foreground tracking-tight text-center mb-6">
-                В 21vek.by ДОМ всегда есть повод заглянуть.
-              </p>
-              <div className="space-y-4 text-[15px] md:text-base text-foreground/80 leading-relaxed">
-                <p>
-                  Мы верим: идеальный дом не должен стоить целое состояние. Поэтому в нашем магазине
-                  постоянно действуют выгодные акции и специальные предложения на мебель, интерьеры и
-                  бытовую технику.
-                </p>
-                <p>
-                  Диваны, кухни, спальни, столы, кресла, техника для дома — здесь всегда можно найти
-                  то, что вы давно хотели, по лучшей цене.
-                </p>
-                <p>
-                  Каждый найдёт то, что ему по душе — и по кошельку. Молодая пара, которая обустраивает
-                  первую квартиру. Семья, которая решила обновить гостиную. Или тот, кто просто давно
-                  хотел кресло, в котором хочется остаться навсегда.
-                </p>
-                <p>
-                  Приходите, смотрите, трогайте, сравнивайте. 2&nbsp;700 кв.м. мебели и техники. Всё
-                  вживую. Всё по честным ценам. А наши акции сделают покупку ещё приятнее.
-                </p>
-                <p className="font-medium text-foreground pt-1">
-                  21vek.by ДОМ — ваш идеальный дом начинается здесь.
-                </p>
-              </div>
-              <p className="mt-8 pt-6 border-t border-black/[0.06] text-center text-sm md:text-[15px] font-medium text-foreground/90">
-                📍 ТРЦ «Червенский», ул. Маяковского 6
-              </p>
+          <div className="space-y-4 md:space-y-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {promosFirstRow.map((promo) => (
+                <Link
+                  key={promo.id}
+                  to={promo.link}
+                  className={`${promoCardClass} cursor-pointer`}
+                >
+                  <PromoTileContent promo={promo} />
+                </Link>
+              ))}
             </div>
-          </section>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pb-8">
-            {promos.map((promo) => (
-              <Link
-                key={promo.id}
-                to={promo.link}
-                className={`${promoCardClass} cursor-pointer`}
-              >
-                <PromoTileContent promo={promo} />
-              </Link>
-            ))}
+            <PromoStoryBlock />
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pb-8">
+              {promosSecondRow.map((promo) => (
+                <Link
+                  key={promo.id}
+                  to={promo.link}
+                  className={`${promoCardClass} cursor-pointer`}
+                >
+                  <PromoTileContent promo={promo} />
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </main>
