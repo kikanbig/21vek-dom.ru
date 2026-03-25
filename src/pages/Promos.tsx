@@ -100,22 +100,12 @@ const promos: Promo[] = [
 const promoCardClass =
   'group relative rounded-2xl overflow-hidden aspect-square bg-background border border-black/[0.06] shadow-sm';
 
-const PromoTileContent = ({
-  promo,
-  interactive,
-}: {
-  promo: Promo;
-  interactive: boolean;
-}) => (
+const PromoTileContent = ({ promo }: { promo: Promo }) => (
   <>
     <img
       src={promo.image}
       alt={promo.title}
-      className={
-        interactive
-          ? 'w-full h-full object-cover transition-transform duration-500 group-hover:scale-105'
-          : 'w-full h-full object-cover'
-      }
+      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
       loading="lazy"
     />
     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
@@ -161,7 +151,7 @@ const Promos = () => {
 
           <section
             aria-label="О магазине и акциях"
-            className="relative max-w-3xl mx-auto mb-12 md:mb-16 px-1 md:px-2"
+            className="relative max-w-6xl mx-auto mb-12 md:mb-16 px-1 md:px-2"
           >
             <div className="rounded-3xl border border-black/[0.06] bg-gradient-to-b from-muted/40 to-background px-6 py-8 md:px-10 md:py-10 shadow-[0_1px_0_rgba(0,0,0,0.04)]">
               <p className="text-lg md:text-xl font-semibold text-foreground tracking-tight text-center mb-6">
@@ -197,21 +187,15 @@ const Promos = () => {
           </section>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pb-8">
-            {promos.map((promo) =>
-              promo.id === 0 ? (
-                <Link
-                  to={promo.link}
-                  key={promo.id}
-                  className={`${promoCardClass} cursor-pointer`}
-                >
-                  <PromoTileContent promo={promo} interactive />
-                </Link>
-              ) : (
-                <div key={promo.id} className={promoCardClass}>
-                  <PromoTileContent promo={promo} interactive={false} />
-                </div>
-              )
-            )}
+            {promos.map((promo) => (
+              <Link
+                key={promo.id}
+                to={promo.link}
+                className={`${promoCardClass} cursor-pointer`}
+              >
+                <PromoTileContent promo={promo} />
+              </Link>
+            ))}
           </div>
         </div>
       </main>

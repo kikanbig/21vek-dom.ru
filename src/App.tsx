@@ -7,6 +7,13 @@ import { useEffect } from "react";
 import Promos from "./pages/Promos";
 import KitchenPromo from "./pages/promos/KitchenPromo";
 import NPS from "./pages/NPS";
+import SetComfortable from "./pages/sets/SetComfortable";
+import SetConvenient from "./pages/sets/SetConvenient";
+import SetKids from "./pages/sets/SetKids";
+import SetDining1 from "./pages/sets/SetDining1";
+import SetDining2 from "./pages/sets/SetDining2";
+import SetPractical from "./pages/sets/SetPractical";
+import SetKitchenLight from "./pages/sets/SetKitchenLight";
 import { CookieConsent } from "./components/CookieConsent";
 
 const queryClient = new QueryClient();
@@ -30,6 +37,13 @@ const App = () => (
           <Route path="/" element={<Promos />} />
           <Route path="/promos" element={<Promos />} />
           <Route path="/promos/kitchen" element={<KitchenPromo />} />
+          <Route path="/sets/comfortable" element={<SetComfortable />} />
+          <Route path="/sets/convenient" element={<SetConvenient />} />
+          <Route path="/sets/kids" element={<SetKids />} />
+          <Route path="/sets/dining-1" element={<SetDining1 />} />
+          <Route path="/sets/dining-2" element={<SetDining2 />} />
+          <Route path="/sets/practical" element={<SetPractical />} />
+          <Route path="/sets/kitchen-light" element={<SetKitchenLight />} />
           <Route path="/nps" element={<NPS />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
