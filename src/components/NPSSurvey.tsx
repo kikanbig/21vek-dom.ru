@@ -6,6 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Send, CheckCircle2, Loader2, WifiOff } from "lucide-react";
 import { cn } from "@/lib/utils";
 import logo from "@/assets/logo.png";
+import { OFFICIAL_DOM_URL } from "@/constants/officialSite";
 import { submitToGoogleSheets, savePendingSubmission, syncPendingSubmissions, getPendingCount } from "@/lib/sheets";
 
 export const NPSSurvey = () => {
@@ -91,11 +92,18 @@ export const NPSSurvey = () => {
     <div className="min-h-screen flex flex-col px-8 py-6 lg:px-12 lg:py-8">
       {/* Logo - top center */}
       <header className="flex justify-center animate-fade-in-up">
-        <img 
-          src={logo} 
-          alt="Logo" 
-          className="h-16 lg:h-20 w-auto object-contain"
-        />
+        <a
+          href={OFFICIAL_DOM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block"
+        >
+          <img
+            src={logo}
+            alt="21vek.by ДОМ"
+            className="h-16 lg:h-20 w-auto object-contain"
+          />
+        </a>
       </header>
 
       {/* Main content - vertically centered with equal spacing */}

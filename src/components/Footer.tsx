@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import logo from '@/assets/logo-21vek-dom.png';
+import { OFFICIAL_DOM_URL } from '@/constants/officialSite';
 
 export const Footer = () => {
   return (
@@ -7,9 +7,9 @@ export const Footer = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col gap-6">
           {/* Logo */}
-          <Link to="/">
+          <a href={OFFICIAL_DOM_URL} target="_blank" rel="noopener noreferrer">
             <img src={logo} alt="21vek.by ДОМ" className="h-6 w-auto" />
-          </Link>
+          </a>
 
           <div className="flex flex-col lg:flex-row justify-between gap-6">
             {/* Navigation links */}

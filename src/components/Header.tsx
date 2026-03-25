@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, Phone, X } from 'lucide-react';
+import { Menu, Phone } from 'lucide-react';
 import {
   Sheet,
   SheetContent,
@@ -8,6 +7,7 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet';
 import logo from '@/assets/logo-21vek-dom.png';
+import { OFFICIAL_DOM_URL } from '@/constants/officialSite';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,9 +16,14 @@ export const Header = () => {
     <header className="sticky top-0 z-50 w-full bg-white border-b border-black/[0.06]">
       <div className="container mx-auto px-4">
         <div className="flex items-center h-14 gap-8">
-          <Link to="/" className="flex-shrink-0">
+          <a
+            href={OFFICIAL_DOM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-shrink-0"
+          >
             <img src={logo} alt="21vek.by ДОМ" className="h-7 w-auto" />
-          </Link>
+          </a>
 
           <div className="hidden lg:flex items-center gap-4 text-[13px] text-foreground/60 ml-auto">
             <a
@@ -45,9 +50,14 @@ export const Header = () => {
         <SheetContent side="left" className="w-[280px] p-0">
           <SheetHeader className="px-5 pt-5 pb-4 border-b border-border/50">
             <SheetTitle>
-              <Link to="/" onClick={() => setIsMenuOpen(false)}>
+              <a
+                href={OFFICIAL_DOM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 <img src={logo} alt="21vek.by ДОМ" className="h-6 w-auto" />
-              </Link>
+              </a>
             </SheetTitle>
           </SheetHeader>
           <div className="mt-auto border-t border-border/50 px-5 py-4 space-y-2">
