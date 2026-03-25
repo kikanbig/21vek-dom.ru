@@ -92,12 +92,7 @@ export const NPSSurvey = () => {
     <div className="min-h-screen flex flex-col px-8 py-6 lg:px-12 lg:py-8">
       {/* Logo - top center */}
       <header className="flex justify-center animate-fade-in-up">
-        <a
-          href={OFFICIAL_DOM_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block"
-        >
+        <a href={OFFICIAL_DOM_URL} className="inline-block">
           <img
             src={logo}
             alt="21vek.by ДОМ"

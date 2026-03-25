@@ -16,12 +16,7 @@ export const Header = () => {
     <header className="sticky top-0 z-50 w-full bg-white border-b border-black/[0.06]">
       <div className="container mx-auto px-4">
         <div className="flex items-center h-14 gap-8">
-          <a
-            href={OFFICIAL_DOM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-shrink-0"
-          >
+          <a href={OFFICIAL_DOM_URL} className="flex-shrink-0">
             <img src={logo} alt="21vek.by ДОМ" className="h-7 w-auto" />
           </a>
 
@@ -50,12 +45,7 @@ export const Header = () => {
         <SheetContent side="left" className="w-[280px] p-0">
           <SheetHeader className="px-5 pt-5 pb-4 border-b border-border/50">
             <SheetTitle>
-              <a
-                href={OFFICIAL_DOM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMenuOpen(false)}
-              >
+              <a href={OFFICIAL_DOM_URL} onClick={() => setIsMenuOpen(false)}>
                 <img src={logo} alt="21vek.by ДОМ" className="h-6 w-auto" />
               </a>
             </SheetTitle>

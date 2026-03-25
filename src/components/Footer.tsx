@@ -7,7 +7,7 @@ export const Footer = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col gap-6">
           {/* Logo */}
-          <a href={OFFICIAL_DOM_URL} target="_blank" rel="noopener noreferrer">
+          <a href={OFFICIAL_DOM_URL}>
             <img src={logo} alt="21vek.by ДОМ" className="h-6 w-auto" />
           </a>
 
