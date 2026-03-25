@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
-import { Link } from 'react-router-dom';
-
 export const CookieConsent = () => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -33,11 +31,8 @@ export const CookieConsent = () => {
               Мы используем cookies
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Этот сайт использует файлы cookie для улучшения работы и повышения эффективности сайта. 
-              Продолжая использовать сайт, вы соглашаетесь с использованием файлов cookie.{' '}
-              <Link to="/cookie-policy" className="text-foreground hover:underline">
-                Подробнее
-              </Link>
+              Этот сайт использует файлы cookie для улучшения работы и повышения эффективности сайта.
+              Продолжая использовать сайт, вы соглашаетесь с использованием файлов cookie.
             </p>
           </div>
           

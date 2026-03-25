@@ -13,11 +13,11 @@ const KitchenPromo = () => {
         <div className="container mx-auto px-4 py-8 md:py-12 max-w-5xl">
           {/* Breadcrumb */}
           <Link
-            to="/"
+            to="/promos"
             className="inline-flex items-center gap-2 text-foreground/60 hover:text-foreground transition-colors font-medium mb-8"
           >
             <ArrowLeft className="w-4 h-4" />
-            На главную
+            К акциям
           </Link>
 
           {/* Header */}

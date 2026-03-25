@@ -1,6 +1,5 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import heroBanner from '@/assets/banners/promos-hero-new-opt.jpg';
@@ -98,23 +97,44 @@ const promos: Promo[] = [
   },
 ];
 
+const promoCardClass =
+  'group relative rounded-2xl overflow-hidden aspect-square bg-background border border-black/[0.06] shadow-sm';
+
+const PromoTileContent = ({
+  promo,
+  interactive,
+}: {
+  promo: Promo;
+  interactive: boolean;
+}) => (
+  <>
+    <img
+      src={promo.image}
+      alt={promo.title}
+      className={
+        interactive
+          ? 'w-full h-full object-cover transition-transform duration-500 group-hover:scale-105'
+          : 'w-full h-full object-cover'
+      }
+      loading="lazy"
+    />
+    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+    <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
+      <h3 className="text-white font-bold text-sm md:text-base mb-1">
+        {promo.id === 0 ? promo.title : `Сет «${promo.title}»`}
+      </h3>
+      <p className="text-white/65 text-xs line-clamp-2">{promo.subtitle}</p>
+    </div>
+  </>
+);
+
 const Promos = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
       <main className="flex-1">
         <div className="container mx-auto px-4 py-8 md:py-12">
-          {/* Breadcrumb */}
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-foreground/60 hover:text-foreground transition-colors font-medium mb-8"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            На главную
-          </Link>
-
-          {/* Definition Banner */}
-          <div className="relative overflow-hidden rounded-3xl mb-10">
+          <div className="relative overflow-hidden rounded-3xl mb-10 md:mb-14">
             <img
               src={heroBanner}
               alt=""
@@ -127,7 +147,8 @@ const Promos = () => {
                 21vek.by ДОМ · Акции
               </p>
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-heading font-black text-white leading-tight max-w-3xl">
-                Сет — это выгода<br className="hidden md:block" /> без компромиссов
+                Сет — это выгода
+                <br className="hidden md:block" /> без компромиссов
               </h1>
               <p className="text-base md:text-xl text-white/75 max-w-xl leading-relaxed">
                 Продуманная комбинация товаров, собранная в одно предложение. Выбирай, приходи, экономь.
@@ -138,35 +159,59 @@ const Promos = () => {
             </div>
           </div>
 
-          {/* Grid */}
+          <section
+            aria-label="О магазине и акциях"
+            className="relative max-w-3xl mx-auto mb-12 md:mb-16 px-1 md:px-2"
+          >
+            <div className="rounded-3xl border border-black/[0.06] bg-gradient-to-b from-muted/40 to-background px-6 py-8 md:px-10 md:py-10 shadow-[0_1px_0_rgba(0,0,0,0.04)]">
+              <p className="text-lg md:text-xl font-semibold text-foreground tracking-tight text-center mb-6">
+                В 21vek.by ДОМ всегда есть повод заглянуть.
+              </p>
+              <div className="space-y-4 text-[15px] md:text-base text-foreground/80 leading-relaxed">
+                <p>
+                  Мы верим: идеальный дом не должен стоить целое состояние. Поэтому в нашем магазине
+                  постоянно действуют выгодные акции и специальные предложения на мебель, интерьеры и
+                  бытовую технику.
+                </p>
+                <p>
+                  Диваны, кухни, спальни, столы, кресла, техника для дома — здесь всегда можно найти
+                  то, что вы давно хотели, по лучшей цене.
+                </p>
+                <p>
+                  Каждый найдёт то, что ему по душе — и по кошельку. Молодая пара, которая обустраивает
+                  первую квартиру. Семья, которая решила обновить гостиную. Или тот, кто просто давно
+                  хотел кресло, в котором хочется остаться навсегда.
+                </p>
+                <p>
+                  Приходите, смотрите, трогайте, сравнивайте. 2&nbsp;700 кв.м. мебели и техники. Всё
+                  вживую. Всё по честным ценам. А наши акции сделают покупку ещё приятнее.
+                </p>
+                <p className="font-medium text-foreground pt-1">
+                  21vek.by ДОМ — ваш идеальный дом начинается здесь.
+                </p>
+              </div>
+              <p className="mt-8 pt-6 border-t border-black/[0.06] text-center text-sm md:text-[15px] font-medium text-foreground/90">
+                📍 ТРЦ «Червенский», ул. Маяковского 6
+              </p>
+            </div>
+          </section>
+
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pb-8">
-            {promos.map((promo) => (
-              <Link
-                to={promo.link}
-                key={promo.id}
-                className="group relative rounded-2xl overflow-hidden aspect-square cursor-pointer bg-background"
-              >
-                <img
-                  src={promo.image}
-                  alt={promo.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-
-                {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
-
-                {/* Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
-                  <h3 className="text-white font-bold text-sm md:text-base mb-1">
-                    {promo.id === 0 ? promo.title : `Сет «${promo.title}»`}
-                  </h3>
-                  <p className="text-white/65 text-xs line-clamp-2">
-                    {promo.subtitle}
-                  </p>
+            {promos.map((promo) =>
+              promo.id === 0 ? (
+                <Link
+                  to={promo.link}
+                  key={promo.id}
+                  className={`${promoCardClass} cursor-pointer`}
+                >
+                  <PromoTileContent promo={promo} interactive />
+                </Link>
+              ) : (
+                <div key={promo.id} className={promoCardClass}>
+                  <PromoTileContent promo={promo} interactive={false} />
                 </div>
-              </Link>
-            ))}
+              )
+            )}
           </div>
         </div>
       </main>
