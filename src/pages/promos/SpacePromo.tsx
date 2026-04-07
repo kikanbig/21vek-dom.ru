@@ -11,6 +11,14 @@ const SpacePromo = () => {
       <Header />
 
       <main className="flex-1">
+        <div className="w-full bg-[#24104f]">
+          <img
+            src={promoImage}
+            alt="Хьюстон, у нас скидки до 40% на мебель и товары для дома"
+            className="w-full h-auto object-contain"
+          />
+        </div>
+
         <div className="container mx-auto px-4 py-8 md:py-12 max-w-6xl">
           <Link
             to="/promos"
@@ -34,14 +42,6 @@ const SpacePromo = () => {
               С 8 по 22 апреля в магазине 21vek.by ДОМ высадились космонавты — и принесли скидки до
               40% на мебель и товары для дома.
             </p>
-          </div>
-
-          <div className="relative rounded-2xl overflow-hidden aspect-[16/9] mb-12 bg-muted">
-            <img
-              src={promoImage}
-              alt="Хьюстон, у нас скидки до 40% на мебель и товары для дома"
-              className="w-full h-full object-cover"
-            />
           </div>
 
           <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-8 lg:gap-12 mb-16">
