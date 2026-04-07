@@ -11,11 +11,11 @@ const SpacePromo = () => {
       <Header />
 
       <main className="flex-1">
-        <div className="w-full bg-[#24104f]">
+        <div className="px-4 pt-6 md:pt-8">
           <img
             src={promoImage}
             alt="Хьюстон, у нас скидки до 40% на мебель и товары для дома"
-            className="w-full h-auto object-contain"
+            className="block w-auto h-auto max-w-full mx-auto"
           />
         </div>
 
