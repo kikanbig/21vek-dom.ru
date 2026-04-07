@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-route
 import { useEffect, lazy, Suspense } from "react";
 import { Loader2 } from "lucide-react";
 import Promos from "./pages/Promos";
+import SpacePromo from "./pages/promos/SpacePromo";
 import NPS from "./pages/NPS";
 import SetComfortable from "./pages/sets/SetComfortable";
 import SetConvenient from "./pages/sets/SetConvenient";
@@ -46,6 +47,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Promos />} />
             <Route path="/promos" element={<Promos />} />
+            <Route path="/promos/space" element={<SpacePromo />} />
             <Route path="/sets/comfortable" element={<SetComfortable />} />
             <Route path="/sets/convenient" element={<SetConvenient />} />
             <Route path="/sets/kids" element={<SetKids />} />
