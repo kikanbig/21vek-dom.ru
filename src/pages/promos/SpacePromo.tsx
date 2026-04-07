@@ -4,6 +4,7 @@ import { MapPin, Clock, Phone, ArrowRight, ArrowLeft, Rocket } from 'lucide-reac
 import { Link } from 'react-router-dom';
 import { STORE_YANDEX_ROUTE_URL } from '@/constants/storeRoute';
 import promoImage from '@/assets/promos/space-promo-banner.png';
+import astronautImage from '@/assets/promos/space-promo-astronaut.png';
 
 const SpacePromo = () => {
   return (
@@ -70,51 +71,61 @@ const SpacePromo = () => {
               </div>
             </div>
 
-            <div className="rounded-3xl border border-black/[0.06] bg-white p-6 md:p-8">
-              <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-8">
-                Приходите к нам в магазин
-              </h2>
-
-              <div className="space-y-6 mb-8">
-                <div className="flex items-start gap-4">
-                  <MapPin className="w-6 h-6 text-foreground mt-0.5" />
-                  <div>
-                    <p className="font-semibold text-foreground">21vek.by ДОМ</p>
-                    <p className="text-muted-foreground">ТРЦ «Червенский», ул. Маяковского 6</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <Clock className="w-6 h-6 text-foreground mt-0.5" />
-                  <div>
-                    <p className="font-semibold text-foreground">Режим работы</p>
-                    <p className="text-muted-foreground">Ежедневно с 10:00 до 22:00</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <Phone className="w-6 h-6 text-foreground mt-0.5" />
-                  <div>
-                    <p className="font-semibold text-foreground">Телефон</p>
-                    <a
-                      href="tel:+375447829302"
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      +375 44 782 93 02
-                    </a>
-                  </div>
-                </div>
+            <div className="space-y-6">
+              <div className="rounded-3xl overflow-hidden border border-black/[0.06] bg-gradient-to-b from-[#26104f] via-[#4b2294] to-[#c295ff] shadow-sm">
+                <img
+                  src={astronautImage}
+                  alt="Космонавт с шарами 40%"
+                  className="block w-full h-auto"
+                />
               </div>
 
-              <a
-                href={STORE_YANDEX_ROUTE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 w-full bg-foreground text-background px-8 py-4 rounded-full font-semibold hover:bg-foreground/90 transition-colors"
-              >
-                Построить маршрут
-                <ArrowRight className="w-5 h-5" />
-              </a>
+              <div className="rounded-3xl border border-black/[0.06] bg-white p-6 md:p-8">
+                <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-8">
+                  Приходите к нам в магазин
+                </h2>
+
+                <div className="space-y-6 mb-8">
+                  <div className="flex items-start gap-4">
+                    <MapPin className="w-6 h-6 text-foreground mt-0.5" />
+                    <div>
+                      <p className="font-semibold text-foreground">21vek.by ДОМ</p>
+                      <p className="text-muted-foreground">ТРЦ «Червенский», ул. Маяковского 6</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <Clock className="w-6 h-6 text-foreground mt-0.5" />
+                    <div>
+                      <p className="font-semibold text-foreground">Режим работы</p>
+                      <p className="text-muted-foreground">Ежедневно с 10:00 до 22:00</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <Phone className="w-6 h-6 text-foreground mt-0.5" />
+                    <div>
+                      <p className="font-semibold text-foreground">Телефон</p>
+                      <a
+                        href="tel:+375447829302"
+                        className="text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        +375 44 782 93 02
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <a
+                  href={STORE_YANDEX_ROUTE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 w-full bg-foreground text-background px-8 py-4 rounded-full font-semibold hover:bg-foreground/90 transition-colors"
+                >
+                  Построить маршрут
+                  <ArrowRight className="w-5 h-5" />
+                </a>
+              </div>
             </div>
           </div>
 
