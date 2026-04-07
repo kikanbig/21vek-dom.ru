@@ -11,7 +11,7 @@ const SpacePromo = () => {
       <Header />
 
       <main className="flex-1">
-        <div className="px-4 pt-6 md:pt-8">
+        <div className="max-w-4xl mx-auto px-4 pt-6 md:pt-8">
           <img
             src={promoImage}
             alt="Хьюстон, у нас скидки до 40% на мебель и товары для дома"
