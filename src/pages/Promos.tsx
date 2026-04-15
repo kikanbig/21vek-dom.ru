@@ -26,7 +26,7 @@ const promos: Promo[] = [
   {
     id: 8,
     title: 'Хьюстон, у нас скидки!',
-    subtitle: 'До 40% · с 8 по 22 апреля',
+    subtitle: 'До 40% · с 8 по 27 апреля',
     description: 'Космические скидки на мебель и товары для дома в 21vek.by ДОМ',
     image: spacePromoTile,
     discount: 'до 40%',

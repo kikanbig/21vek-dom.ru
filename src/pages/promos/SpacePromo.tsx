@@ -33,14 +33,14 @@ const SpacePromo = () => {
             <div className="inline-flex flex-wrap items-center gap-4 bg-primary text-primary-foreground px-6 py-4 rounded-2xl mb-8">
               <span className="text-2xl font-black">до 40%</span>
               <span className="text-2xl font-black opacity-40">·</span>
-              <span className="text-2xl font-black">С 8 по 22 апреля</span>
+              <span className="text-2xl font-black">С 8 по 27 апреля</span>
             </div>
 
             <h1 className="text-4xl md:text-6xl font-heading font-black text-foreground mb-6 leading-tight">
               Хьюстон, у нас скидки!
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-4xl">
-              С 8 по 22 апреля в магазине 21vek.by ДОМ высадились космонавты — и принесли скидки до
+              С 8 по 27 апреля в магазине 21vek.by ДОМ высадились космонавты — и принесли скидки до
               40% на мебель и товары для дома.
             </p>
           </div>
@@ -53,7 +53,7 @@ const SpacePromo = () => {
                   Хьюстон, у нас скидки!
                 </p>
                 <p>
-                  С 8 по 22 апреля в магазине 21vek.by ДОМ высадились космонавты — и принесли скидки
+                  С 8 по 27 апреля в магазине 21vek.by ДОМ высадились космонавты — и принесли скидки
                   до 40% на мебель и товары для дома!
                 </p>
                 <p>
@@ -136,7 +136,7 @@ const SpacePromo = () => {
             <ul className="space-y-3 text-muted-foreground text-sm max-w-3xl">
               <li className="flex items-start gap-3">
                 <span className="text-foreground/40 mt-0.5">—</span>
-                <span>Акция действует с 8 по 22 апреля 2026 года</span>
+                <span>Акция действует с 8 по 27 апреля 2026 года</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-foreground/40 mt-0.5">—</span>
