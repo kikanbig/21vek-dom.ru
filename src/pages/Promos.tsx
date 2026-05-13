@@ -10,7 +10,7 @@ import setDining1 from '@/assets/promos/set-dining-1-opt.jpg';
 import setDining2 from '@/assets/promos/set-dining-2-opt.jpg';
 import setPractical from '@/assets/promos/set-practical-opt.jpg';
 import setKitchenLight from '@/assets/promos/set-kitchen-light-opt.jpg';
-import spacePromoTile from '@/assets/promos/space-promo-tile.png';
+import halvaPromoTile from '@/assets/categories/cat-appliances.webp';
 
 interface Promo {
   id: number;
@@ -25,12 +25,12 @@ interface Promo {
 const promos: Promo[] = [
   {
     id: 8,
-    title: 'Хьюстон, у нас скидки!',
-    subtitle: 'До 40% · с 8 по 27 апреля',
-    description: 'Космические скидки на мебель и товары для дома в 21vek.by ДОМ',
-    image: spacePromoTile,
-    discount: 'до 40%',
-    link: '/promos/space',
+    title: 'Рассрочка 12 месяцев по Халве ⚡',
+    subtitle: 'На всю бытовую технику · 11–20 мая',
+    description: 'Рассрочка по карте Халва на всю бытовую технику в 21vek.by ДОМ',
+    image: halvaPromoTile,
+    discount: '12 мес',
+    link: '/promos/halva',
   },
   {
     id: 7,
