@@ -3,7 +3,7 @@ import { Footer } from '@/components/Footer';
 import { MapPin, Clock, Phone, ArrowRight, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { STORE_YANDEX_ROUTE_URL } from '@/constants/storeRoute';
-import heroImage from '@/assets/sets/set-kitchen-appliances.jpg';
+import halvaBanner from '@/assets/promos/halva-promo-banner.png';
 
 const HalvaPromo = () => {
   return (
@@ -12,11 +12,11 @@ const HalvaPromo = () => {
 
       <main className="flex-1">
         <div className="container mx-auto max-w-6xl px-4 pt-6 md:pt-8">
-          <div className="rounded-2xl overflow-hidden border border-black/[0.06] shadow-sm">
+          <div className="rounded-2xl overflow-hidden border border-black/[0.06] shadow-sm bg-[#7b2cbf]">
             <img
-              src={heroImage}
-              alt="Бытовая техника в 21vek.by ДОМ"
-              className="block w-full h-auto max-h-[min(360px,40vh)] object-cover object-center"
+              src={halvaBanner}
+              alt="Рассрочка 12 месяцев по Халве на всю бытовую технику в 21vek.by ДОМ, с 11 по 20 мая"
+              className="block w-full h-auto"
             />
           </div>
         </div>

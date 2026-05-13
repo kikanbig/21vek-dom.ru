@@ -10,7 +10,7 @@ import setDining1 from '@/assets/promos/set-dining-1-opt.jpg';
 import setDining2 from '@/assets/promos/set-dining-2-opt.jpg';
 import setPractical from '@/assets/promos/set-practical-opt.jpg';
 import setKitchenLight from '@/assets/promos/set-kitchen-light-opt.jpg';
-import halvaPromoTile from '@/assets/categories/cat-appliances.webp';
+import halvaPromoTile from '@/assets/promos/halva-promo-tile.png';
 
 interface Promo {
   id: number;
